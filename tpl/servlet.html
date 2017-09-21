@@ -1,0 +1,201 @@
+        <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP.</h2>
+
+<p>
+Une servlet est un objet java qui étends l'interface "Servlet" ou "HTTPServlet".<br/>
+Cette interface définie 2 méthodes qui sont appelées lorsque le code est chargé/arrêté par le serveur web qui "expose" ces servlets à travers une URL.<br/>
+Ces méthodes "init" et "destroy" permettent d'initialiser un certain nombre d'élément au lancement de la servlet ou de nettoyer le contexte lors de leur arrêt.<br/>
+</p>
+
+<p>
+Le serveur web va interpréter une partie de la requête HTTP envoyée par le navigateur de l'internaute et appelée une méthode de la servlet qui est responsable du traitement de cette requête.<br/>
+</p>
+
+<center><img src="http://static.commentcamarche.net/www.commentcamarche.net/pictures/servlets-images-moteur.gif" /><br/>
+  (source : "comment çà marche")
+</center>
+
+<p>
+  C'est la méthode "service" qui est appelée.<br/>
+  Cette méthode possède une implémentation par défaut dans la classe abstraite "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HTTPServlet</a>". Elle appelle la méthode doGet, doPost, doHead, doOptions, doPut, doTrace en fonction du type de requête HTTP lancée au serveur.<br/>
+</p>
+
+<p>
+  Les deux paramètres de ces opérations sont "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HTTPServletRequest</a>" et "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HTTPServletResponse</a>".<br/>
+  Ils permettent respectivement d'analyser la requête réalisée par l'internaute, et de lui répondre.<br/>
+</p>
+
+<p>
+  <strong>Utiliser Firebug</strong><br/>
+  <a href="https://addons.mozilla.org/fr/firefox/addon/firebug/">
+    <img src="http://www.nosyweb.fr/images/stories/article/outils/firebug_firefox.png" height="50" style="float: left; margin-right: 10px"> Firebug</a> est un plugin très pratique pour firefox et vous devriez l'installer. Il permet de visualiser la structure HTML d'une page, de debugger du javascript, d'analyser les échanges réseaux, les cookies et bien d'autres choses ...
+</p>
+
+
+<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Votre première servlet.</h2>
+
+<p>
+  Nous allons réaliser une première servlet très simple en essayant de "tout faire à la main".<br/>
+  Depuis l'écriture dans un éditeur de texte basique, la compilation et le lancement dans un serveur web de type "tomcat 8" allégé.
+<p>
+
+<p>
+  <ul><li>
+    Télécharger Tomcat extraire l'archive. Vous y trouverez un répertoire "webapps"
+  </li><li>
+    Rendez vous dans le dossier webapps et créez un répertoire tp1/WEB-INF/classes
+  </li><li>
+    Créez un ficher "MyServlet.java" à l'intérieur de classes
+  </li></ul>
+</p>
+
+<code><pre>
+  import java.io.IOException;
+  import java.io.Writer;
+
+  import javax.servlet.ServletException;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+
+
+  @WebServlet("/bonjour")
+  public class MyServlet extends HttpServlet {
+
+  	@Override
+  	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  		String name = req.getParameter("nom");
+  		if ( name == null || name.isEmpty() ) name = "tout le monde";
+
+  		Writer out = resp.getWriter();
+  		out.write("&lt;p&gt;Bonjour &lt;b&gt;&quot; + name + &quot;&lt;/b&gt; !&lt;/p&gt;");
+  	}
+
+  }
+</pre></code>
+
+<h3>Compilation</h3>
+
+<p>
+  Pour compiler ce code il faudra avoir le répertoire $JAVA_HOME/bin dans votre PATH (voir installation des outils). Il faut en effet pouvoir exécuter le compilateur "javac" facilement.<br/>
+  Il sera également nécessaire de mettre la librairie "servlet-api.jar" dans votre CLASSPATH. Cette librairie contient toutes les interfaces et classes abstraites que nous implémentons en faisant des servlets.<br/>
+  Elle est fournie (entre autre) avec tomcat, dans le répertoire "lib".<br/>
+</p>
+
+<p>
+  <code>javac -cp (chemin vers tomcat)/lib/servlet-api.jar MyServlet.java</code> <br/>
+  Cela a du créer un fichier "MyServlet.class" qui est notre servlet, branchée sur l'url "/bonjour" du contexte "/tp1".<br/>
+</p>
+
+<h3>Déploiement</h3>
+
+<p>
+  Lançons notre serveur web.<br/>
+  rendez-vous dans le répertoire tomcat8/bin et exécutez <code>./catalina.sh run</code><br/>
+  Après quelques secondes votre serveur est lancé et accessible sur "http://localhost:8080"<br/>
+</p>
+
+<p>
+  Utilisez votre navigateur, puis la commande curl pour interroger votre servlet<br/>
+  <code>curl -v http://localhost:8080/tp1/bonjour</code><br/>
+</p>
+
+<p>
+  A. Essayez de passer votre nom en paramètre d'abord en GET.<br/>
+  B. Modifier votre servlet pour n'accepter que le paramètre en POST. Tester à l'aide d'un formulaire écrit dans un fichier html sauvegardé n'importe où ... puis avec curl<br/>
+  C.  Modifiez votre servlet pour afficher le formulaire sur le GET et pour afficher "bonjour xxx" lors d'un POST.<br/>
+</p>
+
+<h3>Exercice</h3>
+
+<p>
+  Créez une nouvelle servlet accessible à l'url /tp1/dist, qui calculera la distance à vol d'oiseau entre deux points du globe.<br/>
+  Les points seront donnés en coordonnées géographique (latitude, longitude) selon le format : DD.ddddddd (degrés et dixième de degrés).<br/>
+  Les paramètres seront les suivants : <br/>
+  lat1, lng1 : latitude et longitude du premier point.<br/>
+  lat2, lng2 : latitude et longitude du deuxieme point.<br/>
+  Les paramètres doivent pouvoir être passés en GET ou en POST.<br/>
+  La réponse html contiendra la distance au format 123,45km.<br/>
+  Si un paramètre est manquant le serveur renverra une erreur 400.
+</p>
+
+<p>
+  La formule pour obtenir la distance entre 2 point GPS est la suivante :
+<pre>
+  acos(
+    sin(lat1) * sin(lat2)
+    + cos(lat1) * cos(lat2) * cos(lng1-lng2)
+  ) * R;
+</pre>
+  R vaut 6366 selon la norme WGS84. Attention, en JAVA, les angles doivent être données en radians pour les fonction acos, sin, cos ...<br/>
+  <br/>
+  Pour plus d'informations, je vous recommande la lecture de <a href="http://dotclear.placeoweb.com/post/Formule-de-calcul-entre-2-points-wgs84-pour-calculer-la-distance-qui-separe-ces-deux-points">cet article</a> qui présente différentes implémentations du problème, dont une en JAVA.
+</p>
+
+
+
+<h2>introduction aux JSP</h2>
+
+<p>
+Jsp est un équivalent java des fichiers asp ou php. C'est une manière de mettre du java, exécuté coté serveur, dans une page html. Le jsp n'est pas interprété, il est en fait traduit en java puis compilé (généralement au premier appel de la page), et ensuite exécuté. C'est le résultat de cette exécution qui donne le code html renvoyé au navigateur.
+</p>
+
+<p>
+Nous utiliserons "jasper" comme implémentation du moteur de jsp, il est fourni avec tomcat.
+</p>
+
+<h3>Quelques bases</h3>
+
+<p>
+Afin de distinguer le code html ou javascript à donner au navigateur et le code java à éxécuter sur le serveur, nous utilisons les balises "&lt;%" et "%&gt;" pour délimiter le code java. <br/>
+Une balise particulière permet de définir des propriétés sur le type de réponse HTTP, l'encodage de la page, ou encore les imports java nécessaire pour la compilation de la page. Toutes ces directives se retrouvent entre les balises "&lt;%@" et "%&gt;". <br/>
+Enfin, il est très courant de vouloir afficher le contenu d'une variable dans le html qui sera renvoyé au navigateur. Cela peut se faire en faisant un <code>&lt;% out.print( maVariable ); %&gt;</code> mais un tag a été défini pour réduire l'écriture à <code>&lt;%= maVariable %&gt;</code> qui fait exactement la même chose. <br/>
+Comme nous sommes de bon développeurs consciencieux, nous n'hésiterons également pas à utiliser le tag permettant de mettre des commentaires dans nos jsp : <code>&lt;%-- mon super commentaire qui ne sera pas compilé ou envoyé au navigateur --%&gt;</code> <br/>
+Il faut bien comprendre que la jsp va être traduite en code java. Plus précisément en une classe qui hérite de Servlet dont il sera exécuter la méthode "service". Dans certains cas il peut être utile de vouloir introduire des attributs ou des méthodes à cette classe générée et compilée.<br/> 
+Cela peut se faire avec le tag <code>&lt;%! private double montant; %&gt;</code>
+</p>
+
+<p>
+Depuis votre code java, vous pouvez utiliser les variables suivantes :
+<ul><li>  request - qui contient l'objet HttpServletRequest
+</li><li> response - qui contient l'objet HttpServletResponse
+</li><li> out - qui est le flux de sorti équivalent à request.getWriter()
+</li><li> application - un objet possédant notament la méthode "log" utile pour débugger
+</li><li> pageContext - un objet permettant d'échanger des variables entre les différents morceaux de jsp de la page.
+</li></ul>
+</p>
+
+<p>
+Pour rendre l'écriture de nos jsp un peu plus modulaire il est possible d'inclure du code jsp à partir d'une autre page jsp. Cela se fera via la directive &lt;%@ include file="ma_page.jsp" %&gt; Si vous donnez un chemin absolu au fichier (exemple /layout/header.jsp), la racine considéré est celle du contexte web du serveur. Il est ainsi plus facile d'être indépendant de l'environnement de déploiement.
+</p>
+
+<p>
+  Il est également possible de traiter le début d'une requête avec une servlet et de déléguer l'affichage à une page jsp. Dans la servlet nous utiliserons alors <code>req.getRequestDispatcher("/ma/page.jsp").forward(req, resp)</code><br/>
+  Pour passer des objets de la servlet à la jsp, il sera possible d'utiliser l'objet request et ses méthodes setAttribute / getAttribute.
+</p>
+
+<p>
+  Il est alors possible de mettre en oeuvre un pattern MVC dont la partie "View" est traitée en JSP et la partie "Controller" est traitée par la servlet. Le modèle pourra quant à lui être cloisonné dans des classes d'accès au données (DAO) injectées dans le controller.
+</p>
+
+<h3>Test</h3>
+
+<p>
+  Reprenez le contenu de <a href="https://raw.githubusercontent.com/gdufrene/java_ee_spring-13/master/102_Jsp/www/index.jsp">ce fichier</a> et mettez le dans un fichier "test.jsp", dans votre répertoire (tomcat) webapps/tp1.<br/>
+  Accédez à la page http://localhost:8080/tp1/test.jsp</br>
+  Le premier accès est un peu plus long car "jasper", le moteur jsp, transforme votre source jsp en source java, puis le compile et enfin il exécute ce code.<br/>
+  Pour les appels suivant, le code est simplement exécuté comme n'importe quel autre servlet.<br/>
+  Vous pouvez d'ailleurs regarder le contenu du source java généré dans le répertoire de travail de tomcat : (tomcat) work/Catalina/localhost/tp1/org/apache/jsp<br/>
+  Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la jsp, ou à analyser une exception relevée par le code exécuté.
+</p>
+
+<h3>Exercice de mise en jambe</h3>
+
+<b>Autonomie</b>
+
+<p>
+Ecrire une page présentant un film, permettant aux visiteurs de laisser un commentaire.<br/>
+Les commentaires seront simplement laissés dans une "List" stockée en static dans la servlet.<br/>
+Chaque démarrage (ou re-démarrage) de tomcat entrainera donc la perte des données.<br/>
+</p>
+

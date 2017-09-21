@@ -1,0 +1,148 @@
+
+<h2> <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JSTL.
+</h2>
+
+<p>
+  JSP Standard Tag Library (JSTL) est une librairie qui étend les fonctionnalités de JSP en mettant à disposition de nouveaux tags à utiliser dans le HTML. L'objectif est de permettre d'écrire du code plus facilement et de manière plus cohérente avec le reste du HTML. <br>
+  Ainsi, un développeur front-end ne sera pas trop perdu dans l'utilisation de ces balises, même si il ne connait rien à JAVA.
+</p>
+
+<p>
+  L'implémentation de base fourni différents types de balises regroupées dans différents espaces de nommage XML. Comprenez différents module dont on identifiera le nom dans le préfixe de la balise. Il existe ainsi les tags "core" (c), les tags "xml" (x), les tags "format" (fmt) et les tags "sql" (sql).
+</p>
+
+<p>
+  JSTL 1.2 offre également des facilités pour la manipulation et l'affichage des données provenant du "model". Cela va se faire par ce qui est nommé "Expression Language" (EL). Une expression est une chaine du type <code>${expression}</code>. "expression" peut simplement être le nom d'une variable du modèle ou une fonction plus aboutie fournie par EL.
+</p>
+
+<p>
+  Pour indiquer à notre compilateur JSP que notre page utilisera JSTL et EL, il suffit de placer cette déclaration de la taglib en haut de notre page JSP.<br>
+  <code>&lt;%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %&gt;</code><br>
+  Ensuite les balises préfixées par "c" seront interprétées par le compilateur et généreront du code java particulier.<br>
+</p>
+
+<h3> Liste des tags du "core" </h3>
+
+<p>
+  La taglib "core" fourni un ensemble de tag permettant de gérer de l'affichage et affectation de variable, des boucles, des conditions, de la création d'url en fonction du contexte, des redirections ...<br>
+</p><p>
+
+</p><p>
+  </p><table class="src">
+  <tbody><tr><th style="width:30%">Tag</th><th>Description </th></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_out_tag.htm">&lt;c:out &gt;</a></td>
+    <td>Identique à &lt;%= ... &gt;, mais pour les expressions. </td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_set_tag.htm">&lt;c:set &gt;</a></td>
+    <td>Affecte le résultat d'une expression à un 'scope'</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_remove_tag.htm">&lt;c:remove &gt;</a></td>
+    <td>Efface une variable (Depuis un scope, si défini). </td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_catch_tag.htm">&lt;c:catch&gt;</a></td>
+    <td>Gère les exception 'Throwable' qui surviennent dans le contenu du tag.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_if_tag.htm">&lt;c:if&gt;</a></td>
+    <td>Tag permettant de traiter une condition (if).</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_choose_tag.htm">&lt;c:choose&gt;</a></td>
+    <td>Tag permettant de gérer un ensemble de conditions exclusives (identique à switch/break). </td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_choose_tag.htm">&lt;c:when&gt;</a></td>
+    <td>Sous-tag de 'choose' pour traiter une condition.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_choose_tag.htm">&lt;c:otherwise &gt;</a></td>
+    <td>Sous-tag de 'choose' pour traiter tout autre cas que ceux indiquer dans 'when'.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_import_tag.htm">&lt;c:import&gt;</a></td>
+    <td>Affecte le contenu d'une page pointée par une URL à une variable.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_foreach_tag.htm">&lt;c:forEach &gt;</a></td>
+    <td>Permet de faire une boucle sur tout ce qui est 'Iterable' ou tableaux.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_foreach_tag.htm">&lt;c:forTokens&gt;</a></td>
+    <td>Boucle sur une chaine possédant un séparateur défini (exemple 'chaine1,chaine2,chaine3').</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_redirect_tag.htm">&lt;c:redirect &gt;</a></td>
+    <td>Redirige l'utilisateur vers une nouvelle URL.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_url_tag.htm">&lt;c:url&gt;</a></td><td>Crée une URL absolue en fonction du contexte de la servlet, avec des paramètres ou non.</td></tr>
+  <tr><td><a href="http://www.tutorialspoint.com/jsp/jstl_core_param_tag.htm">&lt;c:param&gt;</a></td>
+    <td>Sous-tag de 'URL' permettant d'ajouter (ou remplacer) un paramètre à la Query String.</td></tr>
+  </tbody></table>
+  <center>source : <a href="http://www.tutorialspoint.com/jsp/">tutorialpoint.com</a></center>
+<p></p>
+
+<p>
+  Les autres taglibs ne devraient pas vous être utile dans le cadre de ce cours.<br>
+  </p><ul><li>  "xml" : permet de traiter ou requêter une structure xml
+  </li><li> "format" : permet de gérer l'internationnalisation des contenus de page et des formats (date, monnaies ...)
+  </li><li> "sql" : permet d'exécuter des requêtes SQL directement et facilement depuis une page JSP.<br>
+    Dans le cadre de nos développements cela ne s'avère pas être une bonne pratique.<br>
+    Cela reste toutefois utile pour de petits développements dont le périmètre est restreint à un type de base.
+  </li></ul>
+<p></p>
+
+<h3> Mise en oeuvre dans notre projet avec Spring </h3>
+
+<p>
+  Tous les objets affectés au modèle sont exposés de manière immédiate par les EL.<br>
+  Pour reprendre l'exemple de la liste des auteurs, si l'on a fait ceci dans notre contrôleur :<br>
+  </p><pre><code>
+    List&lt;Author&gt; authors = dao.listAll();
+    model.addAttribute("authors", authors);
+  </code></pre>
+  Alors, il sera facile de faire une itération sur nos auteurs dans la vue avec le bout de code :<br>
+  <pre><code>
+    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
+    &lt;h1&gt;Auteurs&lt;/h1&gt;
+
+    &lt;c:choose&gt;
+      &lt;c:when test="${empty authors}"&gt;
+      Liste des auteurs vide
+      &lt;/c:when&gt;
+      &lt;c:otherwise&gt;
+      &lt;ul&gt;
+       &lt;c:forEach items="${authors}" var="author"&gt;
+        &lt;li&gt;${author.firstname} ${author.lastname}&lt;/li&gt;
+       &lt;/c:forEach&gt;
+      &lt;/ul&gt;
+      &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+  </code></pre>
+  Notez qu'il n'y a pas de "else" à la balise <code>&lt;c:if&gt;</code>. Nous pouvons par contre utiliser "<code>choose</code>" et "<code>otherwise</code>" comme ici.<br>
+  Pour que l'expression "<code>${author.firstname}</code>" fonctionne, il est nécessaire d'avoir un getter sur la propriété "firstname". Par convention les propriétés d'un objets sont résolue selon la norme "javabeans". Donc, il faut créer des getters sur les propriétés que vous voulez exposer dans vos vues.
+<p></p>
+
+<h3> La taglib form de spring </h3>
+
+<p>
+  De nouvelles taglib peuvent être créées afin d'enrichir les fonctionnalités offertes dans les vues.<br>
+  Spring fournit une taglib "form" bien pratique pour manipuler les objets java à éditer dans des formulaires HTML.<br>
+  Apprenons par l'exemple en observant ce que cela peut donner sur nos auteurs.
+</p><pre><code>
+  &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
+  &lt;%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %&gt;
+
+  &lt;h1&gt;Author&lt;/h1&gt;
+
+  &lt;form:form modelAttribute="author"&gt;
+  &lt;form:input type="hidden" path="id" /&gt; &lt;br/&gt;
+  firstname : &lt;form:input path="firstname" /&gt; &lt;br/&gt;
+  lastname :&lt;form:input path="lastname" /&gt; &lt;br/&gt;
+  &lt;input type="submit" value="Enregistrer"/&gt;
+  &lt;/form:form&gt;
+</code></pre>
+
+Vous pouvez consulter la documentation dédiée aux vues spring et plus particulièrement la section "<a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp-formtaglib">comment utiliser la taglib form</a>".
+<p></p>
+
+<p>
+  Du côté de notre contrôleur il sera nécessaire de distinguer deux opérations. Une première pour traiter l'affichage du formulaire (en GET) et une deuxième pour gérer l'enregistrement des données du formulaire  (en POST) et mettre à jour les données dans la base. Quelques annotations nous serons utiles pour distinguer les deux opérations branchées sur la même URL. Une annotation <code class="ann">@PathVariable</code> nous permettra d'extraire facilement une variable depuis l'url. L'annotation <code class="ann">@ModelAttribute</code> permettra de créer un objet automatiquement à partir des données du formulaire envoyé en POST. Toutefois, pour que cela fonctionne vous devez exposer des "setter" sur les propriétés de votre model selon la convention "javabeans".<br>
+  Le code du contrôleur ressemblera au final à cela :<br>
+</p><pre><code>
+	@RequestMapping(value="/author/{id}.html", method=RequestMethod.GET)
+	public String edit( Model model, @PathVariable("id") int id ) {
+		Author author = dao.find(id);
+		model.addAttribute("author", author);
+		return "author/edit";
+	}
+	
+	@RequestMapping(value="/author/{id}.html", method=RequestMethod.POST)
+	public String save( Model model, @ModelAttribute Author author ) {
+		dao.update(author);
+		model.addAttribute("author", author);
+		return "author/edit";
+	}
+</code></pre>
+<p></p>
+
+
