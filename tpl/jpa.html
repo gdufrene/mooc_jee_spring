@@ -1,11 +1,11 @@
 <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JPA.</h2>
 
 <p>
-JPA (Java Persistance Api) est une norme Java EE permettant de lier des objets à des données contenues dans une base de données. Plus exactement, dans toute source de données possédant une implémentation correspondante ...
+JPA (Java Persistance Api) est une spécification Java EE permettant de lier des objets à des données contenues dans une base de données. Plus exactement, dans toute source de données possédant une implémentation correspondante.
 </p>
 
 <p>
-JPA est essentiellement utilisé pour la manipulation des bases de données relationnelles construites à partir du développement orienté objet en Java. Comme tout ORM, JPA fourni une abstraction d'accès à la base de données. Il n'est donc plus question d'écrire du code SQL "natif" de votre base. Les opérations de création, recherche, mise à jour et suppression des données sont complètement accessibles via des méthodes génériques.
+JPA est essentiellement utilisé pour la manipulation des bases de données relationnelles construites à partir du développement orienté objet en Java. Comme tout ORM, JPA fournit une abstraction d'accès à la base de données. Il n'est donc plus question d'écrire du code SQL "natif" de votre base. Les opérations de création, recherche, mise à jour et suppression des données sont complètement accessibles via des méthodes génériques.
 </p>
 
 <p>
@@ -19,13 +19,13 @@ Essayons de mettre en oeuvre une persistance JPA avec l'implémentation Hibernat
 </p>
 
 <p>
-Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. Il possède un nombre assez important de dépendances. Il devient assez vite compliqué de vouloir chercher toutes ces dépendances "à la main". Nous allons plutôt utiliser maven pour gérer tout cela.<br/>
+Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. Il possède un nombre assez important de dépendances. Il devient assez vite compliqué de vouloir chercher toutes ces dépendances "à la main". Nous allons plutôt utiliser Maven pour gérer tout cela.<br/>
 </p>
 
 <h3>Premières entités</h3>
 
 <p>
-  Avec JPA, nous pouvons annoter nos classes JAVA pour indiquer que les données de ces classes seront persistées. De manière simple, il "suffit" de placer l'annotation <code class="ann">@Entity</code> sur une classe pour que cela fonctionne ... ou presque. Il est nécessaire que les propriétés de l'objet à persister soient accessibles par le gestionnaire d'entité.
+  Avec JPA, nous pouvons annoter nos classes Java pour indiquer que les données de ces classes seront persistées. De manière simple, il "suffit" de placer l'annotation <code class="ann">@Entity</code> sur une classe pour que cela fonctionne ... ou presque. Il est nécessaire que les propriétés de l'objet à persister soient accessibles par le gestionnaire d'entité.
 </p>
 
 <p>
@@ -39,19 +39,19 @@ Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. I
   Pour certaines propriétés, il est utile de mettre d'autres annotations pour indiquer comment le gestionnaire ou la base se comportera. Par exemple l'identifiant de l'entité doit être annoté <code class="ann">@Id</code>. Nous pouvons aussi indiquer que cette propriété sera générée par la base via une séquence (ou auto increment). Pour cela nous ajoutons la propriété <code class="ann">@GeneratedValue</code>
 </p>
 
-<h3>Les associations</h3  >
+<h3>Les associations</h3>
 
 <p>
   Pour marquer les relations entre nos entités il est possible d'utiliser les annotations :<br/>
-  &raquo; <code class="ann">@OneToMany</code> : pour désigner une relation 1-n, soit une instance faisant référence à plusieurs autre. Permet d'accéder aux objets du cotés N à travers une liste. A utiliser avec vigilance selon la volumétrie des données associées.<br/>
+  &raquo; <code class="ann">@OneToMany</code> : pour désigner une relation 1-n, soit une instance faisant référence à plusieurs autres. Permet d'accéder aux objets du coté N à travers une liste. A utiliser avec vigilance selon la volumétrie des données associées.<br/>
   &raquo; <code class="ann">@ManyToOne</code> : pour désigner, une relation inverse de 1-n. Permet d'accéder facilement à l'objet du coté "1".<br/>
   &raquo; <code class="ann">@OneToOne</code> : pour désigner une relation 1-1 entre deux objets. Peut être utile pour séparer un ensemble de propriétés dont le sens est différent. Peut être utile pour concevoir une relation d'héritage également.<br/>
   &raquo; <code class="ann">@ManyToMany</code> : pour les relations n-n devenant une table associative.<br/>
 </p>
 
 <p>
-  Certaines associations N-N du modèle peuvent comporter des informations. Dans ce cas de figure, il est préférable d'utiliser deux liens OneToMany vers une classe qui portera ces informations.<br/>
-  Pour gérer l'association correctement, il y a ensuite deux stratégie concernant la clé primaire :<br/>
+  Certaines associations N-N du modèle peuvent comporter des informations. Dans ce cas, il est préférable d'utiliser deux liens OneToMany vers une classe qui portera ces informations.<br/>
+  Pour gérer l'association correctement, il y a ensuite deux stratégies concernant la clé primaire :<br/>
   1. Réaliser une clé composée à l'aide de EmbeddedId ; (Voir <a href="http://www.mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/">cette explication</a>)<br/>
   2. Ajouter une simple clé (colonne supplémentaire) et mettre une contrainte d'unicité sur les colonnes des deux clé étrangères. ; (Voir <a href="http://stackoverflow.com/questions/5127129/mapping-many-to-many-association-table-with-extra-columns">cette explication</a>)<br/>
 </p>
@@ -59,7 +59,7 @@ Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. I
 <h3>persistence.xml</h3>
 
 <p>
-  Si vous utilisez JPA sans autre framework (type spring), le "contexte de persistance" se configure avec un fichier "persistence.xml" placé dans le <b>classpath</b>, dans un répertoire "META-INF/". Dans un projet maven, ce fichier est généralement placé dans les "resources" principales. Donc, il vous faut créer un répertoire WEB-INF/resources/META-INF et y mettre ce contenu :</a>.<br/>
+  Si vous utilisez JPA sans autre framework (type Spring), le "contexte de persistance" se configure avec un fichier "persistence.xml" placé dans le <b>classpath</b>, dans un répertoire "META-INF/". Dans un projet Maven, ce fichier est généralement placé dans les "resources" principales. Il faut créer un répertoire WEB-INF/resources/META-INF et y mettre ce contenu :</a>.<br/>
 </p>
 
 <pre>
@@ -84,7 +84,7 @@ Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. I
 
 <p>
   Ce fichier est évidemment à adapter selon vos besoins.<br/>
-  Prétez notamment attention au paramètre "hbm2ddl.auto" et lisez cette page de <a href="http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do">stackOverflow</a>.
+  Prêtez notamment attention au paramètre "hbm2ddl.auto" et lisez cette page de <a href="http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do">stackOverflow</a>.
 </p>
 
 <h3>Entity Manager</h3>
@@ -95,7 +95,7 @@ Vous pouvez aussi vous plonger dans la <a href="http://docs.oracle.com/javaee/7/
 </p>
 
 <p>
-  Vous pouvez consulter la classe <a href="files/DemoJPA.java">DemoJPA</a> pour voir un exemple simple d'usage de l'entity manager et des transactions. Toutes les requêtes JPA doivent être exécutées dans une transaction, c'est ainsi. On "oblige" le développeur à se soucier de ce qui a du sens en terme d'état de base de données. Si une Exception survient durant la transaction, les modifications en base ne sont pas appliquées (ou défaites).
+  Vous pouvez consulter la classe <a href="files/DemoJPA.java">DemoJPA</a> pour voir un exemple simple d'usage de l'entity manager et des transactions. Toutes les requêtes JPA doivent être exécutées dans une transaction. On "oblige" le développeur à se soucier de ce qui a du sens en terme d'état de base de données. Si une exception survient durant la transaction, les modifications en base ne sont pas appliquées (ou défaites).
 </p>
 
 <p>

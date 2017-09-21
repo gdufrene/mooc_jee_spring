@@ -1,13 +1,13 @@
         <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP.</h2>
 
 <p>
-Une servlet est un objet java qui étends l'interface "Servlet" ou "HTTPServlet".<br/>
-Cette interface définie 2 méthodes qui sont appelées lorsque le code est chargé/arrêté par le serveur web qui "expose" ces servlets à travers une URL.<br/>
-Ces méthodes "init" et "destroy" permettent d'initialiser un certain nombre d'élément au lancement de la servlet ou de nettoyer le contexte lors de leur arrêt.<br/>
+Une servlet est un objet Java qui étend l'interface "Servlet" ou "HTTPServlet".<br/>
+Cette interface définit 2 méthodes qui sont appelées lorsque le code est chargé/arrêté par le serveur web qui "expose" ces servlets à travers une URL.<br/>
+Ces méthodes "init" et "destroy" permettent d'initialiser un certain nombre d'éléments au lancement de la servlet ou de nettoyer le contexte lors de leur arrêt.<br/>
 </p>
 
 <p>
-Le serveur web va interpréter une partie de la requête HTTP envoyée par le navigateur de l'internaute et appelée une méthode de la servlet qui est responsable du traitement de cette requête.<br/>
+Le serveur web va interpréter une partie de la requête HTTP envoyée par le navigateur de l'internaute et appeler une méthode de la servlet qui est responsable du traitement de cette requête.<br/>
 </p>
 
 <center><img src="http://static.commentcamarche.net/www.commentcamarche.net/pictures/servlets-images-moteur.gif" /><br/>
@@ -16,18 +16,18 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
 
 <p>
   C'est la méthode "service" qui est appelée.<br/>
-  Cette méthode possède une implémentation par défaut dans la classe abstraite "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HTTPServlet</a>". Elle appelle la méthode doGet, doPost, doHead, doOptions, doPut, doTrace en fonction du type de requête HTTP lancée au serveur.<br/>
+  Cette méthode possède une implémentation par défaut dans la classe abstraite "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HTTPServlet</a>". Elle appelle la méthode doGet, doPost, doHead, doOptions, doPut, doTrace en fonction du type de requête HTTP reçu par le serveur.<br/>
 </p>
 
 <p>
   Les deux paramètres de ces opérations sont "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HTTPServletRequest</a>" et "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HTTPServletResponse</a>".<br/>
-  Ils permettent respectivement d'analyser la requête réalisée par l'internaute, et de lui répondre.<br/>
+  Ils permettent respectivement d'analyser la requête émise par l'internaute, et de lui répondre.<br/>
 </p>
 
 <p>
   <strong>Utiliser Firebug</strong><br/>
   <a href="https://addons.mozilla.org/fr/firefox/addon/firebug/">
-    <img src="http://www.nosyweb.fr/images/stories/article/outils/firebug_firefox.png" height="50" style="float: left; margin-right: 10px"> Firebug</a> est un plugin très pratique pour firefox et vous devriez l'installer. Il permet de visualiser la structure HTML d'une page, de debugger du javascript, d'analyser les échanges réseaux, les cookies et bien d'autres choses ...
+    <img src="http://www.nosyweb.fr/images/stories/article/outils/firebug_firefox.png" height="50" style="float: left; margin-right: 10px"> Firebug</a> est un plugin très pratique pour Firefox et vous devriez l'installer. Il permet de visualiser la structure HTML d'une page, de debugger du javascript, d'analyser les échanges réseaux, les cookies et bien d'autres choses.
 </p>
 
 
@@ -79,7 +79,7 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
 <p>
   Pour compiler ce code il faudra avoir le répertoire $JAVA_HOME/bin dans votre PATH (voir installation des outils). Il faut en effet pouvoir exécuter le compilateur "javac" facilement.<br/>
   Il sera également nécessaire de mettre la librairie "servlet-api.jar" dans votre CLASSPATH. Cette librairie contient toutes les interfaces et classes abstraites que nous implémentons en faisant des servlets.<br/>
-  Elle est fournie (entre autre) avec tomcat, dans le répertoire "lib".<br/>
+  Elle est fournie (entre autre) avec Tomcat, dans le répertoire "lib".<br/>
 </p>
 
 <p>
@@ -91,7 +91,7 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
 
 <p>
   Lançons notre serveur web.<br/>
-  rendez-vous dans le répertoire tomcat8/bin et exécutez <code>./catalina.sh run</code><br/>
+  Rendez-vous dans le répertoire tomcat8/bin et exécutez <code>./catalina.sh run</code><br/>
   Après quelques secondes votre serveur est lancé et accessible sur "http://localhost:8080"<br/>
 </p>
 
@@ -134,48 +134,48 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
 
 
 
-<h2>introduction aux JSP</h2>
+<h2>Introduction aux JSP</h2>
 
 <p>
-Jsp est un équivalent java des fichiers asp ou php. C'est une manière de mettre du java, exécuté coté serveur, dans une page html. Le jsp n'est pas interprété, il est en fait traduit en java puis compilé (généralement au premier appel de la page), et ensuite exécuté. C'est le résultat de cette exécution qui donne le code html renvoyé au navigateur.
+JSP est un équivalent java des fichiers ASP ou PHP. C'est une manière de mettre du code Java, exécuté coté serveur, dans une page HTML. Le JSP n'est pas interprété, il est en fait traduit en Java puis compilé (généralement au premier appel de la page), et ensuite exécuté. C'est le résultat de cette exécution qui donne le code HTML renvoyé au navigateur.
 </p>
 
 <p>
-Nous utiliserons "jasper" comme implémentation du moteur de jsp, il est fourni avec tomcat.
+Nous utiliserons "jasper" comme implémentation du moteur de JSP, il est fourni avec Tomcat.
 </p>
 
 <h3>Quelques bases</h3>
 
 <p>
-Afin de distinguer le code html ou javascript à donner au navigateur et le code java à éxécuter sur le serveur, nous utilisons les balises "&lt;%" et "%&gt;" pour délimiter le code java. <br/>
-Une balise particulière permet de définir des propriétés sur le type de réponse HTTP, l'encodage de la page, ou encore les imports java nécessaire pour la compilation de la page. Toutes ces directives se retrouvent entre les balises "&lt;%@" et "%&gt;". <br/>
-Enfin, il est très courant de vouloir afficher le contenu d'une variable dans le html qui sera renvoyé au navigateur. Cela peut se faire en faisant un <code>&lt;% out.print( maVariable ); %&gt;</code> mais un tag a été défini pour réduire l'écriture à <code>&lt;%= maVariable %&gt;</code> qui fait exactement la même chose. <br/>
-Comme nous sommes de bon développeurs consciencieux, nous n'hésiterons également pas à utiliser le tag permettant de mettre des commentaires dans nos jsp : <code>&lt;%-- mon super commentaire qui ne sera pas compilé ou envoyé au navigateur --%&gt;</code> <br/>
-Il faut bien comprendre que la jsp va être traduite en code java. Plus précisément en une classe qui hérite de Servlet dont il sera exécuter la méthode "service". Dans certains cas il peut être utile de vouloir introduire des attributs ou des méthodes à cette classe générée et compilée.<br/> 
+Afin de distinguer le code HTML ou JavaScript à donner au navigateur et le code Java à exécuter sur le serveur, nous utilisons les balises "&lt;%" et "%&gt;" pour délimiter le code Java. <br/>
+Une balise particulière permet de définir des propriétés sur le type de réponse HTTP, l'encodage de la page, ou encore les imports Java nécessaires pour la compilation de la page. Toutes ces directives se retrouvent entre les balises "&lt;%@" et "%&gt;". <br/>
+Enfin, il est très courant de vouloir afficher le contenu d'une variable dans le code HTML qui sera renvoyé au navigateur. Cela peut se faire en faisant un <code>&lt;% out.print( maVariable ); %&gt;</code> mais un tag a été défini pour réduire l'écriture à <code>&lt;%= maVariable %&gt;</code> qui fait exactement la même chose. <br/>
+Comme nous sommes de bon développeurs consciencieux, nous n'hésiterons également pas à utiliser le tag permettant de mettre des commentaires dans nos JSP : <code>&lt;%-- mon super commentaire qui ne sera pas compilé ou envoyé au navigateur --%&gt;</code> <br/>
+Il faut bien comprendre que la JSP va être traduite en code Java. Plus précisément en une classe qui hérite de Servlet dont il sera exécuté la méthode "service". Dans certains cas il peut être utile de vouloir introduire des attributs ou des méthodes à cette classe générée et compilée.<br/> 
 Cela peut se faire avec le tag <code>&lt;%! private double montant; %&gt;</code>
 </p>
 
 <p>
-Depuis votre code java, vous pouvez utiliser les variables suivantes :
+Depuis votre code Java, vous pouvez utiliser les variables suivantes :
 <ul><li>  request - qui contient l'objet HttpServletRequest
 </li><li> response - qui contient l'objet HttpServletResponse
 </li><li> out - qui est le flux de sorti équivalent à request.getWriter()
-</li><li> application - un objet possédant notament la méthode "log" utile pour débugger
+</li><li> application - un objet possédant notamment la méthode "log" utile pour débugger
 </li><li> pageContext - un objet permettant d'échanger des variables entre les différents morceaux de jsp de la page.
 </li></ul>
 </p>
 
 <p>
-Pour rendre l'écriture de nos jsp un peu plus modulaire il est possible d'inclure du code jsp à partir d'une autre page jsp. Cela se fera via la directive &lt;%@ include file="ma_page.jsp" %&gt; Si vous donnez un chemin absolu au fichier (exemple /layout/header.jsp), la racine considéré est celle du contexte web du serveur. Il est ainsi plus facile d'être indépendant de l'environnement de déploiement.
+Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclure du code JSP à partir d'une autre page JSP. Cela se fera via la directive &lt;%@ include file="ma_page.jsp" %&gt; Si vous donnez un chemin absolu au fichier (exemple /layout/header.jsp), la racine considérée est celle du contexte web du serveur. Il est ainsi plus facile d'être indépendant de l'environnement de déploiement.
 </p>
 
 <p>
-  Il est également possible de traiter le début d'une requête avec une servlet et de déléguer l'affichage à une page jsp. Dans la servlet nous utiliserons alors <code>req.getRequestDispatcher("/ma/page.jsp").forward(req, resp)</code><br/>
-  Pour passer des objets de la servlet à la jsp, il sera possible d'utiliser l'objet request et ses méthodes setAttribute / getAttribute.
+  Il est également possible de traiter le début d'une requête avec une servlet et de déléguer l'affichage à une page JSP. Dans la servlet nous utiliserons alors <code>req.getRequestDispatcher("/ma/page.jsp").forward(req, resp)</code><br/>
+  Pour passer des objets de la servlet à la JSP, il sera possible d'utiliser l'objet request et ses méthodes setAttribute / getAttribute.
 </p>
 
 <p>
-  Il est alors possible de mettre en oeuvre un pattern MVC dont la partie "View" est traitée en JSP et la partie "Controller" est traitée par la servlet. Le modèle pourra quant à lui être cloisonné dans des classes d'accès au données (DAO) injectées dans le controller.
+  Il est alors possible de mettre en oeuvre un pattern MVC dont la partie "View" est traitée en JSP et la partie "Controller" est traitée par la servlet. Le modèle pourra quant à lui être cloisonné dans des classes d'accès au données (DAO) injectées dans le contrôleur.
 </p>
 
 <h3>Test</h3>
@@ -184,9 +184,9 @@ Pour rendre l'écriture de nos jsp un peu plus modulaire il est possible d'inclu
   Reprenez le contenu de <a href="https://raw.githubusercontent.com/gdufrene/java_ee_spring-13/master/102_Jsp/www/index.jsp">ce fichier</a> et mettez le dans un fichier "test.jsp", dans votre répertoire (tomcat) webapps/tp1.<br/>
   Accédez à la page http://localhost:8080/tp1/test.jsp</br>
   Le premier accès est un peu plus long car "jasper", le moteur jsp, transforme votre source jsp en source java, puis le compile et enfin il exécute ce code.<br/>
-  Pour les appels suivant, le code est simplement exécuté comme n'importe quel autre servlet.<br/>
-  Vous pouvez d'ailleurs regarder le contenu du source java généré dans le répertoire de travail de tomcat : (tomcat) work/Catalina/localhost/tp1/org/apache/jsp<br/>
-  Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la jsp, ou à analyser une exception relevée par le code exécuté.
+  Pour les appels suivants, le code est simplement exécuté comme n'importe quel autre servlet.<br/>
+  Vous pouvez d'ailleurs consulter le contenu du source Java généré dans le répertoire de travail de Tomcat : (tomcat) work/Catalina/localhost/tp1/org/apache/jsp<br/>
+  Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la JSP, ou à analyser une exception levée par le code exécuté.
 </p>
 
 <h3>Exercice de mise en jambe</h3>
@@ -196,6 +196,6 @@ Pour rendre l'écriture de nos jsp un peu plus modulaire il est possible d'inclu
 <p>
 Ecrire une page présentant un film, permettant aux visiteurs de laisser un commentaire.<br/>
 Les commentaires seront simplement laissés dans une "List" stockée en static dans la servlet.<br/>
-Chaque démarrage (ou re-démarrage) de tomcat entrainera donc la perte des données.<br/>
+Chaque démarrage (ou re-démarrage) de Tomcat entrainera donc la perte des données.<br/>
 </p>
 

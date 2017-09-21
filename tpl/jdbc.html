@@ -1,33 +1,33 @@
 <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JDBC.</h2>
 
 <p>
-  Il y a fort longtemps dans une galaxie lointaine ... lorsque l'on souhaitait accéder à une base de données relationnelle, on utilisait un drivers spécifique pour LA base de données visée et on écrivait du code SQL spécifique (car le SQL n'était pas encore très standardisé). On utilisait également des opérations spécifiques du drivers.
+  Il y a fort longtemps dans une galaxie lointaine ... lorsque l'on souhaitait accéder à une base de données relationnelle, on utilisait un driver spécifique pour LA base de données visée et on écrivait du code SQL spécifique (car le SQL n'était pas encore très standardisé). On utilisait également des opérations spécifiques du driver.
 </p>
 
 <p>
-  Puis est arrivé JDBC ... une abstraction java permettant de standardiser un peu les méthodes qui manipulent ces bases. JDBC est une spécification : des interfaces et des objets disponibles dans le package java.sql.
+  Puis est arrivé JDBC ... une abstraction Java permettant de standardiser un peu les méthodes qui manipulent ces bases. JDBC est une spécification : des interfaces et des objets disponibles dans le package java.sql.
 </p>
 
 <p>
-  Il reste nécessaire d'avoir le drivers de la base de données compatible JDBC, mais vous devriez être capable de changer de drivers (et donc de base de données) sans avoir à modifier trop de choses dans votre code.
+  Il reste nécessaire d'avoir le driver de la base de données compatible JDBC, mais vous devriez être capable de changer de driver (et donc de base de données) sans avoir à modifier trop de choses dans votre code.
 </p>
 
 <h2>DriverManager</h2>
 
 <p>
-  Les implémentations de JDBC se présentent sous la forme d'un jar à mettre dans le classpath.<br/>
+  Les implémentations de JDBC se présentent sous la forme d'un fichier jar à mettre dans le classpath.<br/>
   Ces librairies ne sont normalement pas nécessaires lors de la compilation, l'idée étant de pouvoir en changer facilement sans recompiler les sources.
 </p>
 
 <p>
-  Les drivers s'enregistrent auprès d'un Objet DriverManager. Cela se fait normalement au chargement de la classe du Driver.<br/>
-  Dans des sources java, vous pourriez trouver quelquechose du type :
+  Les drivers s'enregistrent auprès d'un objet DriverManager. Cela se fait normalement au chargement de la classe du driver.<br/>
+  Dans des sources Java, vous pourriez trouver quelque chose du type :
   
 <pre>
   Class.forName("org.mysql.Driver");
 </pre>
 
-Il n'y a donc pas de dépendance direct vers la classe du Driver, c'est une chaine de caractère vue par le compilateur. Le chargement de la classe se fait au moment de l'exécution du code (au runtime).
+Il n'y a donc pas de dépendance directe vers la classe du driver, c'est une chaîne de caractères vue par le compilateur. Le chargement de la classe se fait au moment de l'exécution du code (au runtime).
 </p>
 
 <p>
@@ -37,14 +37,14 @@ Il n'y a donc pas de dépendance direct vers la classe du Driver, c'est une chai
 <h2>Connexion</h2>
 
 <p>
-  La connexion à la base de données se fait avec une url dont le format sera : <code>jdbc:driver:xxx</code>.<br/>
-  Selon les spécifications, l'url commence nécessairement par jdbc.<br/>
+  La connexion à la base de données se fait avec une URL dont le format sera : <code>jdbc:driver:xxx</code>.<br/>
+  Selon les spécifications, l'URL commence nécessairement par jdbc.<br/>
   Le nom du driver sera par exemple : mysql, sqlite, postgresql ...<br/>
   La dernière partie de l'URL est dépendante du driver mais sera souvent du type : <code>//serveur:port/dbName?options</code>.
-  Les connexions aux bases de données se font généralement en TCP sur un port défini dans l'url, ou le port par défaut du driver. Le serveur est désigné par son IP ou son adresse connue du DNS. <br/>
+  Les connexions aux bases de données se font généralement en TCP sur un port défini dans l'URL, ou le port par défaut du driver. Le serveur est désigné par son IP ou son adresse connue du DNS. <br/>
   dbName est le nom de la base de données à utiliser.<br/>
   De nombreux drivers proposent également la possibilité de mettre des options à la suite sous la même forme que dans une URL web : <code>?cle=valeur&amp;cle2=valeur2</code>.<br/>
-  Une gestion des utilisateurs est également souvent proposée dans les systèmes de bases de données.<br/>
+  Une gestion des utilisateurs est également souvent proposée dans les systèmes de base de données.<br/>
   Au moment de l'ouverture de connexion, vous pouvez donc préciser un utilisateur et un mot de passe.<br/>
 </p>
 
@@ -82,7 +82,7 @@ Il n'y a donc pas de dépendance direct vers la classe du Driver, c'est une chai
   Il n'est pas facile de déterminer quelle erreur technique est survenue. Cela passe souvent par un code d'erreur spécifique à la base de donnée utilisée ... <br/>
   On préfère donc faire une vérification en base via une autre requête avant d'essayer d'insérer ou mettre à jour une données qui ne serait pas valide.<br/>
   Dans le cas de notre ajout d'utilisateur il faudrait donc vérifier que la clé primaire n'est pas déjà utilisée (son login, ou son mail ...).<br/>
-  Les exceptions SQLException ne devrait pas remontées au delà de vos DAO.
+  Les exceptions SQLException ne devraient pas remontées au delà de vos DAO.
 </p>
 
 <h2>Requêtes</h2>
@@ -98,16 +98,16 @@ Dans les deux cas il faut d'abord obtenir un objet "<b>Statement</b>" depuis la 
 </p>
 
 <p>
-  Les requêtes de sélections renvoient un "<b>ResultSet</b>", c'est un curseur permettant de récupérer les données de la base, ligne par ligne.<br/>
-  Il faut faire avancer ce curseur avec l'opération "next" jusqu'à ce qu'elle renvoit "false".<br/>
+  Les requêtes de sélection renvoient un "<b>ResultSet</b>", c'est un curseur permettant de récupérer les données de la base, ligne par ligne.<br/>
+  Il faut faire avancer ce curseur avec l'opération "next" jusqu'à ce qu'il renvoie "false".<br/>
   Cela ce manipule donc de la même manière qu'un Itérateur, souvent dans une boucle <code>while( rs.next() )</code>.<br/>
-  C'est le ResultSet qui permet d'accéder à chaque valeur de tuple avec des operation de type <code>rs.getString(X)</code>.<br/>
-  X est soit un entier entre 1 et le nombre de colonne du résultat, soit un string désignant le nom de la colonne.<br/>
-  Il existe différent getter (getString, getInt, getDate, getDouble) permettant de récupérer un type compatible avec la variable java à affecter.<br/>
+  C'est le ResultSet qui permet d'accéder à chaque valeur de tuple avec des opérations de type <code>rs.getString(X)</code>.<br/>
+  X est soit un entier entre 1 et le nombre de colonnes du résultat, soit une chaîne de caractères désignant le nom de la colonne.<br/>
+  Il existe différents getters (getString, getInt, getDate, getDouble) permettant de récupérer un type compatible avec la variable Java à affecter.<br/>
 </p>
 
 <p>
-  Un exemple de selection pourra ressembler à cela :
+  Un exemple de sélection pourra ressembler à cela :
 </p>
 
 <pre>
@@ -130,7 +130,7 @@ while( rs.next() ) {
 <h2>PreparedStatement</h2>
 
 <p>
-  Les requêtes se construise à partir d'une chaine de caractère qui est ensuite interprétée par la base de données.<br/>
+  Les requêtes se construisent à partir d'une chaîne de caractères qui est ensuite interprétée par la base de données.<br/>
   Il est indispensable de filtrer les paramètres saisis par un utilisateur que l'on souhaite ajouter à notre requête SQL.<br/>
 </p>
 
@@ -145,12 +145,12 @@ while( rs.next() ) {
 </pre>
 
 <p>
-  Supposons qu'il s'agisse d'une application permettant à un étudiant de s'inscrire en master en fonction de ses notes en licence info.
+  Supposons qu'il s'agisse d'une application permettant à un étudiant de s'inscrire en master en fonction de ses notes en licence.
   Si le paramètre "paramMatiere" est saisi par l'utilisateur, rien ne l'empêche de saisir <code>LILLE1' and student_id = 123456 OR '1' = '0</code>. On obtient alors une requête valide qui retourne les notes d'un autre étudiant ...<br/>
 </p>
 
 <p>
-  JDBC fourni la possibilité de faire des requêtes préparées et d'y substituer un ensemble de valeurs qui seront correctement échappées en fonction de leur type. Ceux sont les <b>PreparedStatement</b> qui s'obtiennent sur l'objet connexion également.<br/>
+  JDBC fournit la possibilité de faire des requêtes préparées et d'y substituer un ensemble de valeurs qui seront correctement échappées en fonction de leur type. Ce sont les <b>PreparedStatement</b> qui s'obtiennent sur l'objet connexion également.<br/>
   La requête doit contenir des "<b>?</b>" qui sont remplacés par une valeur avec les opérations setString, setDate, setDouble ...<br/>
   Une fois les paramètres affectés, il suffit de réaliser le "executeUpdate" ou "executeQuery" sur le preparedStatement <span style="color: red">sans paramètre</span>.<br/>
   exemple : 
@@ -169,9 +169,9 @@ while( rs.next() ) {
 <h2>ResultSetMetaData</h2>
 
 <p>
-  Il peut être intéressant de connaitre le nombre de colonne et les types retournés par la base de données sur l'exécution d'une requête ; par exemple à la suite d'un "select *". <br/>
+  Il peut être intéressant de connaitre le nombre de colonnes et les types retournés par la base de données sur l'exécution d'une requête ; par exemple à la suite d'un "select *". <br/>
   Cela peut se faire à l'aide de l'objet <b>ResultSetMetaData</b> qui s'obtient sur un ResultSet. Cette opération peut se faire avant même d'avoir fait le premier "rs.next()".<br/>
-  De cette manière il peut être possible de générer des tableaux html dynamiques en fonction du contenu des tables par exemple ...
+  De cette manière il peut être possible de générer des tableaux html dynamiques en fonction du contenu des tables par exemple.
 </p>
 
 <pre>

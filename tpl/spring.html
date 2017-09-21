@@ -17,18 +17,18 @@
 
 
 <p>
-          Comprenez que Spring est un "couteau suisse" pour faciliter la vie du développeur JAVA, spécialement si il développe pour JAVA EE (mais pas que).</p>
+          Comprenez que Spring est un "couteau suisse" pour faciliter la vie du développeur Java, spécialement si il développe pour Java EE (mais pas que).</p>
 
 <p>
-        Le coeur de spring est un moteur d'injection de dépendance permettant l'inversion de contrôle du cycle de vie des objets. L'IoC permet, entre autre, de "repousser" de choix d'implémentation (ou d'instance) d'un objet inclus dans un autre.
+        Le coeur de Spring est un moteur d'injection de dépendances permettant l'inversion de contrôle (en anglais IoC pour Inversion of Control) du cycle de vie des objets. L'IoC permet, entre autre, de "repousser" le choix d'implémentation (ou d'instance) d'un objet inclus dans un autre.
 </p>
 
 <p>
-          Prenons l'exemple d'un DAO JPA ou JDBC. Imaginons que le développeur de notre interface ne soit pas le même que celui qui réalise la couche de persistance (donc du DAO). Le développeur de l'interface ne connait pas la classe qui sera utilisée, et d'ailleurs il n'a pas envie de faire un <code>new xxxJPADao()</code>, ce qui "casserait" en parti l'abstraction que nous avons essayé de mettre en place. De l'autre coté, le developpeur de notre DAO ne sait pas où et comment son implémentation JPA sera utilisée. Il ne peut pas faire <code>view.setDao( ... )</code>
+          Prenons l'exemple d'un DAO JPA ou JDBC. Imaginons que le développeur de notre interface ne soit pas le même que celui qui réalise la couche de persistance (donc du DAO). Le développeur de l'interface ne connait pas la classe qui sera utilisée, et d'ailleurs il n'a pas envie de faire un <code>new xxxJPADao()</code>, ce qui "casserait" en parti l'abstraction que nous avons essayé de mettre en place. De l'autre coté, le développeur de notre DAO ne sait pas où et comment son implémentation JPA sera utilisée. Il ne peut pas faire <code>view.setDao( ... )</code>
 </p>
 
 <p>
-        Heureusement il y a Spring. Dans l'interface on demandera à l'injecteur de dépendance de trouver et d'affecter le DAO, de l'autre on déclarera l'implémentation JPA comme composant DAO à être utilisé. Le tout sera initialisé et affecté au lancement de l'application.
+        Heureusement il y a Spring. Dans l'interface, on demandera à l'injecteur de dépendances de trouver et d'affecter le DAO, de l'autre on déclarera l'implémentation JPA comme composant DAO à être utilisé. Le tout sera initialisé et affecté au lancement de l'application.
 </p>
 
 <p>
@@ -40,15 +40,15 @@
 
 <p>
   Le principe est de construire des objets, que l'on nommera "composant" et de les mettre à disposition des autres composants.<br/>
-Un composant est une instance partagée du contexte spring, selon le pattern "singleton" par défaut.<br>
-Une annotation <code class="ann">@Component</code> permet de définir une classe java comme un composant spring. Dans ces objets il sera possible d'utiliser l'annotation <code class="ann">@Autowired</code> pour injecter automatiquement une instance présente dans le contexte et possédant un type compatible.<br/>
+Un composant est une instance partagée du contexte Spring, selon le pattern "singleton" par défaut.<br>
+Une annotation <code class="ann">@Component</code> permet de définir une classe Java comme un composant Spring. Dans ces objets il sera possible d'utiliser l'annotation <code class="ann">@Autowired</code> pour injecter automatiquement une instance présente dans le contexte et possédant un type compatible.<br/>
 Si une injection ne peut pas être satisfaite, alors une erreur sera levée au démarrage du contexte spring.<br/>
 Certaines injections pouvant être facultatives, vous pouvez mettre le paramètre "required=false" dans l'annotation Autowired.
 </p>
 
 <p>
-  Il existe différentes implémentation de contexte spring. Nous utiliserons généralement <code>AnnotationConfigApplicationContext</code> comme instance d'<code>ApplicationContext</code>. Cette implémentation permet de configurer un contexte spring à l'aide des annotations que nous avons placés.<br>
-  Spring peut rechercher après tous les composants (ceux annotés) dans une partie du classpath, cela se configure à l'aide de l'annotation <code class="ann">@ComponentScan</code>.  Spring inspectera la liste des packages passés en paramètre pour constituer son contexte, à l'aide des composants qui y sont définis.<br>
+  Il existe différentes implémentations de contexte Spring. Nous utiliserons généralement <code>AnnotationConfigApplicationContext</code> comme instance d'<code>ApplicationContext</code>. Cette implémentation permet de configurer un contexte Spring à l'aide des annotations que nous avons placées.<br>
+  Spring peut rechercher tous les composants (ceux annotés) dans une partie du classpath : cela se configure à l'aide de l'annotation <code class="ann">@ComponentScan</code>.  Spring inspectera la liste des packages passés en paramètre pour constituer son contexte, à l'aide des composants qui y sont définis.<br>
 </p>
 
 <p>
@@ -56,20 +56,20 @@ Certaines injections pouvant être facultatives, vous pouvez mettre le paramètr
 </p>
 
 <p>
-  L'intérêt de spring est surtout de réaliser des scénario d'injection lorsque les objets proviennent de librairies différentes, ou lorsque plusieurs implémentations d'une même classe peuvent être utilisées dans l'application.<br>
+  L'intérêt de Spring est surtout de réaliser des scénarii d'injection lorsque les objets proviennent de librairies différentes, ou lorsque plusieurs implémentations d'une même classe peuvent être utilisées dans l'application.<br>
   L'inspection des composants du classpath peut se faire dans vos packages ou ceux définis dans une autre librairie (jar).
 </p>
 
 </p>
-  Cela peut vite devenir complexe de comprendre ce qui se trouve ou non dans le contexte spring. Il faudra veiller à bien structurer ses packages et la définition de ses composants pour s'y retrouver. Il peut être intéressant d'utiliser un contexte décrit en XML, ou de regrouper la création des objets du contexte dans un objet portant l'annotation <code class="ann">@Configuration</code>.
+  Cela peut vite devenir complexe de comprendre ce qui se trouve ou non dans le contexte Spring. Il faudra veiller à bien structurer ses packages et la définition de ses composants pour s'y retrouver. Il peut être intéressant d'utiliser un contexte décrit en XML, ou de regrouper la création des objets du contexte dans un objet portant l'annotation <code class="ann">@Configuration</code>.
 </p>
 
 <p>
-  Si généralement nous préférons mettre des annotations pour configurer un contexte spring, il est effectivement possible
-  d'utiliser des fichiers de configuration en xml. Historiquement, c'est la manière dont on configurait
-  un contexte spring. Les deux approches (annotations / xml) ont leurs avantages et inconvénients.
+  Si généralement nous préférons mettre des annotations pour configurer un contexte Spring, il est effectivement possible
+  d'utiliser des fichiers de configuration en XML. Historiquement, c'est la manière dont on configurait
+  un contexte Spring. Les deux approches (annotations / XML) ont leurs avantages et inconvénients.
   <ul>
-    <li>Avantage du xml : la configuration du contexte est indépendante du code Java, ce qui évite 
+    <li>Avantage du XML : la configuration du contexte est indépendante du code Java, ce qui évite 
     de recompiler les classes lors d'un changement de contexte. On maitrise parfaitement ce que contient le contexte, tout étant déclaré.</li>
     <li>Inconvénient : le XML c'est assez pénible à lire, long à écrire, et à "manipuler" ...</li>
   </ul>
@@ -81,7 +81,7 @@ Certaines injections pouvant être facultatives, vous pouvez mettre le paramètr
 <h2>Spring MVC</h2>
 
 <p>
-  la librairie "MVC" de spring permet d'utiliser les mécanismes d'injection de dépendance pour faciliter le 
+  la librairie "MVC" de Spring permet d'utiliser les mécanismes d'injection de dépendance pour faciliter le 
   branchement des différentes parties (model, vue, controller) de notre application web tout en assurant une certaine indépendance
   entre nos objets.
 </p>
@@ -99,14 +99,14 @@ Certaines injections pouvant être facultatives, vous pouvez mettre le paramètr
 
 <p>
   Spring MVC fourni un objet "RequestDispatcher" qui est une servlet qui va aiguiller toutes les requêtes
-  vers l'un des contrôleurs annotés et présents dans le contexte spring.<br>
-  Pour brancher cette servlet dans tomcat (ou autre), il faudra définir le pattern des URLs qui seront aiguillées vers la "RequestDispatcher" de spring. On pourra par exemple intercepter toutes les requêtes, dans notre contexte, qui commencent par "/app/", ou qui se terminent pas ".do".<br>
-  Vous devez être vigilant sur les urls exposées par les controleurs et celles interceptées par spring. En effet, si vous définissez le "RequestDispatcher" sur "*.html" et qu'un controleur est exposé sur "/hello" (sans extension), le traitement n'arrivera jamais jusqu'à lui.
+  vers l'un des contrôleurs annotés et présents dans le contexte Spring.<br>
+  Pour brancher cette servlet dans Tomcat (ou autre), il faudra définir le pattern des URLs qui seront aiguillées vers la "RequestDispatcher" de Spring. On pourra par exemple intercepter toutes les requêtes, dans notre contexte, qui commencent par "/app/", ou qui se terminent pas ".do".<br>
+  Vous devez être vigilants sur les URL exposées par les contrôleurs et celles interceptées par Spring. En effet, si vous définissez le "RequestDispatcher" sur "*.html" et qu'un contrôleur est exposé sur "/hello" (sans extension), le traitement n'arrivera jamais jusqu'à lui.
 </p>
 
 
 <p>
-  Pour configurer le mapping de la "RequestDispatcher", cela peut se faire avec le fichier "web.xml" contenu normalement dans "WEB-INF" et définissant tous les mapping de servlet (avant les annotations). Récemment, l'API servlet 3.0 a permis de configurer le contexte web par l'extension d'une interface. Spring utilise ce mécanisme, et cherche dans le classpath une implémentation de WebApplicationInitializer pour vous permettre de préparer le contexte spring et brancher le "RequestDispatcher". Celà ressemblera à :
+  Pour configurer le mapping de la "RequestDispatcher", cela peut se faire avec le fichier "web.xml" contenu normalement dans "WEB-INF" et définissant tous les mapping de servlet (avant les annotations). Récemment, l'API servlet 3.0 a permis de configurer le contexte web par l'extension d'une interface. Spring utilise ce mécanisme, et cherche dans le classpath une implémentation de WebApplicationInitializer pour vous permettre de préparer le contexte Spring et brancher le "RequestDispatcher". Cela ressemblera à :
 </p>
 
 <pre><code>
@@ -139,12 +139,12 @@ public class WebAppInitializer implements WebApplicationInitializer {
   Toutes les méthodes de ces contrôleurs annotés <code class="ann">@RequestMapping</code> seront exposées, en fonction des paramètres de cette annotation (ex: uniquement sur GET ou POST).<br>
   Spring essaiera d'injecter automatiquement tous les types en paramètre de votre méthode.<br>
   Habituellement on injectera une instance de "Model" sur lequel on placera des attributs à passer dans la vue.<br>
-  Si votre méthode retourne une chaine de caractères, Spring essaiera d'afficher la vue correspondante en y injectant les attributs du modèle.<br>
+  Si votre méthode retourne une chaîne de caractères, Spring essaiera d'afficher la vue correspondante en y injectant les attributs du modèle.<br>
 </p>
 
 <p>
   Des annotations complémentaires vont également nous permettre de manipuler facilement
-  les données provenant de la requête. Par exemple l'annotation <code class="ann">@RequestParam</code> permettra
+  les données provenant de la requête. Par exemple l'annotation <code class="ann">@RequestParam</code> permet
   de copier automatiquement le contenu d'un paramètre dans une variable.<br>
   Soit l'équivalent de <code>String param = request.getParameter("paramName")</code>.<br/>
   Exemple d'une méthode de contrôleur utilisant les annotation spring web-mvc :
@@ -160,19 +160,19 @@ public class WebAppInitializer implements WebApplicationInitializer {
 </code></pre>
 
 <p>
-  Si vous avez besoin d'accéder à l'objet HttpServletRequest (ou Response) il vous suffit de l'ajouter à la liste des paramètres de votre opération et spring vous le passera lors de l'invocation de la méthode.<br>
-  Il n'est pas recommandable de créer ce type de dépendance vers l'API servlet car votre contrôleur pourrait être utilisé dans un tout autre contexte que celui d'une application web. Toutefois, il est parfois nécessaire de le faire et spring vous en offre la possibilité.<br>
-  Consulter <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-arguments">cette page</a> pour voir la liste des types de paramètres que spring peut vous fournir !<br>
+  Si vous avez besoin d'accéder à l'objet HttpServletRequest (ou Response) il vous suffit de l'ajouter à la liste des paramètres de votre opération et Spring vous le passera lors de l'invocation de la méthode.<br>
+  Il n'est pas recommandable de créer ce type de dépendance vers l'API servlet car votre contrôleur pourrait être utilisé dans un tout autre contexte que celui d'une application web. Toutefois, il est parfois nécessaire de le faire et Spring vous en offre la possibilité.<br>
+  Consulter <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-arguments">cette page</a> pour voir la liste des types de paramètres que Spring peut vous fournir !<br>
 </p>
 
 <h3>Les vues</h3>
 
 <p>
-  La manière la plus simple d'associer une vue à un contrôleur est de lui faire retourner une chaine de caractère indiquant le fichier que la DispatcherServlet devra afficher.
+  La manière la plus simple d'associer une vue à un contrôleur est de lui faire retourner une chaîne de caractères indiquant le fichier que la DispatcherServlet devra afficher.
 </p>
 
 <p>
-  L'association entre le fichier de vue et la chaine de caractères retournée par vos contrôleurs se fait à l'aide d'un composant "ViewResolver". Pour en changer le comportement,  créez une méthode annotée "Bean" dans l'objet de configuration (celui annoté @Configuration). Cette méthode retournera un "InternalResourceViewResolver". Cela permet d'aller charger les vues à un endroit quelconque du classpath ou du disque ...<br>
+  L'association entre le fichier de vue et la chaîne de caractères retournée par vos contrôleurs se fait à l'aide d'un composant "ViewResolver". Pour en changer le comportement,  créez une méthode annotée "Bean" dans l'objet de configuration (celui annoté @Configuration). Cette méthode retournera un "InternalResourceViewResolver". Cela permet d'aller charger les vues à un endroit quelconque du classpath ou du disque ...<br>
   Voir la <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-viewresolver">documentation</a>.
 </p>
 
@@ -180,14 +180,14 @@ public class WebAppInitializer implements WebApplicationInitializer {
   Pour des vues écrites en JSP, tous les attributs du modèle sont accessibles par <code>request.getAttribute("attrName")</code> et par <code>${attrName}</code>. Cette dernière notation utilise les "Expression Langage". N'hésitez pas à consulter <a href="http://adiguba.developpez.com/tutoriels/j2ee/jsp/el/">ce tutorial</a> pour découvrir les mécanismes de base des EL.
 </p>
 
-<h3>Ecrire des webservices REST/json</h3>
+<h3>Ecrire des webservices REST/JSON</h3>
 
 <p>
   Vous serez sans doute régulièrement amené à développer des services REST renvoyant du JSON.<br>
   Avec l'annotation @ResponseBody les méthodes de @Controller ne chercheront plus à exécuter une vue et retourneront directement le résultat de votre opération, en la convertissant éventuellement.<br>
   C'est le comportement par défaut des @RestController.<br>
-  Vous pourriez donc renvoyer une chaine de caractère composée de JSON écrite "à la main".<br>
-  Mais en ajoutant simplement la librairie "jackson-databind" à vos dépendances maven, vous pouvez faire transformer automatiquement les objets retournés par vos contôleurs en JSON.
+  Vous pourriez donc renvoyer une chaîne de caractères composée de JSON écrite "à la main".<br>
+  Mais en ajoutant simplement la librairie "jackson-databind" à vos dépendances Maven, vous pouvez faire transformer automatiquement les objets retournés par vos contrôleurs en JSON.
 </p>
 
 
@@ -198,11 +198,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
 </p>
 
 
-<h3>Lancer tomcat avec les dépendances maven </h3>
+<h3>Lancer Tomcat avec les dépendances Maven </h3>
 
 <p>
-  Il existe de nombreux plugins dans les IDE pour gérer le lancement et le rafraichissement des contextes de tomcat. Toutefois, leur comportement est parfois hasardeux et vous pourriez avoir besoin de déployer "à la main" votre projet pour vous assurer qu'il fonctionnera dans un serveur d'application web java standard.<br/>
-  Vous pouvez utiliser <code>mvn package</code> pour préparer un war à déployer. Il sera disponible dans /target.<br/>
+  Il existe de nombreux plugins dans les IDE pour gérer le lancement et le rafraichissement des contextes de Tomcat. Toutefois, leur comportement est parfois hasardeux et vous pourriez avoir besoin de déployer "à la main" votre projet pour vous assurer qu'il fonctionnera dans un serveur d'application web Java standard.<br/>
+  Vous pouvez utiliser <code>mvn package</code> pour préparer un fichier WAR à déployer. Il sera disponible dans /target.<br/>
 </p>
 
 <p>
