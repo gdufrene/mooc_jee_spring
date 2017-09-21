@@ -1,0 +1,42 @@
+<!--
+******************************************************************************
+                         MAVEN
+******************************************************************************
+-->
+        <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Spécificités Maven à Lille 1</h2>
+
+<p>
+  A l'université, les connexions sur le web doivent passées par le proxy cache. Pour que Maven utilise le proxy, il faut modifier le fichier "settings.xml"
+  situé dans votre 'HOME', dans le répertoire '.m2'<br/>
+</p>
+
+<p>Contenu du fichier settings.xml pour la configuration proxy</p>
+
+<pre><code>
+&lt;settings&gt;
+  &lt;proxies&gt;
+   &lt;proxy&gt;
+      &lt;active&gt;true&lt;/active&gt;
+      &lt;protocol&gt;http&lt;/protocol&gt;
+      &lt;host&gt;cache-etu.univ-lille1.fr&lt;/host&gt;
+      &lt;port&gt;3128&lt;/port&gt;
+      &lt;username&gt;&lt;/username&gt;
+      &lt;password&gt;&lt;/password&gt;
+      &lt;nonProxyHosts&gt;localhost|127.0.0.1&lt;/nonProxyHosts&gt;
+    &lt;/proxy&gt;
+    &lt;proxy&gt;
+       &lt;active&gt;true&lt;/active&gt;
+       &lt;protocol&gt;https&lt;/protocol&gt;
+       &lt;host&gt;cache-etu.univ-lille1.fr&lt;/host&gt;
+       &lt;port&gt;3128&lt;/port&gt;
+       &lt;username&gt;&lt;/username&gt;
+       &lt;password&gt;&lt;/password&gt;
+       &lt;nonProxyHosts&gt;localhost|127.0.0.1&lt;/nonProxyHosts&gt;
+     &lt;/proxy&gt;
+  &lt;/proxies&gt;
+&lt;/settings&gt;
+</code></pre>
+
+<p>
+  Lorsque vous n'êtes pas sur le réseau de l'université pensez à désactiver le proxy ! : &lt;active&gt;<b>false</b>&lt;/active&gt;
+</p>
