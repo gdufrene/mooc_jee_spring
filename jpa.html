@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JEE / Spring by gdufrene</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Java EE / Spring</h1>
+        <p>Master e-services 2016</p>
+        <p class="view"><a href="https://github.com/gdufrene/java_ee_spring-16">View the Project on GitHub <small>gdufrene/java_ee_spring-14</small></a></p>
+        <ul>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+
+      <section>
+
+<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JPA.</h2>
+
+<p>
+JPA (Java Persistance Api) est une spécification Java EE permettant de lier des objets à des données contenues dans une base de données. Plus exactement, dans toute source de données possédant une implémentation correspondante.
+</p>
+
+<p>
+JPA est essentiellement utilisé pour la manipulation des bases de données relationnelles construites à partir du développement orienté objet en Java. Comme tout ORM, JPA fournit une abstraction d'accès à la base de données. Il n'est donc plus question d'écrire du code SQL "natif" de votre base. Les opérations de création, recherche, mise à jour et suppression des données sont complètement accessibles via des méthodes génériques.
+</p>
+
+<p>
+En fonction de la persistance choisie, l'implémentation JPA pour votre base se chargera de traduire ces appels en SQL (ou autre) valide.
+</p>
+
+<h3>Hibernate</h3>
+
+<p>
+Essayons de mettre en oeuvre une persistance JPA avec l'implémentation Hibernate par dessus une base de données "H2".
+</p>
+
+<p>
+Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. Il possède un nombre assez important de dépendances. Il devient assez vite compliqué de vouloir chercher toutes ces dépendances "à la main". Nous allons plutôt utiliser Maven pour gérer tout cela.<br/>
+</p>
+
+<h3>Premières entités</h3>
+
+<p>
+  Avec JPA, nous pouvons annoter nos classes Java pour indiquer que les données de ces classes seront persistées. De manière simple, il "suffit" de placer l'annotation <code class="ann">@Entity</code> sur une classe pour que cela fonctionne ... ou presque. Il est nécessaire que les propriétés de l'objet à persister soient accessibles par le gestionnaire d'entité.
+</p>
+
+<p>
+  Comprenez :<br/>
+- soit une propriété public ;<br/>
+- soit un getter / setter avec le nom qui correspond get<i>Propriété</i> et set<i>Propriété</i>( valeur ).<br/>
+- sinon l'implémentation JPA (hibernate) pourra essayer de modifier dynamiquement le bytecode pour rendre ces propriétés accessibles.
+</p>
+
+<p>
+  Pour certaines propriétés, il est utile de mettre d'autres annotations pour indiquer comment le gestionnaire ou la base se comportera. Par exemple l'identifiant de l'entité doit être annoté <code class="ann">@Id</code>. Nous pouvons aussi indiquer que cette propriété sera générée par la base via une séquence (ou auto increment). Pour cela nous ajoutons la propriété <code class="ann">@GeneratedValue</code>
+</p>
+
+<h3>Les associations</h3>
+
+<p>
+  Pour marquer les relations entre nos entités il est possible d'utiliser les annotations :<br/>
+  &raquo; <code class="ann">@OneToMany</code> : pour désigner une relation 1-n, soit une instance faisant référence à plusieurs autres. Permet d'accéder aux objets du coté N à travers une liste. A utiliser avec vigilance selon la volumétrie des données associées.<br/>
+  &raquo; <code class="ann">@ManyToOne</code> : pour désigner, une relation inverse de 1-n. Permet d'accéder facilement à l'objet du coté "1".<br/>
+  &raquo; <code class="ann">@OneToOne</code> : pour désigner une relation 1-1 entre deux objets. Peut être utile pour séparer un ensemble de propriétés dont le sens est différent. Peut être utile pour concevoir une relation d'héritage également.<br/>
+  &raquo; <code class="ann">@ManyToMany</code> : pour les relations n-n devenant une table associative.<br/>
+</p>
+
+<p>
+  Certaines associations N-N du modèle peuvent comporter des informations. Dans ce cas, il est préférable d'utiliser deux liens OneToMany vers une classe qui portera ces informations.<br/>
+  Pour gérer l'association correctement, il y a ensuite deux stratégies concernant la clé primaire :<br/>
+  1. Réaliser une clé composée à l'aide de EmbeddedId ; (Voir <a href="http://www.mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/">cette explication</a>)<br/>
+  2. Ajouter une simple clé (colonne supplémentaire) et mettre une contrainte d'unicité sur les colonnes des deux clé étrangères. ; (Voir <a href="http://stackoverflow.com/questions/5127129/mapping-many-to-many-association-table-with-extra-columns">cette explication</a>)<br/>
+</p>
+
+<h3>persistence.xml</h3>
+
+<p>
+  Si vous utilisez JPA sans autre framework (type Spring), le "contexte de persistance" se configure avec un fichier "persistence.xml" placé dans le <b>classpath</b>, dans un répertoire "META-INF/". Dans un projet Maven, ce fichier est généralement placé dans les "resources" principales. Il faut créer un répertoire WEB-INF/resources/META-INF et y mettre ce contenu :</a>.<br/>
+</p>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;persistence xmlns=&quot;http://xmlns.jcp.org/xml/ns/persistence&quot;
+             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+             xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd&quot;
+             version=&quot;2.1&quot;&gt;
+&lt;persistence-unit name=&quot;myApp&quot;&gt;
+&lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+&lt;properties&gt;
+  &lt;property name=&quot;connection.driver_class&quot;  value=&quot;org.h2.Driver&quot;/&gt;
+  &lt;property name=&quot;hibernate.connection.url&quot; value=&quot;jdbc:h2:./db&quot;/&gt;
+  &lt;property name=&quot;hibernate.dialect&quot;        value=&quot;org.hibernate.dialect.H2Dialect&quot;/&gt;
+  &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;   value=&quot;create-drop&quot;/&gt;
+  &lt;property name=&quot;hibernate.show_sql&quot;       value=&quot;true&quot;/&gt;
+&lt;/properties&gt;
+&lt;/persistence-unit&gt;
+&lt;/persistence&gt;
+</pre>
+
+<p>
+  Ce fichier est évidemment à adapter selon vos besoins.<br/>
+  Prêtez notamment attention au paramètre "hbm2ddl.auto" et lisez cette page de <a href="http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do">stackOverflow</a>.
+</p>
+
+<h3>Entity Manager</h3>
+
+<p>
+  L'Entity Manager permet de sauvegarder (persist), charger (find), ou créer des requêtes exprimées en JPQL ... une sorte de SQL orienté objet. Notez qu'il est aussi possible de créer des requêtes à l'aide de l'API Criteria de JPA. Pour tout cela, il y a la doc. Consultez par exemple <a href="http://www.objectdb.com/java/jpa/query">ce site</a> ou encore LA <a href="http://docs.oracle.com/cd/E13189_01/kodo/docs40/full/html/ejb3_overview_query.html">doc officielle</a>, un peu moins agréable.<br/>
+Vous pouvez aussi vous plonger dans la <a href="http://docs.oracle.com/javaee/7/api/index.html?javax/persistence/EntityManager.html">javadoc</a>, encore plus austère.
+</p>
+
+<p>
+  Vous pouvez consulter la classe <a href="files/DemoJPA.java">DemoJPA</a> pour voir un exemple simple d'usage de l'entity manager et des transactions. Toutes les requêtes JPA doivent être exécutées dans une transaction. On "oblige" le développeur à se soucier de ce qui a du sens en terme d'état de base de données. Si une exception survient durant la transaction, les modifications en base ne sont pas appliquées (ou défaites).
+</p>
+
+<p>
+  Bien que ce ne soit pas recommandé, il reste possible d'effectuer des requête SQL à travers l'API JPA.<br/>
+  Le mapping peut rester "automatique" si toutefois votre résultat de requête reste compatible avec l'objet à affecter.<br/>
+</p>
+
+<pre>
+  String sql = "SELECT * FROM USER WHERE ID = ?";
+
+  Query query = entityManager.createNativeQuery(sql, User.class);
+  query.setParameter(1, id);
+  User user = (User) query.getSingleResult();
+</pre>
+
+
+
+      <ul class="navigation">
+        <li>
+          <a href="index.html"><strong>Sommaire</strong></a>
+        </li>
+        <li>
+          <a href="sitemap.html"><strong>Plan du site</strong></a>
+        </li>
+        <li>
+          <a href="https://github.com/gdufrene/java_ee_spring-16"><strong>Github</strong></a>
+        </li>
+      </ul>
+
+    </section>
+
+    </div>
+
+    <footer>
+      <p>Project maintained by <a href="https://github.com/gdufrene">gdufrene</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.</p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/jquery.collapse.js"></script>
+<script type="text/javascript">
+$(".collapsable").collapse();
+</script>
+
+    
+  </body>
+</html>
