@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JEE / Spring by gdufrene</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Java EE / Spring</h1>
+        <p>Master e-services 2016</p>
+        <p class="view"><a href="https://github.com/gdufrene/java_ee_spring-16">View the Project on GitHub <small>gdufrene/java_ee_spring-14</small></a></p>
+        <ul>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+
+      <section>
+
+<!--
+******************************************************************************
+                         MAVEN
+******************************************************************************
+-->
+        <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Spécificités Maven à Lille 1</h2>
+
+<p>
+  A l'université, les connexions sur le web doivent passées par le proxy cache. Pour que Maven utilise le proxy, il faut modifier le fichier "settings.xml"
+  situé dans votre 'HOME', dans le répertoire '.m2'<br/>
+</p>
+
+<p>Contenu du fichier settings.xml pour la configuration proxy</p>
+
+<pre><code>
+&lt;settings&gt;
+  &lt;proxies&gt;
+   &lt;proxy&gt;
+      &lt;active&gt;true&lt;/active&gt;
+      &lt;protocol&gt;http&lt;/protocol&gt;
+      &lt;host&gt;cache-etu.univ-lille1.fr&lt;/host&gt;
+      &lt;port&gt;3128&lt;/port&gt;
+      &lt;username&gt;&lt;/username&gt;
+      &lt;password&gt;&lt;/password&gt;
+      &lt;nonProxyHosts&gt;localhost|127.0.0.1&lt;/nonProxyHosts&gt;
+    &lt;/proxy&gt;
+    &lt;proxy&gt;
+       &lt;active&gt;true&lt;/active&gt;
+       &lt;protocol&gt;https&lt;/protocol&gt;
+       &lt;host&gt;cache-etu.univ-lille1.fr&lt;/host&gt;
+       &lt;port&gt;3128&lt;/port&gt;
+       &lt;username&gt;&lt;/username&gt;
+       &lt;password&gt;&lt;/password&gt;
+       &lt;nonProxyHosts&gt;localhost|127.0.0.1&lt;/nonProxyHosts&gt;
+     &lt;/proxy&gt;
+  &lt;/proxies&gt;
+&lt;/settings&gt;
+</code></pre>
+
+<p>
+  Lorsque vous n'êtes pas sur le réseau de l'université pensez à désactiver le proxy ! : &lt;active&gt;<b>false</b>&lt;/active&gt;
+</p>
+
+      <ul class="navigation">
+        <li>
+          <a href="index.html"><strong>Sommaire</strong></a>
+        </li>
+        <li>
+          <a href="sitemap.html"><strong>Plan du site</strong></a>
+        </li>
+        <li>
+          <a href="https://github.com/gdufrene/java_ee_spring-16"><strong>Github</strong></a>
+        </li>
+      </ul>
+
+    </section>
+
+    </div>
+
+    <footer>
+      <p>Project maintained by <a href="https://github.com/gdufrene">gdufrene</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.</p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/jquery.collapse.js"></script>
+<script type="text/javascript">
+$(".collapsable").collapse();
+</script>
+
+    
+  </body>
+</html>

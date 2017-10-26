@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JEE / Spring by gdufrene</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Java EE / Spring</h1>
+        <p>Master e-services 2016</p>
+        <p class="view"><a href="https://github.com/gdufrene/java_ee_spring-16">View the Project on GitHub <small>gdufrene/java_ee_spring-14</small></a></p>
+        <ul>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/gdufrene/java_ee_spring-16">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+
+      <section>
+
+<!--
+******************************************************************************
+                         MAVEN
+******************************************************************************
+-->
+        <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Maven.</h2>
+        
+<h3>Introduction</h3>
+
+<p>
+Maven est un outil permettant de gérer les dépendances, la compilation, le "packaging" et bien d'autres choses. Il s'utilise au moyen de fichier "pom" décrivant votre projet.<br/>
+Maven est développé en Java et le script "mvn" utilise la variable d'environnement "JAVA_HOME" pour déterminer quelle version du langage Java doit être utilisée. Afin d'éviter tout soucis, initialiser cette variable dans votre ".bashrc" (linux) ou ".bash_profile" (mac) ou dans les propriétés systèmes sous windows.<br/>
+<code>export JAVA_HOME="/path/to/your/java/Home"</code>
+</p>
+
+<p>
+  Page de téléchargement de Maven : <a href="http://maven.apache.org/download.cgi">maven.apache.org/download.html</a><br/>
+  <a href="http://mir2.ovh.net/ftp.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz">Archive maven 3.3.3</a> à extraire. Ajouter le répertoire bin/ à votre PATH, puis vérifier en tapant <i>mvn -v</i> ; vous devriez obtenir quelque chose de ce type :
+</p>
+
+<pre><code>
+Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T13:57:37+02:00)
+Maven home: /Users/guillaume/install/apache-maven-3.3.3
+Java version: 1.8.0_11, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre
+Default locale: fr_FR, platform encoding: UTF-8
+OS name: "mac os x", version: "10.10.2", arch: "x86_64", family: "mac"
+</code></pre>
+
+<p>
+  Le principal intérêt de Maven est de gérer des dépendances vers des librairies. Ces librairies sont téléchargées depuis un "repository", généralement le repository "central" maven.<br/>
+</p>
+
+<p>
+Le répertoire .m2 contiendra toutes les librairies téléchargées (dans 'repository') par Maven au fur et à mesure de son utilisation. Il est possible que ce répertoire devienne assez lourd avec le temps.<br/>
+Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de modifier l'endroit où Maven stockera les librairies. Ajouter ceci, en l'adaptant, dans votre fichier "settings.xml" :<br/>
+<code>&lt;localRepository&gt;/local/<b>username</b>/m2&lt;localRepository&gt;</code>
+</p>
+
+<h3>Pom.xml</h3>
+
+<p>
+  Il faut faire de votre projet Java, un projet "maven". Cela se fait simplement en ajoutant un fichier "pom.xml" à la racine.<br/>
+  Un fichier pom décrit notre projet en "artefact", dans un "group" et possédant une "version".<br/>
+  Le projet est "packagé" selon un format défini.<br/>
+</p>
+
+<code><pre>
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org2001/XMLSchema-instance&quot;
+           xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apahe.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+      
+  &lt;groupId&gt;fr.eservices.<b>xxVotreNomxx</b>&lt;/groupId&gt;
+  &lt;artifactId&gt;projet-jee&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+
+&lt;project&gt;
+</pre></code>
+
+<p>
+  Le pom contiendra également le nom du projet et différentes informations nécessaires à la compilation ou au packaging de notre projet.<br/>
+  Le plus intéressant : cela contiendra des dépendances vers des librairies, qui elles-mêmes peuvent tirer d'autres par dépendances transitives.<br/>
+  Les dépendances sont normalement présentes sur un serveur "central" maven. C'est un site regroupant toutes les librairies de projets qui souhaitent être diffusés/utilisés.<br/>
+  Il est aussi possible d'ajouter d'autres "repository" par de la configuration dans le pom, ou dans les settings de maven.<br/>
+</p>
+
+<h3>Repository</h3>
+
+<p>
+  Les dépendances seront stockée sur votre ordinateur dans un repository local, par défaut dans ~/.m2/repository.<br/>
+  Il est possible d'ajouter manuellement des librairies dans ce repository. Ce qui peut être utile pour les librairies qui ne sont pas fournies au format maven (avec un pom ou sur le repo central ...).<br/>
+</p>
+
+<p>
+  La conception interne de Maven est modulaire et chaque "plugin" est responsable d'une fonctionnalité. Ces mêmes plugins sont également des artefacts maven disponibles sur le repo central et téléchargés au besoin.<br/>
+  Ainsi, c'est le plugin "install" qui va gérer les insertions dans le repo local.<br/>
+  Pour mettre un jar quelconque dans votre repo local on utilisera la commande :<br/>
+  <pre>mvn install:install-file -Dfile=<b>fichier</b>.jar -DgroupId=<b>mon.groupe</b> -DartifactId=<b>nom-librairie</b> -Dversion=<b>version</b> -Dpackaging=<b>typeArtefact</b></pre>
+  La version est nécessairement numérique, séparée par des points.<br/>
+  typeArtefact, généralement <b>jar</b> est le format du fichier géré pour cette dépendance.
+</p>
+
+<h3>Dépendances</h3>
+
+<p>
+  Il faut distinguer différents ensembles de dépendances, nommés "scope" dans le vocabulaire mMven.<br/>
+
+  &raquo; <b>compile</b> : (par défaut) indique que cette librairie est nécessaire pour la compilation et à l'exécution. <br/>
+  &raquo; <b>runtime</b> : uniquement nécessaire à l'exécution.<br/>
+  &raquo; <b>provided</b> : sera disponible à l'exécution mais n'est pas fourni par ce projet. Exemple : le "servlet-api" est fourni par Tomcat et n'est pas amené par notre projet web. "servlet-api" est donc "provided". Cette librairie reste nécessaire à la compilation.<br/>
+  &raquo; <b>test</b> : librairie nécessaire uniquement dans l'exécution de tests unitaires. Exemple : junit.<br/>
+  &raquo; <b>system</b> : librairie disponible à travers le système de fichiers local. Ce type de dépendance n'est pas tiré depuis les repository distants. A éviter, sauf si vous comitter vos librairies avec le projet (c'est mal ...)
+</p>
+
+<p>
+  Maven gère le classpath pour vous lors des phases de compilation et d'exécution.<br/>
+  Les dépendances directes et transitives sont toutes ajoutées au classpath.<br/>
+  Les dépendances "compile", "runtime" sont transitives. Le scope "test" est par contre limité à votre projet.
+</p>
+
+<p>
+  Les dépendances se gèrent dans la sections "dependencies". Pour Chaque dépendance, il faut indiquer le groupId, l'artifactId, la version et le scope (par défaut compile).<br/>
+  Exemple de dépendance pour ajouter JUnit pour nos tests :
+</p>
+
+<pre>
+  &lt;dependencies&gt; 
+    ...
+    &lt;dependency&gt; 
+      &lt;groupId&gt;junit&lt;/groupId&gt; 
+      &lt;artifactId&gt;junit&lt;/artifactId&gt; 
+      &lt;version&gt;4.12&lt;/version&gt; 
+      &lt;scope&gt;test&lt;/scope&gt; 
+    &lt;/dependency&gt; 
+    ...
+  &lt;/dependencies&gt;
+</pre>
+
+<h3>Structure des dossiers</h3>
+
+<p>
+  Par convention, Maven suppose une certaine structure de dossiers de votre projet : <br/>
+  <ul>
+      <li>src
+        <ul>
+          <li>main
+          <ul>
+            <li>java : les sources principales</li>
+            <li>resources : les fichiers de configuration et autre. Tout sera inclus dans la librairie (donc dans le accessible via le classpath)</li>
+            <li>webapp (dans le cas d'un war) : les fichiers, autres que les class et resources, inclus dans le war</li>
+          </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>test
+            <ul>
+              <li>java</li>
+              <li>resources</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+  </ul>
+  Le répertoire de compilation sera normalement "target".<br/>
+  Tout cela est configurable à travers la directive "build" de votre pom.xml.</br>
+</p>
+
+<p>
+  Vous trouverez dans ce fichier <a href="files/pom.xml">pom.xml</a> une structure de base décrivant votre projet.<br/>
+  Vous pouvez ensuite exécuter <code>mvn dependency:resolve</code> pour résoudre et télécharger toutes les dépendances.<br/> 
+  Elles se rangeront dans votre repo local qui pourra vite devenir assez volumineux si vous travaillez régulièrement avec Maven sur différents projets.<br/>
+  Rappel : Vous pouvez modifier votre .m2/settings.xml pour modifier l'emplacement où Maven rangera toutes les dépendances.<br/>
+  Visualisez l'arbre des dépendances avec <code>mvn dependency:tree</code>.
+</p>
+
+<h3> Déployer votre artefact </h3>
+
+Pour mettre à disposition votre artefact, il suffit de l'héberger sur un serveur accessible en HTTP et organisé de la même manière que votre repository local.<br/>
+Maven vous permet de déployer selon différents modes de distribution avec des extensions :
+<ul>
+ <li> copie dans un répertoire local (qui serait exposé avec apache par exemple), </li>
+ <li> A travers une connexion FTP </li>
+ <li> Copie avec le protocole SSH </li>
+ <li> Copie avec le protocole HTTP : suppose que vous ayez un serveur webdav ou une application web compatible comme Nexus </li>
+</ul>
+
+La configuration se fait dans la directive "distributionManagement", voici un exemple.
+
+<pre>
+&lt;distributionManagement&gt; 
+  &lt;repository&gt; 
+    &lt;id&gt;id-repository&lt;/id&gt;
+    &lt;url&gt;ftp://server/path&lt;/url&gt;
+  &lt;/repository&gt; 
+&lt;/distributionManagement&gt;
+</pre>
+
+Chaque mode de distribution est pris en charge par une extension, à configurer dans "build" :
+
+<pre>
+&lt;build&gt; 
+  &lt;extensions&gt; 
+    &lt;extension&gt; 
+      &lt;groupId&gt;org.apache.maven.wagon&lt;/groupId&gt;
+      &lt;artifactId&gt;wagon-ftp&lt;/artifactId&gt;
+      &lt;version&gt;1.0-beta-6&lt;/version&gt; 
+    &lt;/extension&gt; 
+  &lt;/extensions&gt; 
+&lt;/build&gt;
+</pre>
+
+Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce fichier étant publique). Vous devez ajouter un "server" dans votre fichier settings.xml :<br>
+
+<pre>
+&lt;settings&gt; 
+... 
+  &lt;servers&gt; 
+    &lt;server&gt; 
+      &lt;id&gt;id-repository&lt;/id&gt; 
+      &lt;username&gt;yourLogin&lt;/username&gt; 
+      &lt;password&gt;yourPassword&lt;/password&gt; 
+    &lt;/server&gt; 
+  &lt;/servers&gt; 
+... 
+&lt;/settings&gt;
+</pre>
+
+<h3>Ajouter un repository</h3>
+
+<p>
+  Sans configuration particulière, Maven recherche d'abord les artefacts dans votre repository local, puis dans le repository central Maven (https://repo.maven.apache.org/maven2).<br/>
+  Il est possible de modifier votre configuration globale pour ajouter un repository dans le settings.xml, mais ce repository sera utilisé pour tous vos projets. Ce n'est donc pas nécessairement une solution idéale.<br/>
+  Il est aussi possible d'ajouter un repository dans le pom de votre projet dans la section "repositories".<br/>
+  Voici un exemple, que vous pourrez adapter ...
+</p>
+
+<pre>
+&lt;repository&gt; 
+  &lt;id&gt;id-repository&lt;/id&gt; 
+  &lt;name&gt;Name of your repository&lt;/name&gt; 
+  &lt;url&gt;http://host:port/path/to/maven/&lt;/url&gt; 
+  &lt;snapshots&gt; 
+    &lt;enabled&gt;true&lt;/enabled&gt; 
+  &lt;/snapshots&gt; 
+&lt;/repository&gt;
+</pre>
+
+<p>
+  la notion de "snapshot" indique à Maven que les versions d'artefacts "-SNAPSHOT" seront mises à jour. Il lui sera nécessaire de vérifier la dernière version disponible de l'artefact de temps en temps afin de mettre votre repository à jour.<br/>
+  Les versions "stable" d'artefacts ne sont pas sensées changer. Une fois l'artefact déployé sur un repository, vous devriez immédiatement l'augmenter de version et lui ajouter le suffixe -SNAPSHOT.<br/>
+  Maven ne téléchargera pas un artefact "stable" qu'il possède en local.<br/>
+</p>
+
+<p>
+  Lorsque vous re-définissez les repositories dans votre pom vous devez aussi ajouter le central Maven, sinon seul votre nouveau repository sera consulté. Le central Maven peut être ajouté comme un autre repository à la liste :
+</p>
+
+<pre>
+&lt;repository&gt; 
+  &lt;id&gt;central2&lt;/id&gt; 
+  &lt;name&gt;Maven Central repo&lt;/name&gt; 
+  &lt;url&gt;http://central.maven.org/maven2/&lt;/url&gt; 
+&lt;/repository&gt;
+</pre>
+
+
+<h3>Le plugin Maven d'Eclipse</h3>
+
+<p>
+  Eclipse, comme de nombreux IDE, inclut maintenant un plugin pour faciliter la gestion des projets Maven.</br>
+  Il suffit de passer par le menu "Import" &lt; "Maven" &lt; "Existing maven projects".<br/>
+  L'édition du pom est facilitée par un menu présentant les différentes sections, tout en permettant d'éditer directement le source XML du fichier.<br/>
+  <br/>
+  Ce plugin est fort pratique mais a tendance à consommer beaucoup de mémoire, notamment lors de l'indexation des artefacts disponibles sur les repositories. Cela peut amener Eclipse à planter faute de mémoire suffisante.<br/>
+  Pour cette raison, il peut être intéressant d'utiliser le plugin eclipse de Maven. Celui-ci génère les fichiers compatibles pour l'import de projet classique Java dans Eclipse (voir ci dessous).<br/>
+  Ou alors de cocher l'option "Do not automatically update dependencies from remote repositories" dans "Préférences" &lt; "Maven".
+</p>
+
+<h3>Le plugin eclipse de Maven</h3>
+
+<p>
+  Un plugin permet de mettre à jour les dépendances d'Eclipse en fonction de ce que contient le pom.xml</br>
+  Je parle ici d'un plugin eclipse pour Maven, à ne pas confondre avec l'inverse (ex: plugin m2e d'eclipse).<br/>
+  Ce plugin va en fait mettre à jour (ou créer) les fichiers .project et .classpath utilisés par Eclipse.<br/>
+  Cela permettra d'ajouter les dépendances dans le classpath d'Eclipse.<br/>
+  Pour cela utilisez <code>mvn eclipse:eclipse</code><br/>
+  Et rafraîchissez votre projet avec F5, ou clic droit/refresh.<br/> 
+</p>
+
+<p>
+  <img src="img/eclipse_maven.png" style="float: left; margin: 5px"/> <br/> 
+   Il faudra également définir la variable "M2_REPO" dans votre workspace pour indiquer à Eclipse où est rangé le repository maven.<br/>
+  Rendez-vous dans Outils (ou Eclipse) / Préférence / Java / Build Path / Classpath Variables.<br/>
+  Ajouter une variable "M2_REPO" qui pointe vers "home"/.m2/repository<br/>
+  <div style="clear: both"> </div>
+  L'utilisation d'une variable permet à plusieurs personnes de se partager le fichier ".classpath" sans avoir de soucis avec l'endroit où se trouve les librairies sur leur environnement de travail. La variable est indépendante du projet, elle est liée au workspace Eclipse.
+</p>
+
+
+      <ul class="navigation">
+        <li>
+          <a href="index.html"><strong>Sommaire</strong></a>
+        </li>
+        <li>
+          <a href="sitemap.html"><strong>Plan du site</strong></a>
+        </li>
+        <li>
+          <a href="https://github.com/gdufrene/java_ee_spring-16"><strong>Github</strong></a>
+        </li>
+      </ul>
+
+    </section>
+
+    </div>
+
+    <footer>
+      <p>Project maintained by <a href="https://github.com/gdufrene">gdufrene</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.</p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/jquery.collapse.js"></script>
+<script type="text/javascript">
+$(".collapsable").collapse();
+</script>
+
+    
+  </body>
+</html>

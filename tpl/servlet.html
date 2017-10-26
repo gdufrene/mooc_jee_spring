@@ -1,4 +1,4 @@
-        <h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP.</h2>
+<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP.</h2>
 
 <p>
 Une servlet est un objet Java qui étend l'interface "Servlet" ou "HTTPServlet".<br/>
@@ -185,17 +185,7 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
   Accédez à la page http://localhost:8080/tp1/test.jsp</br>
   Le premier accès est un peu plus long car "jasper", le moteur jsp, transforme votre source jsp en source java, puis le compile et enfin il exécute ce code.<br/>
   Pour les appels suivants, le code est simplement exécuté comme n'importe quel autre servlet.<br/>
-  Vous pouvez d'ailleurs consulter le contenu du source Java généré dans le répertoire de travail de Tomcat : (tomcat) work/Catalina/localhost/tp1/org/apache/jsp<br/>
+  Vous pouvez d'ailleurs consulter le contenu du source Java généré dans le répertoire de travail de Tomcat : <br/>
+  <code>(tomcat) work/Catalina/localhost/tp1/org/apache/jsp</code><br/>
   Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la JSP, ou à analyser une exception levée par le code exécuté.
 </p>
-
-<h3>Exercice de mise en jambe</h3>
-
-<b>Autonomie</b>
-
-<p>
-Ecrire une page présentant un film, permettant aux visiteurs de laisser un commentaire.<br/>
-Les commentaires seront simplement laissés dans une "List" stockée en static dans la servlet.<br/>
-Chaque démarrage (ou re-démarrage) de Tomcat entrainera donc la perte des données.<br/>
-</p>
-

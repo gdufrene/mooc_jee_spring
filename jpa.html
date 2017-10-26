@@ -103,11 +103,11 @@ Hibernate est un "gros" framework qui implémente les fonctionnalités de JPA. I
 &lt;persistence-unit name=&quot;myApp&quot;&gt;
 &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
 &lt;properties&gt;
-  &lt;property name=&quot;connection.driver_class&quot;  value=&quot;org.h2.Driver&quot;/&gt;
-  &lt;property name=&quot;hibernate.connection.url&quot; value=&quot;jdbc:h2:./db&quot;/&gt;
-  &lt;property name=&quot;hibernate.dialect&quot;        value=&quot;org.hibernate.dialect.H2Dialect&quot;/&gt;
-  &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;   value=&quot;create-drop&quot;/&gt;
-  &lt;property name=&quot;hibernate.show_sql&quot;       value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;javax.persistence.jdbc.driver&quot;   value=&quot;org.h2.Driver&quot;/&gt;
+  &lt;property name=&quot;javax.persistence.jdbc.url&quot;      value=&quot;jdbc:h2:./db&quot;/&gt;
+  &lt;property name=&quot;javax.persistence.jdbc.show_sql&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;hibernate.dialect&quot;       value=&quot;org.hibernate.dialect.H2Dialect&quot;/&gt;
+  &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;  value=&quot;create-drop&quot;/&gt;
 &lt;/properties&gt;
 &lt;/persistence-unit&gt;
 &lt;/persistence&gt;

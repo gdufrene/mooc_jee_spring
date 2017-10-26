@@ -14,6 +14,7 @@ gen index
 
 gen java
 gen maven
+gen maven-lille1
 gen tomcat
 gen devops_tools
 gen git
