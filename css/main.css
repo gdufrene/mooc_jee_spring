@@ -1,0 +1,126 @@
+body {
+  padding-top: 70px;
+  background-image: url('mooc_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+.navbar {
+  font-family: 'Muli', sans-serif;
+  background-color: #fab13d;
+}
+
+.navbar-right {
+    margin-right: 0;
+    padding: 5px 0 4px 0;
+}
+
+.navbar-right a {
+  background-color: #18aff0;
+}
+
+.navbar-right > li > a {
+      padding: 5px 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  text-transform: uppercase;
+}
+
+.navbar-default .navbar-nav > li:first-of-type > a {
+  padding-left: 30px;
+  background: linear-gradient(110deg, #fab13d, #fab13d 15%, #18aff0 15%, #18aff0);
+}
+
+.navbar-default .navbar-nav > li:first-of-type > a:hover {
+  background: linear-gradient(110deg, #fab13d, #fab13d 15%, white 15%, white);
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: white;
+  color: #18aff0;
+}
+
+.navbar-default .navbar-nav > li+li:before {
+  content: "|";
+  margin-left: 0;
+  background-color: #18aff0;
+  color: white;
+  width: 5px;
+  line-height: 20px;
+  padding: 5px;
+}
+
+.nav > li > a {
+  display: inline;
+}
+
+.navbar-default .navbar-brand {
+  color: #fab13d;
+  background-color: white;
+  padding-right: 50px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  color: white;
+  font-size: 18px;
+  float: left;
+  padding: 11px 25px;
+  border-bottom: solid 2px white;
+  background: linear-gradient(110deg, white, white 20px, #fab13d 20px, #fab13d);
+}
+
+.navbar {
+  overflow: hidden;
+}
+
+footer {
+  margin-top: 100px;
+  border-top: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
+  background-color: rgba(1, 1, 1, 0.3);
+}
+
+
+@media (max-width: 768px) {
+  .navbar-default .navbar-nav > li > a {
+    width: 250px;
+    display: block;
+    padding-left: 50px;
+    border-top: solid 1px white;
+  }
+  .navbar-default .navbar-nav > li:first-of-type > a {
+    background-image: none;
+    background-color: #18aff0;
+  }
+  .navbar-default .navbar-nav > li:first-of-type > a:hover {
+    background-image: none;
+    background-color: white;
+  }
+  .navbar-default .navbar-nav > li+li:before {
+    content: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .subtitle {
+      width: 507px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .subtitle {
+      width: 726px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .subtitle {
+      width: 927px;
+  }
+}
