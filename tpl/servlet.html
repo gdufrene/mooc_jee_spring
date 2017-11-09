@@ -106,34 +106,6 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
   C.  Modifiez votre servlet pour afficher le formulaire sur le GET et pour afficher "bonjour xxx" lors d'un POST.<br/>
 </p>
 
-<h3>Exercice</h3>
-
-<p>
-  Créez une nouvelle servlet accessible à l'url /tp1/dist, qui calculera la distance à vol d'oiseau entre deux points du globe.<br/>
-  Les points seront donnés en coordonnées géographique (latitude, longitude) selon le format : DD.ddddddd (degrés et dixième de degrés).<br/>
-  Les paramètres seront les suivants : <br/>
-  lat1, lng1 : latitude et longitude du premier point.<br/>
-  lat2, lng2 : latitude et longitude du deuxieme point.<br/>
-  Les paramètres doivent pouvoir être passés en GET ou en POST.<br/>
-  La réponse html contiendra la distance au format 123,45km.<br/>
-  Si un paramètre est manquant le serveur renverra une erreur 400.
-</p>
-
-<p>
-  La formule pour obtenir la distance entre 2 point GPS est la suivante :
-<pre>
-  acos(
-    sin(lat1) * sin(lat2)
-    + cos(lat1) * cos(lat2) * cos(lng1-lng2)
-  ) * R;
-</pre>
-  R vaut 6366 selon la norme WGS84. Attention, en JAVA, les angles doivent être données en radians pour les fonction acos, sin, cos ...<br/>
-  <br/>
-  Pour plus d'informations, je vous recommande la lecture de <a href="http://dotclear.placeoweb.com/post/Formule-de-calcul-entre-2-points-wgs84-pour-calculer-la-distance-qui-separe-ces-deux-points">cet article</a> qui présente différentes implémentations du problème, dont une en JAVA.
-</p>
-
-
-
 <h2>Introduction aux JSP</h2>
 
 <p>

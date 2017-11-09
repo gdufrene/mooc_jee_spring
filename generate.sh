@@ -12,21 +12,17 @@ function gen() {
 
 gen index
 
-gen java
+#gen java
 gen maven
 gen maven-lille1
-gen tomcat
-gen devops_tools
-gen git
+#gen tomcat
+#gen devops_tools
+#gen git
 gen jdbc
 gen jpa
 gen servlet
 gen spring
 gen jstl
 
-gen week1
-gen week2
-gen week3
-gen week4
 
-gen sitemap
+#gen sitemap
