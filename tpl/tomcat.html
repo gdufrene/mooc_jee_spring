@@ -1,0 +1,77 @@
+<!--
+******************************************************************************
+                         TOMCAT
+******************************************************************************
+-->
+<h2>
+<a name="Maven" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>
+Tomcat
+</h2>
+
+<p>
+  <img src="http://tomcat.apache.org/images/tomcat.png" align="left" style="margin: 15px"/>
+  Tomcat est un serveur web fournissant certaines spécifications JEE : Servlet, JSP + expression language, WebSockets. <br/>
+  Tomcat ne peut pas être considéré comme serveur d'application JEE complet car il n'offre pas l'ensemble des composants définis dans les "profiles" strandards. Il manquent de nombreuses librairies, qui peuvent toutefois être embarquées par l'application à déployer.<br/>
+  Il manquera par exemple dans tomcat un moteur d'injection (Contexts and Dependency Injection), l'API standard permettant de réaliser des service REST facilement (JAX-RS), la définition de composant java (EJB), la gestion des transaction (JTA), la gestion de la persistance (JPA) ...<br/>
+  Nous embarquerons donc dans notre application web un ensemble de librairies implémentant certaines de ces fonctionnalités comme Spring, Spring-web-mvc ou Hibernate.<br/>
+</p>
+
+<p>
+  Les serveurs d'application Java EE tels que JBOSS, WebSphere, Glassfish, Oracle Application Server apportent toutes ces librairies (inutile des les embarquées avec l'application) et facilite leur usage.
+</p>
+
+<p>
+  <b>Pourquoi Tomcat ?</b><br/>
+  C'est un serveur web java relativement facile à prendre en main, il est très répandu et éprouvé, relativement léger et plutôt performant. Il fournit un ensemble de fonctions suffisantes pour mettre en oeuvre des application web rapidement.
+</p>
+
+<p>
+  Lorsque vous décompressez tomcat vous trouverez la hiérarchie de répertoire suivante :
+  <ul class="lsdir">
+    <li>bin : 
+      scripts permettant de lancer / arrêter / redémarrer le serveur
+    </li>
+    <li>conf :
+      fichiers de configuration de tomcat
+    </li>
+    <li>lib : 
+      les librairies dont tomcat a besoin et fournies à toutes les applications déployées.
+    </li>
+    <li>logs :
+      journal d'accès au serveur, sortie standard (System.out.println), autres fichiers de logs.
+    </li>
+    <li>temp :
+      fichiers temporaires générés par les applications si elles utilisent la variable d'environnement "java.io.tmpdir"
+    </li>
+    <li>webapps : 
+      c'est ici que ce trouve les applications web déployées. (un répertoire par contexte).
+      Lorsque vous y déposé un fichier "war", celui ci est généralement décompressé automatiquement (dépend de la conf tomcat). Cette décompression a lieu si un nouveau fichier war apparait ou si il est modifier (rechargement de contexte). Si le répertoire est déjà présent au lancement de tomcat, celui-ci n'essai pas de re-décompresser le war à ce moment là.
+    </li>
+    <li>work :
+    répertoire de "travail" dans lequel tomcat mettra un ensemble de fichiers utile à son fonctionnement. Peut être considéré comme du cache effaçable. On y trouvera par exemple les fichiers java et les classes générées par les fichiers JSP.
+    </li>
+  </ul>
+<p>
+
+<p>
+  Pour lancer tomcat, rendez-vous dans "bin" et exécuter au choix :
+  <ul>
+    <li><code>startup.sh</code> : lance tomcat en "arrière plan". La sortie standard est visible dans "logs/catalina.out". C'est la manière normale de lancer tomcat sur un serveur. Il peut ensuite être arrêté avec la commande <code>shutdown.sh</code>.
+    </li>
+    <li><code>catalina.sh <b>run</b></code> : lance tomcat dans la console actuellement lancée et affiche les sorties standard à cet endroit. Je vous recommande ce mode lorsque vous développé. Il suffira ce faire [CTRL]+C pour arrêter tomcat.
+    </li>
+  </ul>
+  
+  Votre serveur est maintenant accessible à l'adresse http://localhost:8080/ (ou via n'importe quelle IP exposée par l'une de vos interface réseau LAN, WAN, VPN ...).<br/>
+  N'hésitez pas à consulter la <a href="http://tomcat.apache.org/tomcat-8.5-doc/index.html">documentation</a> de tomcat si nécessaire.
+</p>
+  
+<p>  
+  Votre serveur se lance par défaut sur le port 8080, pour deux raisons :
+  <ul>
+    <li>Le port 80 est généralement utilisé par un serveur web plus "classique" comme apache httpd ou nginx</li>
+    <li>Il est nécessaire d'avoir les droits "root" pour ouvrir un port inférieur à 1024</li>
+  </ul>
+  
+  Il reste évidemment possible de configurer tomcat pour le lancer sur le port 80 au besoin, mais en condition de "production" on place souvent un autre serveur web délivrant les fichiers "statiques" (images, js ...) permettant de décharger tomcat de ces traitements. Le lien pouvant se faire par le module "JK" ou par la mise en place d'un reverse proxy http... ces détails sont au delà de ce cours mais il vous serait utile de vous renseigner par vous-même.
+</p>

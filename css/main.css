@@ -13,6 +13,7 @@ body {
 .navbar-right {
     margin-right: 0;
     padding: 5px 0 4px 0;
+    background-color: #18aff0;
 }
 
 .navbar-right a {
@@ -62,6 +63,15 @@ body {
   padding-right: 50px;
   text-transform: uppercase;
 }
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #18aff0;
+}
+.navbar-default .navbar-toggle {
+  border-color: white;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
 
 .subtitle {
   color: white;
@@ -72,8 +82,17 @@ body {
   background: linear-gradient(110deg, white, white 20px, #fab13d 20px, #fab13d);
 }
 
-.navbar {
-  overflow: hidden;
+.navbar .dropdown-menu {
+  background-color: #18aff0;
+}
+
+.dropdown-menu > li > a {
+  color: white;
+}
+
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+  color: #18aff0;
+  background-color: white;
 }
 
 footer {
@@ -90,7 +109,15 @@ footer {
   padding: 5px;
 }
 
-h2, .panel-title a {
+h2:before, h2:after {
+  content: " ___ ";
+}
+
+h2 {
+  color: #fab13d;
+  margin-top: 50  px;
+}
+h3, .panel-title a {
   color: #18aff0;
   display: block;
 }
@@ -100,8 +127,11 @@ h2, .panel-title a {
 }
 
 @media (max-width: 768px) {
+  .navbar-nav {
+    margin: 0 -15px;
+  }
   .navbar-default .navbar-nav > li > a {
-    width: 250px;
+    width: 100%;
     display: block;
     padding-left: 50px;
     border-top: solid 1px white;
@@ -116,6 +146,10 @@ h2, .panel-title a {
   }
   .navbar-default .navbar-nav > li+li:before {
     content: none;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: white;
+    padding-left: 80px;
   }
 }
 
@@ -135,4 +169,29 @@ h2, .panel-title a {
   .subtitle {
       width: 927px;
   }
+}
+
+/** Page tomcat **/
+
+ul.lsdir {
+  list-style: none;
+}
+
+ul.lsdir > li:before {
+  content: "\e118";
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 10px;
+  color: #18aff0;
+}
+
+ul.lsdir > li {
+  margin-bottom: 5px;
 }

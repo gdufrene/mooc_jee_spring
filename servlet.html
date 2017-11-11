@@ -31,10 +31,40 @@
      <div id="navbar" class="navbar-collapse collapse">
        <div class="nav navbar-nav subtitle hidden-xs">Prêt à l'emploi</div>
        <ul class="nav navbar-nav navbar-right">
-         <li><a href="index.html">Accueil</a></li>
-         <li><a href="#">Les outils</a></li>
-         <li><a href="#">JEE</a></li>
-         <li><a href="#">Spring</a></li>
+         <li>
+           <a href="index.html">Accueil</a>
+         </li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+             Les outils <span class="caret"></span>
+           </a>
+           <ul class="dropdown-menu">
+             <li><a href="#">Git</a></li>
+             <li><a href="#">Curl / Postman</a></li>
+             <li><a href="#">Maven</a></li>
+             <li><a href="#">Sqlite</a></li>
+             <li><a href="#">H2 database</a></li>
+           </ul>
+         </li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                JEE <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="java.html">Java</a></li>
+                <li><a href="tomcat.html">Tomcat</a></li>
+                <li><a href="servlet.html">Servlet / JSP</a></li>
+                <li><a href="#">JSTL</a></li>
+                <li><a href="jdbc.html">JDBC</a></li>
+                <li><a href="#">JPA</a></li>
+              </ul>
+         </li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 Spring <span class="caret"></span>
+               </a>
+               <ul class="dropdown-menu">
+                 <li><a href="spring.html">Context - IoC</a></li>
+                 <li><a href="#">Web mvc</a></li>
+                 <li><a href="#">Jstl taglib</a></li>
+                 <li><a href="#">ORM</a></li>
+                 <li><a href="#">Data</a></li>
+               </ul>
+          </li>
        </ul>
      </div><!--/.nav-collapse -->
    </div>
@@ -42,7 +72,7 @@
  </nav>
 
 
-<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP.</h2>
+<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP</h2>
 
 <p>
 Une servlet est un objet Java qui étend l'interface "Servlet" ou "HTTPServlet".<br/>
@@ -75,7 +105,7 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
 </p>
 
 
-<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Votre première servlet.</h2>
+<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Votre première servlet</h2>
 
 <p>
   Nous allons réaliser une première servlet très simple en essayant de "tout faire à la main".<br/>
@@ -222,7 +252,7 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
           <img style="float: left, margin: 10px" alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
         </a>
-        Ce(tte) œuvre est mise à disposition selon les termes de la Licence :<br/>
+        Cette œuvre est mise à disposition selon les termes de la Licence :<br/>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
           Creative Commons Attribution <br/>
           - Pas d’Utilisation Commerciale <br/>
