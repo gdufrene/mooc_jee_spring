@@ -72,7 +72,7 @@
  </nav>
 
 
-<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JDBC.</h2>
+<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JDBC</h2>
 
 <p>
   Il y a fort longtemps dans une galaxie lointaine ... lorsque l'on souhaitait accéder à une base de données relationnelle, on utilisait un driver spécifique pour LA base de données visée et on écrivait du code SQL spécifique (car le SQL n'était pas encore très standardisé). On utilisait également des opérations spécifiques du driver.
@@ -86,7 +86,7 @@
   Il reste nécessaire d'avoir le driver de la base de données compatible JDBC, mais vous devriez être capable de changer de driver (et donc de base de données) sans avoir à modifier trop de choses dans votre code.
 </p>
 
-<h2>DriverManager</h2>
+<h3>DriverManager</h3>
 
 <p>
   Les implémentations de JDBC se présentent sous la forme d'un fichier jar à mettre dans le classpath.<br/>
@@ -108,7 +108,7 @@ Il n'y a donc pas de dépendance directe vers la classe du driver, c'est une cha
   Le DriverManager va associer un nom de driver à cette librairie, ce qui permettra de faire le lien lors de l'ouverture de connexion.
 <p>
   
-<h2>Connexion</h2>
+<h3>Connexion</h3>
 
 <p>
   La connexion à la base de données se fait avec une URL dont le format sera : <code>jdbc:driver:xxx</code>.<br/>
@@ -145,7 +145,7 @@ Il n'y a donc pas de dépendance directe vers la classe du driver, c'est une cha
   Dans ce dernier cas le driver est nécessaire à la compilation puisque l'objet SQLiteDataSource qui implémente DataSource  est présent dans les sources.
 </p>
 
-<h2>SQLException</h2>
+<h3>SQLException</h3>
 
 <p>
   La plupart des opérations sur la base de données peuvent lancer une SQLException. Vous devez donc placer ces opérations dans un try et réaliser un traitement approprié dans le catch, ou transformer cette exception technique en une exception ayant un sens plus "métier".<br/>
@@ -159,7 +159,7 @@ Il n'y a donc pas de dépendance directe vers la classe du driver, c'est une cha
   Les exceptions SQLException ne devraient pas remontées au delà de vos DAO.
 </p>
 
-<h2>Requêtes</h2>
+<h3>Requêtes</h3>
 
 <p>
   Il y a deux grands types de requêtes : 
@@ -201,7 +201,7 @@ while( rs.next() ) {
 }
 </pre>
 
-<h2>PreparedStatement</h2>
+<h3>PreparedStatement</h3>
 
 <p>
   Les requêtes se construisent à partir d'une chaîne de caractères qui est ensuite interprétée par la base de données.<br/>
@@ -240,7 +240,7 @@ while( rs.next() ) {
 </pre>
 
 
-<h2>ResultSetMetaData</h2>
+<h3>ResultSetMetaData</h3>
 
 <p>
   Il peut être intéressant de connaitre le nombre de colonnes et les types retournés par la base de données sur l'exécution d'une requête ; par exemple à la suite d'un "select *". <br/>
