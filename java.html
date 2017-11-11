@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Ressources pédagogiques pour le MOOC Java EE Spring prêt à l'emploi">
+    <meta name="author" content="Guillaume Dufrêne, Lionel Seinturier">
+    
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/ie10-viewport-bug-workaround.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  </head>
+  <body>
+
+
+<!-- Fixed navbar -->
+ <nav class="navbar navbar-default navbar-fixed-top">
+   <div class="container">
+     <div class="navbar-header">
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+       <a class="navbar-brand" href="index.html">Java EE Spring ////</a>
+     </div>
+     <div id="navbar" class="navbar-collapse collapse">
+       <div class="nav navbar-nav subtitle hidden-xs">Prêt à l'emploi</div>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="index.html">Accueil</a></li>
+         <li><a href="#">Les outils</a></li>
+         <li><a href="#">JEE</a></li>
+         <li><a href="#">Spring</a></li>
+       </ul>
+     </div><!--/.nav-collapse -->
+   </div>
+   <div class="clear"></div>
+ </nav>
+
+
+<div class="container">
+<h2>
+  <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>
+  Java
+</h2>
+
+<p>
+  Cette page revient sur les basiques dans l'utilisation de java pour l'installation, la compilation et l'exécution de code.<br/>
+  Cliquez sur les panels suivants pour obtenir de l'aide concernant l'un de ces sujets.
+</p>
+
+  
+<div class="panel-group">
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h2 class="panel-title">
+    <a data-toggle="collapse" href="#collapse1">Installer Java</a>
+  </h2>
+  </div>
+  <div id="collapse1" class="panel-collapse collapse">
+
+  <p>
+    Nous allons tout d'abords installer un JDK java 1.8 si ce n'est pas déjà fait.<br/>
+    Vérifions si java est déjà installé.
+  </p>
+
+  <pre><code>$ java -version
+  java version "1.7.0_25"
+  Java(TM) SE Runtime Environment (build 1.7.0_25-b15)
+  Java HotSpot(TM) 64-Bit Server VM (build 23.25-b01, mixed mode)
+  </code></pre>
+
+  <p>
+    Ceci indiquerait que la version 1.7 est installé, mais nous aimerions une version 1.8.
+    Rendez-vous sur <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java SE Development Kit 8 Downloads</a> chez Oracle. Téléchargez et installez l'archive.
+  </p>
+
+
+  <p>
+    Il faudra déterminer quel est l'architecture de notre poste de travail.
+    Windows, Linux, Mac OS ?
+    Système 32 bits ou 64 bits ?
+  </p>
+
+  <pre><code>$ uname -a
+  <b style="color: #F0F0C0">Darwin</b> webpulser-mbp.local <b style="color: #F0F0C0">11.4.2</b> Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 
+  PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 <b style="color: #F0F0C0">x86_64</b>
+  </code></pre>
+
+  <p>
+    Dans mon cas un mac équipé d'un processeur intel (x86) et 64 bits. La version 11.4.2 du noyau me permet de dire, après une petite recherche, qu'il s'agit de Mac OS X Lion. "A propos de ce mac" aurait aussi pu m'aider. Sous windows appuyer sur [Win]+[Pause] pour ouvrir les propriétés du poste de travail.
+  </p>
+
+  <p>
+    Il faudra idéalement ajouter le chemin des binaires java dans la variable d'environnement "PATH" du système. <a href="https://www.java.com/fr/download/help/path.xml">Modifiez le PATH</a>.
+  </p>
+
+  <p>
+    Le <b>PATH</b> est une liste de dossiers parcourus par le système pour trouver les commandes exécutables appelées sans en préciser le chemin complet.
+    lorsque vous taper "java" dans l'invite de commande, le système va rechercher dans chacun des dossiers, dans l'ordre ou ils sont définis, un fichier exécutable portant ce nom. Si un tel programme est trouvé il est lancé, sinon vous aurez une erreur du type "java: command not found."<br/>
+    Il est aussi possible d'appeler un programme en précisant son chemin complet. Si vous taper "/opt/jdk1.8.0_11/bin/java -version" c'est ce programme en particulier qui sera appelé (en supposant qu'il existe).
+  </p>
+
+  <p>
+    Le PATH est une chaine de caractère regroupant l'ensemble des dossier de recherche, séparés par un ':' sous linux/osx et par ';' sous windows.<br/>
+    Pour modifier ce PATH ;<br/>
+    Imaginons que j'utilise linux et que j'ai décompressé l'archive dans /opt, cela a du créer un répertoire jdk1.8.0_11.
+  </p>
+
+    <pre><code>$ echo 'export PATH="/opt/jdk1.8.0_11/bin:$PATH"' >> ~/.bashrc
+  $ . ~/.bashrc
+  </code></pre>
+
+    Le fichier .bashrc contenu dans votre répertoire utilisateur est exécuté à chaque fois qu'un shell de type bash est lancé.
+  <p>
+    Sous mac l'installation du package va se faire dans '/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/'. Le fichier à modifier pour le PATH est '.bash_profile' dans le HOME.
+  </p>
+
+  <pre><code>$ echo 'export PATH="/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/bin:$PATH"' >> ~/.bash_profile
+  $ . ~/.bash_profile
+  </code></pre>
+
+  </div>
+</div>
+</div>
+
+<div class="panel-group">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <a data-toggle="collapse" href="#collapse2">Compiler un source java</a>
+    </h2>
+  </div>
+  <div id="collapse2" class="panel-collapse collapse">
+
+<p>
+  Pour compiler un fichier il faut utiliser la commande "javac" suivi du source à compiler. 
+  La compilation transforme votre code source texte en une suite d'instructions et de données interprétable par la machine virtuelle java.
+  Ces fichiers compilés seront interprétables quelque soit le système d'exploitation utilisé: "Compile Once, Run Everywhere" (ou presque).
+</p>
+
+<p>
+  Sans options, cette commande créera des fichiers compilés à l'endroit où vous avez exécuté la commande.
+  Voici une petite liste d'option à connaitre :<br/>
+  <code>-d</code> suivi d'un répertoire permet d'indiquer où les ".class" doivent être créés.<br/>
+  <code>-sourcepath</code> indique l'endroit où rechercher les fichiers sources de l'utilisateur. Lorsque votre compilateur rencontre dans le source une classe qu'il ne connait pas, il essaiera de la rechercher et de la compiler depuis cet endroit<br/>
+  <code>-source</code> permet de s'assurer de la compatibilité des sources java pour une version minimale d'un compilateur. Il peut être en effet pratique d'utiliser cet option si vous possédez une version 1.8 alors que vos collègues utilisent la version 1.7 (et doivent recompiler vos sources)<br/>
+  <code>-target</code> permet de compiler du bytecode qui peut être lu et interprété par une JVM de cette version. La plupart des nouveautés syntaxique peuvent être compilées vers des versions de JVM inférieures. Les nouvelles versions du compilateur introduisent par contre des optimisations et une forme encodée des classes qui peuvent être différentes.<br/>
+  <code>-cp</code> permet de définir le <b>CLASSPATH</b>, c'est à dire la liste des répertoires et des jar contenant les classes nécessaires à la compilation de vos sources.
+</p>
+
+  </div>
+</div>
+</div>
+
+<div class="panel-group">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+    <a data-toggle="collapse" href="#collapse3">Exécuter un programme java</a>
+    </h2>
+  </div>
+  
+  <div id="collapse3" class="panel-collapse collapse">
+    
+<p>
+  Pour exécuter un programme il faut utiliser la commande "java" en passant en paramètre le nom complet de la classe dont vous voulez lancer la méthode "main".<br/>
+  Il ne faut pas passer en paramètre le nom du fichier java, ou le fichier ".class" compilé.<br/>
+  le nom complet d'une classe comprend le nom du "package" dans laquelle elle se trouve, avec le séparateur de package habituel "." entre les noms de classe.<br/>
+  Pour lancer un programme, placez vous à la "racine" de la hiérarchie des packages, c'est à dire le répertoire contenant le premier package.<br/>
+  Si votre programme nécessite des librairies pour s'exécuter, ou des classes situées à un autre endroit de votre disque, il faudra l'indiquer dans le classpath, à l'aide de l'option <code>-cp</code> ou de la variable d'environnement <code>CLASSPATH</code>.
+</p>
+
+<p>
+  Téléchargez <a href="files/TestJava.java">ce fichier source</a>, compilez le et essayez de l'exécuter.
+  Le fichier source contient quelques nouveautés introduites dans Java 8 telles que les "lamda expressions", la nouvelle API Java Time pour manipuler les Dates, le "StringJoiner", les Streams. Cela ne compilera donc que si vous avez correctement installé le JDK8.  
+</p>
+
+<p>
+  Pour notre exemple minimaliste, une fois le fichier java compilé, exécutez simplement "java TestJava".
+</p>
+
+</div>
+</div>
+
+
+
+
+
+    <footer>
+      <p>
+        <img align="right" src="img/logo-lille1.png" height="80"/>
+        Projet réalisé par 
+        <a href="https://github.com/gdufrene">
+          Guillaume Dufrêne</a>, 
+        <a href="http://www.lifl.fr/~seinturi/">
+          Lionel Seinturier</a> 
+        - Université de Lille
+        <br/>
+        Hosted on GitHub Pages &mdash; Theme by <a href="http://semm.univ-lille1.fr/">SEMM</a> / B.Dufrêne
+      </p>
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img style="float: left, margin: 10px" alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+        </a>
+        Ce(tte) œuvre est mise à disposition selon les termes de la Licence :<br/>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          Creative Commons Attribution <br/>
+          - Pas d’Utilisation Commerciale <br/>
+          - Partage dans les Mêmes Conditions <br/>
+          4.0 International</a>.
+      </p>
+    </footer>
+    
+</div> <!-- container -->
+
+    <script src="bootstrap/jquery.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap/ie10-viewport-bug-workaround.js"></script>
+    
+  </body>
+</html>

@@ -12,7 +12,7 @@ function gen() {
 
 gen index
 
-#gen java
+gen java
 gen maven
 gen maven-lille1
 #gen tomcat
