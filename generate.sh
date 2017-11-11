@@ -22,6 +22,7 @@ gen jdbc
 gen jpa
 gen servlet
 gen spring
+gen spring-mvc
 gen jstl
 
 
