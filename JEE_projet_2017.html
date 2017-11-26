@@ -25,15 +25,15 @@ em + p {
 
 <p>
   Nous vous proposons de continuer le développement du commerce en ligne "Web Drive" autours de différents lots fonctionnels : Gestion de créneaux, Référencement de produits et stocks, Panier, Paiement, Préparation des commandes, Retrait des commandes.<br/>
-  Chaque lot sera développé par une équipe différente, les fonctions et données nécessaire à une équipe qui ne seraient pas dans leur lot seront "mockés" au plus simple.
+  Chaque lot sera développé par une équipe différente, les fonctions et données nécessaires à une équipe qui ne seraient pas dans leur lot seront simulées ("mockés") au plus simple.
 </p>
 
 <p>
-  Les personnes susceptibles d'utiliser l'applications sont :<br/>
+  Les personnes susceptibles d'utiliser l'application sont :<br/>
   - Administrateur du drive (admin),<br/>
   - Les préparateurs de commande (employés),<br/>
   - Les visiteurs du site (clients),<br/>
-  - Les propriétaires du matériel<br/>
+  - Les propriétaires du matériel.<br/>
 </p>
 
 <p>
@@ -41,7 +41,7 @@ em + p {
 </p>
 
 
-<h2 id="liste-des-fonctionnalités"><i class="icon-list"></i> Liste des fonctionnalités.</h2>
+<h2 id="liste-des-fonctionnalités"><i class="icon-list"></i> Liste des fonctionnalités</h2>
 
 <h3><i class="icon-folder-empty"></i> Gestions des créneaux</h3>
 
@@ -49,12 +49,12 @@ em + p {
   <em>En tant qu'administrateur je peux voir, créer et modifier des créneaux "standards" qui seront choisis par les client pour retirer leurs commandes</em>
 </p>
 <p>
-  Un créneaux standard est défini entre deux heures d'une journée de la semaine, chaque créneau possède une capacité de commande. C'est la limite du nombre de commande qui peuvent être livrée par les employés du drive. Un créneaux standard n'est pas liée à une date précise, il se répète indéfiniment chaque semaine.<br/>
+  Un créneau standard est défini entre deux heures d'une journée de la semaine, chaque créneau possède une capacité de commande. C'est la limite du nombre de commandes qui peuvent être livrées par les employés du drive. Un créneau standard n'est pas lié à une date précise, il se répète indéfiniment chaque semaine.<br/>
   <b>Affichage.</b><br/>
   Les créneaux seront regroupés par jour et triés par heure de début.<br/>
   Sur la liste il sera facile de voir l'heure de début et de fin de chaque créneau.<br/>
-  Il serait intéressant que la taille des blocs soit proportionnel à la durée de chaque créneau.<br/>
-  En cliquant sur un créneau existant un formulaire me permet de modifier les paramètres de ce créneau.<br/>
+  Il serait intéressant que la taille des blocs soit proportionnelle à la durée de chaque créneau.<br/>
+  En cliquant sur un créneau existant un formulaire permet de modifier les paramètres de ce créneau.<br/>
   <b>Saisie.</b><br/>
   Sur la liste un lien permet d'afficher un formulaire de saisie d'un nouveau créneau.<br/>
   Je peux choisir le jour de la semaine, l'heure de début (heure et minute), l'heure de fin et la capacité de commande.<br/>
@@ -65,10 +65,10 @@ em + p {
 </p>
 
 <p><i class="icon-tag"></i> 
-  <em>En tant qu'administrateur je saisir paramétrer des jours fériées afin qu'un client ne puisse pas commander un retrait ce jour là</em>
+  <em>En tant qu'administrateur je peux saisir et paramétrer des jours fériés afin qu'un client ne puisse pas commander un retrait ce jour là</em>
 </p>
 <p>
-  Les jours fériées sont associés à une date et possèdent un nom, exemple : "Noël".<br/>
+  Les jours fériés sont associés à une date et possèdent un nom, exemple : "Noël".<br/>
   Une liste me présente l'ensemble des jours fériés, je peux en supprimer un ou plusieurs rapidement.<br/>
   Je peux créer un nouveau jour férié en précisant la date (jour/mois/année) et son nom.<br/>
 </p>
@@ -77,25 +77,25 @@ em + p {
   <em>En tant qu'administrateur je peux définir des créneaux d'ouverture exceptionnelle afin de proposer le retrait des commandes, un jour donné, même si il est férié ou si il ne possède pas de créneaux standards</em>
 </p>
 <p>
-  Sur le même principe que les créneaux standards, sauf que je saisie la date du créneaux (jour/mois/année).<br/>
+  Sur le même principe que les créneaux standards, sauf que je saisis la date du créneaux (jour/mois/année).<br/>
   Une liste affiche l'ensemble des créneaux exceptionnels à venir (date supérieure à aujourd'hui).<br/>
-  les créneaux sont regroupés par jour et triés par date de début.<br/>
-  je peux les modifier et en ajouter avec les même règles que les créneaux standards.
+  Les créneaux sont regroupés par jour et triés par date de début.<br/>
+  Je peux les modifier et en ajouter avec les même règles que les créneaux standards.
 </p>
 
 <p><i class="icon-tag"></i> 
-  <em>En tant que client, lorsque je valide mon panier, je choisis un créneaux disponible parmi les 6 prochains jours afin de planifier mon retrait.</em>
+  <em>En tant que client, lorsque je valide mon panier, je choisis un créneau disponible parmi les 6 prochains jours afin de planifier mon retrait.</em>
 </p>
 <p>
   Avant de transformer le panier en commande, le créneau de retrait doit être choisi.<br/>
   Afin de faciliter les tests, il sera possible de choisir une date que le système prendra en compte plutôt que la date du jour.<br/>
   Cette date devra être passée en paramètre de la page de choix du créneau.<br/>
   Les créneaux d'ouverture exceptionnels sont prioritaires sur les jours fériés et les créneaux standards.<br/>
-  Je ne peux choisir un créneau que si, pour celui-ci, il n'y a pas déjà un nombre de commande supérieur ou égal à sa capacité.<br/>
+  Je ne peux choisir un créneau que si, pour celui-ci, il n'y a pas déjà un nombre de commandes supérieur ou égal à sa capacité.<br/>
   Je ne peux choisir un créneau que si il démarre dans au moins 1 heure.<br/>
-  Je choisi le créneau et je valide.<br/>
+  Je choisis le créneau et je valide.<br/>
   Une page me confirme la validation de ma commande et me précise la date et l'heure du retrait.<br/>
-  Cette commande est associée à ce créneau dans la base de donnée.
+  Cette commande est associée à ce créneau dans la base de données.
 </p>
 
 
@@ -136,7 +136,7 @@ em + p {
   <em>En tant qu'administrateur je peux voir les produits dont la DLC (date limite de consommation) est dépassée.</em>
 </p>
 <p>
-  Une page dédiée me permet de voir toutes les entrées de stock pour lesquelles la date de consommation est dépassées.<br/>
+  Une page dédiée me permet de voir toutes les entrées de stock pour lesquelles la date de consommation est dépassée.<br/>
   Je peux supprimer cette entrée de stock afin d'indiquer que j'ai jeté les produits concernés.<br/>
 </p>
 
@@ -145,8 +145,8 @@ em + p {
 </p>
 <p>
   Une page présentant la liste des articles d'une commande retrouvée par son numéro, permet à l'employé de remettre en stock un produit qui serait finalement refusé par le client à la livraison, ou qui serait retourné non déballé dans les 7 jours.<br/>
-  Les refus de produits périssables ne génèrent pas de rajout au stock, ils sont simplement considérés détruit.<br/>
-  Un retour de produit ne peut être enregistré que si la date de retrait est inférieur à 7 jours.
+  Les refus de produits périssables ne génèrent pas de rajout au stock, ils sont simplement considérés détruits.<br/>
+  Un retour de produit ne peut être enregistré que si la date de retrait est inférieure à 7 jours.
 </p>
 
 <p><i class="icon-tag"></i>
@@ -175,10 +175,10 @@ em + p {
           Appliquer une réduction en montant ou en pourcentage 
           pouvant être limité en nombre 
           nécessitant ou pas la saisie d'un code promo
-          entre deux date, 
+          entre deux dates, 
           avec, ou non, un montant minimum d'achat
   - Action Marketing :
-      permettre d'appliquer une offre dans un "groupe" de produit, types d'offres :
+      permettre d'appliquer une offre dans un "groupe" de produits, types d'offres :
           - "X + 1 gratuit"  (X étant souvent égal à 1 ou 2)
           - le 2e à YY% (celui le moins cher des deux)
           - Le lot de X à YY,YY Euros
@@ -190,7 +190,7 @@ em + p {
   - Gérer des comptes de commerçant (nom, adresse, cartes actives)
   - Créer une Page de paiement carte prenant en paramètre :
       montant total, ID commerçant, ID Commande, URL de retour
-  - Retour de paiement : Permettre de retourner sur la page indiquée,
+  - Retour de paiement : permettre de retourner sur la page indiquée,
       un ensemble de paramètres dont : code de retour (OK, CANCEL, REFUSED, ERROR)
       date de paiement, montant payé, ID Commande, ID Transaction
   - Réaliser un processus de notification asynchrone pour la notification de paiement.
@@ -219,7 +219,7 @@ em + p {
   - statistiques de commandes retirées par heure, par employé
 </pre>
 
-<h2 id="users"><i class="icon-user"></i> Liste des groupes.</h2>
+<h2 id="users"><i class="icon-user"></i> Liste des groupes</h2>
 
 <table>
 <tr>
@@ -280,28 +280,28 @@ em + p {
 </tr>
 </table>
 
-<h2 id="livrable"><i class="icon-login"></i> Livrable.</h2>
+<h2 id="livrable"><i class="icon-login"></i> Livrable</h2>
 
 <p><i class="icon-user"></i> Le projet est à réalisé par groupe de 4.  <br>
 <i class="icon-calendar"></i> Il est à rendre pour le 15 DECEMBRE 2017 AVANT 22h00. <br>
 <i class="icon-folder-open"></i> Partagez-moi un projet bitbucket nommé "JEE-PJ17-<b>VOTRE_GROUPE</b>" contenant les sources d’un projet maven et vos ressources web (vues, images, styles, scripts …)</p>
 
-<p>Les dépendances mavens ne seront pas fournies, elles doivent pouvoir être récupérées en utilisant “mvn compile”. <br>
+<p>Les dépendances Maven ne seront pas fournies, elles doivent pouvoir être récupérées en utilisant “mvn compile”. <br>
 Votre projet utilisera spring, sera organisé selon un pattern MVC mettant en oeuvre des vues en JSP/JSTL. <br>
-Les contrôleurs seront configurés à l’aide des annotations spring vues en cours/tp cette année. <br>
+Les contrôleurs seront configurés à l’aide des annotations spring vues en cours/tp. <br>
 Les informations seront persistées à travers des objets définis avec les annotation JPA dans une base de données relationnelles. <br>
 Au choix : MySQL, postgres ou H2 database. <br>
 Dans tous les cas des indications claires seront données pour initialiser la base de données si nécessaire. <br>
-Votre archive doit pouvoir être utilisée comme une application compatible JEE dans tomcat 8.</p>
+Votre archive doit pouvoir être utilisée comme une application compatible JEE dans Tomcat 8.</p>
 
 <p>Votre application devrait pouvoir se lancer en faisant :</p>
 
 <ul>
 <li>un 'git clone' de votre projet, </li>
 <li>une compilation avec mvn package,</li>
-<li>initialiser la base de données si nécessaire (par exemple à l’aide d’un script SQL) ,</li>
-<li>une copie du war généré par maven dans dans tomcat ,</li>
-<li>lancer Tomcat 8</li>
+<li>initialiser la base de données si nécessaire (par exemple à l’aide d’un script SQL),</li>
+<li>une copie du war généré par maven dans Tomcat,</li>
+<li>lancer Tomcat 8.</li>
 </ul>
 
 </div>
