@@ -161,42 +161,153 @@ em + p {
 
 <h3><i class="icon-folder-empty"></i> Gestion des promotions</h3>
 
-<pre>
-  - pouvoir spécifier la quantité d'article dans le panier
-  - Gestion des Promos : 
-      permettre de saisir une promo sur un produit
-      date début, date de fin, réduction en valeur ou en pourcentage.
-      Appliquer les promos enregistré sur l'affichage des produits, et le panier constitué.
-  - Gestion des Promos :
-      appliquer une promotion facilement à un ensemble de produits.
-      exemple : suite à une recherche par catégorie, marque, catégorie
-  - Action Marketing :
-      Définir des offres ponctuelle :
-          Appliquer une réduction en montant ou en pourcentage 
-          pouvant être limité en nombre 
-          nécessitant ou pas la saisie d'un code promo
-          entre deux date, 
-          avec, ou non, un montant minimum d'achat
-  - Action Marketing :
-      permettre d'appliquer une offre dans un "groupe" de produit, types d'offres :
-          - "X + 1 gratuit"  (X étant souvent égal à 1 ou 2)
-          - le 2e à YY% (celui le moins cher des deux)
-          - Le lot de X à YY,YY Euros
-</pre>
+<p><i class="icon-tag"></i>
+  <em>En tant que client je ne peux ajouter plusieurs fois le même article, ce qui revient à spécifier une quantité d'article dans le panier.</em>
+</p>
+<p>
+  Actuellement le modèle de données ne permet par de préciser une quantité d'article au panier, modifiez le modèle.<br/>
+  Puis vous modifierait si besoin l'interface pour pouvoir préciser ajouter plusieurs articles au panier.<br/>
+  Dans le cadre de cette fonction, vous modifierez également l'affichage des listes de produit afin de voir rapidement les produits qui se trouvent déjà dans mon panier. Les articles déjà dans mon panier doivent être identifiable facilement.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que qu'administrateur je peux ajouter une promotion afin de dynamiser les ventes d'un produit</em>
+</p>
+<p>
+  Une page d'admin me permet de saisir une promotion.<br/>
+  je viens renseigner une référence, le système recherche le produit correspondant, et si il existe ...<br/>
+  je viens préciser une date de début de promo, une date de fin, je renseigner un pourcentage de réduction OU une valeur de réduction.<br/>
+  modifier les listes de produit afin de visualiser la promotion. Vous ferez apparaitre le prix d'origine (prix barré), et le prix en cours.<br/>
+  La promo ne s'affiche que si elle est dans sa période de validité (entre les date de début et fin).<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que qu'administrateur je peux gérer une promotion sur un ensemble de produits facilement</em>
+</p>
+<p>
+  En extension de l'usage précédant, il doit être facile, pour un admin,<br/>
+  d'appliquer une promotion à un ensemble de produits selon des critères :<br/>
+  la catégorie du produit, la marque du produit (que vous ajouterez au modèle), les produits proches de la date de péremption.<br/>
+  Cette application de promo ne sera pas dynamique, les produits ajoutés (ou modifiés) qui rempliraient ces conditions ne seront pas 
+  impactés par la promotion choisie par l'administrateur.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que qu'administrateur je peux définir une opération marketing simple sur l'ensemble du panier.</em>
+</p>
+<p>
+  Comme pour les promotions ces opérations ne s'appliquent qu'entre deux dates.<br/>
+  Les opérations marketing simple peuvent être limitées en nombre (ex: uniquement pour les 100 premiers clients validant leur panier).<br/>
+  Elle peuvent nécessiter la saisie d'un code promo qui serait par exemple diffusé à la télé ou dans un prospectus (ex: PROMO25).<br/>
+  Dans tous les cas ces opérations marketing simple ne seront applicable à un client qu'une seule fois.<br/>
+  La réduction du panier se fait en pourcentage ou en valeur, mais le montant du panier ne pourra pas avoir une valeur inférieure à 0 !<br/>
+  Vous ferez une page d'administration permettant de lister, ajouter/modifier et supprimer ces opérations simples.<br/>
+  Vous 
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que qu'administrateur je peux définir une opération marketing sous condition d'achat de plusieurs produits.</em>
+</p>
+<p>
+  Ce type d'opération ne sera valable que sur un groupe de produits sélectionnés par l'administrateur.<br/>
+  Encore une fois entre deux dates définies.<br/>
+  Il existera 3 types d'offres avancées :<br/>
+  - l'opération "X + 1 gratuit" où X sera paramétrable, le produit offert sera le moins cher.<br/>
+  - le 2e à X%, le moins cher des deux.<br/>
+  - le lot de X à Y Euros.<br/>
+  Ces opérations sont ordonnées, on viendra appliquer les promos selon leur ordre.<br/>
+  Dans cet ordre, les produits d'un panier ayant bénéficié d'une opération ne sont pas candidats pour déclencher une autre opération sur le panier.<br/>
+  Modifier le panier pour faire apparaitre ces opérations marketing.<br/>
+  Le montant du panier avant et après toutes les réductions doit être affiché.
+</p>
 
 <h3><i class="icon-folder-empty"></i> Paiement des commandes</h3>
 
-<pre>
-  - Gérer des comptes de commerçant (nom, adresse, cartes actives)
-  - Créer une Page de paiement carte prenant en paramètre :
-      montant total, ID commerçant, ID Commande, URL de retour
-  - Retour de paiement : Permettre de retourner sur la page indiquée,
-      un ensemble de paramètres dont : code de retour (OK, CANCEL, REFUSED, ERROR)
-      date de paiement, montant payé, ID Commande, ID Transaction
-  - Réaliser un processus de notification asynchrone pour la notification de paiement.
-  - Suite à la confirmation d'une commande, dirigé le client avec les bon paramètres
-  - Confirmation de paiement : vérifier les paramètres de retour de la banque, mettre à jour la commande
-</pre>
+<p><i class="icon-warning"></i>
+  <i>informations générales pour ce lot fonctionnel</i>
+</p>
+<p>
+  L'organisme bancaire est dissocié du magasin.<br/>
+  Vous gérerez le site bancaire sous la forme d'un war différent !<br/>
+  Par simplicité pour la correction, l'ensemble des sources restera sur le même projet git, mais dans deux répertoire différent à la racine du git.<br/>
+  Les deux war doivent pouvoir fonctionner dans deux tomcats complètement différents.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'organisme bancaire, je peux gérer des commerçants afin qu'ils puisse diriger leurs clients sur ma page de paiement.</em>
+</p>
+<p>
+  Une page d'admin me permet de gérer (liste paginée, ajout, modification et suppression) des commerçants.<br/>
+  Les informations concernant un commerçant sont :<br/>
+  son code commerçant, unique, qui pourra me servir à le rechercher. Il est saisi par l'admin.<br/>
+  son nom.<br/>
+  son numéro de compte IBAN (voir <a href="https://www.iban.fr/">ici</a>) que vous contrôlerait au moyen de la clé, voir <a href="https://www.iban.fr/calcul-chiffre-de-controle.html">ici</a><br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que commerçant, je peux diriger mes clients vers une page de paiement gérée par la banque afin de percevoir le montant d'une commande.</em>
+</p>
+<p>
+  Lors de la validation d'un panier, afficher une page indiquant le montant total du panier.<br/>
+  Afficher un bouton "payez".<br/>
+  Lorsque je clique sur ce bouton, je suis redirigé vers la page de paiement de la banque, il sera nécessaire d'envoyer en paramètre : le numéro de panier, le montant à payer, mon numéro de commerçant, une URL de confirmation de paiement.<br/>
+  A cette étape, le panier n'est pas encore transformé en commande !<br/>
+  Ce ne sera le cas que lorsque le client reviendra sur la page de confirmation et que la banque m'aura passé en paramètre la confirmation de paiement.<br/>
+</p>
+
+
+<p><i class="icon-tag"></i>
+  <em>La banque présente une page de paiement selon les paramètres indiqués par le commerçant afin d'enregistrer la transaction bancaire d'un client.</em>
+</p>
+<p>
+  Il s'agira d'une page, qui présentera le nom du commerçant, et le montant à payer.<br/>
+  Cette page acceptera en paramètre une URL sur laquelle, une fois le paiement effectué, une redirection du client sera effectuée.<br/>
+  Le numéro de commande sera également utile.<br/>
+  Cette page invitera le client à saisir son numéro de carte bancaire, la date d'expiration (mois/année), et le code de vérification à 3 chiffres.<br/>
+  Un bouton permettra d'annuler le paiement.<br/>
+  Un autre bouton permettra, après saisie de la carte, de valider la demande de paiement.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>La banque notifie le commerçant du résultat du paiement après saisie du numéro de carte du client.</em>
+</p>
+<p>
+  Afin de simuler différentes situations de paiement vous accepterez les numéros de carte suivantes :<br/>
+  5131 0000 0000 0010 : paiement accepté<br/>
+  5131 0000 0000 0020 : paiement refusé<br/>
+  tout autre carte : erreur de paiement.<br/>
+  Après contrôle de la carte, redirigez l'utilisateur vers l'url fournie par le commerçant.<br/>
+  Cette redirection contiendra des paramètres permettant au commerçant de vérifier l'état du paiement :<br/>
+  code = (10: accepté, 20: paiement refusé par la banque, 30: paiement annulé par le client, 90: erreur)<br/>
+  commande = le numéro de commande qui a été fourni par le commerçant lors de la demande de paiement.<br/>
+  montant = le montant qui a été payé par le client.<br/>
+  transaction = un numéro identifiant de manière unique ce paiement.<br/>
+  date et heure du paiement.
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>Chaque soir la banque effectue un appel vers une url pour chaque transaction effectuée afin de confirmer les ordres de paiement et éviter les problèmes de redirection des clients.</em>
+</p>
+<p>
+  Vous prévoyez un programme (un main java) qui effectue les notification d'un commerçant dont le numéro est passé en paramètre de la commande.<br/>
+  L'url d'appel sera configurée via la fiche du commerçant (admin commerçant).<br/>
+  Les appels se feront en POST.<br/>
+  Un appel sera effectué par transaction, les appels étant espacés de 500 ms.<br/>
+  Les paramètres seront identiques à ceux de la redirection.<br/>
+  Si l'appel échoue, il sera relancé le lendemain, les autres confirmations continueront de s'exécuter.<br/>
+  Si 10 appels consécutifs échouent, le traitement est interrompu. Les notifications pourront être exécutées le lendemain.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que commerçant, je confirme le paiement au client et je transforme son panier en commande.</em>
+</p>
+<p>
+  Lorsque la page de confirmation de paiement est appelée par la banque, je vérifie que le paiement est accepté est je transforme le panier en commande.<br/>
+  J'enregistre le numéro de transaction bancaire pour pouvoir contester ou vérifier auprès de la banque les ordres de paiements.<br/>
+  En cas d'erreur, j'affiche un message à l'utilisateur et je l'invite à re-tenter un paiement.<br/>
+  Dans le cadre de cette fonction, vous ferez également une servlet (ou un contrôleur REST), qui accepte les requêtes de notifications journalière de transaction.<br/>
+  Pour chacune, vous vérifiez si le panier a déjà été transformé en commande et si les informations de transaction sont bien renseigné, sinon vous le réalisé à ce moment là.<br/>
+</p>
 
 
 <h3><i class="icon-folder-empty"></i> Préparation des commandes</h3>
