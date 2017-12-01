@@ -349,25 +349,124 @@ h1+p {
 <a name="preparation"></a>
 <h3><i class="icon-folder-empty"></i> Préparation des commandes</h3>
 
-<pre>
-  - pouvoir ajouter :
-      - des informations d'allée et d'emplacement sur les produits
-      - les informations de zone de conservation produit (surgelé, frais, ambiant)
-  - ajouter une gestion de picking par allée
-  - ajouter une gestion de constitution des commandes par zone
-</pre>
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux préciser où se trouvent les produits dans l'entrepôt afin de les retrouver facilement pour constituer les commandes.</em>
+</p>
+<p>
+  Modifier le modèle pour permettre de persister les données d'allée et d'emplacement. Une allée est une lettre (A .. Z). Un emplacement est un nombre (00 .. 99). <br/>
+  Modifier les pages d'administration des produits pour permettre la saisie de localisation des produits.<br/>
+  Afin de faciliter la saisie, faîtes une liste des produits dont l'emplacement n'est pas encore défini.<br/>
+  Réfléchissez à une interface qui permette la saisie rapide des emplacements pour les différents produits.<br/>
+  Une localisation (Allée + emplacement) ne peut être affecté qu'à un seul produit.<br/>
+  Ajoutez aussi cette contrainte et afficher un message d'erreur à l'utilisateur si il essaie d'utiliser deux fois le même emplacement.<br/>
+  votre message d'erreur indiquera quel produit se trouve déjà à cet endroit.
+</p>
+
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux préciser le niveau de température pour la conservation des produits et gérer des zone de stockage lié à un niveau pour la préparation des commandes.</em>
+</p>
+<p>
+  Il existe trois niveaux de conservation : "courant", "frais", "surgelés".<br/>
+  Modifiez le modèle et permettez la saisie et la modification du niveau de conservation température des produits.<br/>
+  Ajoutez également des zones de préparations liées à un niveau de température.<br/>
+  Une zone de préparations possèdera un nom, un numéro et une capacité (en nombre de casier).<br/>
+  Il sera possible de lister, ajouter, modifier ou supprimer une zone de préparation.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux visualiser la liste des produit à prélever dans les allées afin d'optimiser la préparation des prochaines commandes.</em>
+</p>
+<p>
+  Sur base de la liste des produit à livrer dans les 4 prochaines heures (qui n'auraient pas déjà été prélevés), effectuer une liste de tous les produits à retirer des allées en indiquant : la référence produit, le libellé, l'allée, l'emplacement, la quantité totale à retirer, la zone de conservation.<br/>
+  Effectuer une interface qui permette de valider le picking d'une allée complète.<br/>
+  Il devra être facile d'identifier les allées pour lesquelles la préparation n'est pas terminée.<br/>
+  Une fois le picking effectué, on considère que les produits se trouve dans la zone d'attente de préparation, dans un compartiment adapté à leur conservation selon le niveau de température.<br/>
+  Ces zones d'attente ne sont pas à gérer par le système, il n'y en a qu'une par niveau de température et les employés retrouveront facilement les produits concernés pour la préparation des commandes.
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux préparer les commandes à livrer dans les prochaines 60 minutes.</em>
+</p>
+<p>
+  Si ce n'est pas déjà fais, l'employé pourra sélectionner son nom parmis une liste déroulante (issue d'une table des employés).<br/>
+  Cette information pourra être conservée en session et l'employé pourra se "déconnecter" quand il le souhaite.<br/>
+  Afficher la liste des commandes à préparer, permettez d'en sélectionner une.<br/>
+  1. Un second écran permettra de commencer la préparation de la commande.<br/>
+  2. Saisir un numéro de casier, puis présenter une liste des produits à préparer pour une commande et un niveau de température.<br/>
+  Cette liste affichera :<br/>
+  la référence, le libellé, la quantité.<br/>
+  3. je viens cocher les produits au fur et à mesure que je les range dans le casiers.<br/>
+  A chaque fois que je coche une case, je dois mettre à jour les informations en associant ce produit commandé avec le casier dans lequel je l'ai rangé.<br/> 
+  L'employé coche les produits jusqu'à ce que le casier soit plein, dans ce cas il viendra cliquer sur un bouton et reprendra à l'étape 2 avec les produits suivants.<br/>
+  Il effectue ces actions jusqu'à ce qu'il n'y ait plus de produit à ranger dans le casier pour ce niveau de conservation.<br/>
+  4. passer au niveau de température suivant pour cette commande et reprendre à l'étape 2 jusqu'à avoir traiter tous les produits.<br/>
+  Une fois tous les produits rangés dans les casiers, la commande change de status et devient "prête à livrer".<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin du drive, je peux avoir des statistiques sur les préparations de commandes.</em>
+</p>
+<p>
+    L'admin commencera par choisir une période pour ses statistique (date début, date de fin).<br/>
+    Pour cette période, vous commencerez par afficher le nombre de commandes préparés par employé.<br/>
+    Vous afficherez également, pour chaque jour, le nombre de commande et le chiffre d'affaire réalisé.<br/>
+</p>
 
 
 <a name="retrait"></a>
 <h3><i class="icon-folder-empty"></i> Retrait des commandes</h3>
 
-<pre>
-  - gérer des quais de chargement (numéro, disponibilité en fonction de jours)
-  - permettre l'enregistrement d'un client sur borne et lui assigner un emplacement de retrait
-  - affichage des commandes en zone de retrait, gestion de prise en charge d'une livraison par employé
-  - scan (ou saisie) d'un numéro de ticket, notification de fin de chargement, libération du quai
-  - statistiques de commandes retirées par heure, par employé
-</pre>
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin du drive, je peux gérer des quais de livraison pour organiser le retrait des commandes.</em>
+</p>
+<p>
+    L'admin pourra voir, ajouter, modifier ou supprimer des quais de livraison.<br/>
+    Un quai de livraison sera simplement identifié par son numéro (1 .. 30).<br/>
+    Afin de les représenter graphiquement sur un plan, nous leur associerons également une coordonnées (x, y) et une taille (longueur, largeur).<br/>
+    Pour simplifier la représentation, les emplacements seront forcément alignés avec les axes x et y (pas de rotation).<br/>
+    Une page permettra de visualiser ce plan des quais.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que client, je peux me présenter à une borne pour retirer ma commande.</em>
+</p>
+<p>
+  Le client arrive devant une borne qui lui propose de saisir son numéro de client.<br/>
+  Le système recherche la commande, et, si elle est prête à être livrée, assigne un numéro de quai disponible au client.<br/>
+  Vous réaliserez les écrans proposant cette interface d'accueil et d'orientation des clients.<br/>
+  Vous mettrez évidemment à jour les données nécessaires au traitement et à la livraison de la commande et des quais.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux visualiser la liste des commandes dont la livraison peut être effectuée afin remettre les article à un client.</em>
+</p>
+<p>
+  Si ce n'est pas déjà fais, l'employé pourra sélectionner son nom parmis une liste déroulante (issue d'une table des employés).<br/>
+  Cette information pourra être conservée en session et l'employé pourra se "déconnecter" quand il le souhaite.<br/>
+  L'employé choisi l'une des commandes pour laquelle il peut livrer les produit à un client en attente
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux scanner un ticket de livraison afin de m'assurer que le bon client est au quai et commencer la procédure de livraison.</em>
+</p>
+<p>
+  Lorsque le client s'enregistre à la borne il faut lui imprimer un ticket avec le numéro de quai et un code barre unique qui identifie cette livraison.<br/>
+  Dans le cadre de cette fonction, vous ferez une vue qui affiche le numéro de quai et génère un code barre.<br/>
+  On considèrera qu'il sera ensuite facile d'imprimer cette page avec une imprimante intégrée à la borne.<br/>
+  Réaliser un 2e ecran, visible par l'employé permettant de saisir le numéro de code barre de livraison.<br/>
+  Après saisie du code, les informations suivantes apparaissent : numéro de commande, status courant, nom du client, numéro du quai.<br/>
+  Un dernier écran permet à l'employer de valider la livraison au client, ce qui change le status de la commande et libère le quai pour être utilisé pour une autre livraison.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux avoir des statistique sur les commandes retirées.</em>
+</p>
+<p>
+  L'admin doit pouvoir visualiser le nombre de commande livré par heure, pour une journée choisie.<br/>
+  Un compteur reprendra aussi le nombre total de commande livrées et le chiffre d'affaire de la journée (toute les commande livrées).<br/>
+  Une autre partie de la page montrera le nombre de commande livrées par employé et par heure (par tranche d'une heure).<br/>
+</p>
 
 
 <a name="equipes"></a>
@@ -385,50 +484,50 @@ h1+p {
 <tr>
   <td>A</td>
   <td>Créneaux</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>Hequette</td>
+  <td>Hanquez</td>
+  <td>Boukrou</td>
+  <td>Cherif</td>
 </tr>
 <tr>
   <td>B</td>
   <td>Stock</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>Dumazy</td>
+  <td>Hao</td>
+  <td>Eloidi</td>
+  <td>Mohamed</td>
 </tr>
 <tr>
   <td>C</td>
   <td>Promos</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>Maroine</td>
+  <td>Breuzon</td>
+  <td>Bellamy</td>
+  <td>Mahroug</td>
 </tr>
 <tr>
   <td>D</td>
   <td>Paiement</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>ADANSAR</td>
+  <td>Menotti</td>
+  <td>Talbi</td>
+  <td>Roos</td>
 </tr>
 <tr>
   <td>E</td>
   <td>Préparation</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>Savary-Leblanc</td>
+  <td>Hunter</td>
+  <td>ATTO</td>
+  <td>Marmin</td>
 </tr>
 <tr>
   <td>F</td>
   <td>Retrait</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
-  <td>xxx</td>
+  <td>MATHIAS</td>
+  <td>Mamane</td>
+  <td>Mata</td>
+  <td>Lambin</td>
 </tr>
 </table>
 
@@ -436,7 +535,7 @@ h1+p {
 
 <p><i class="icon-user"></i> Le projet est à réaliser par groupe de 4.  <br>
 <i class="icon-calendar"></i> Il est à rendre pour le 15 DECEMBRE 2017 AVANT 22h00. <br>
-<i class="icon-folder-open"></i> Partagez-moi un projet bitbucket nommé "JEE-PJ17-<b>VOTRE_GROUPE</b>" contenant les sources d’un projet maven et vos ressources web (vues, images, styles, scripts …)</p>
+<i class="icon-folder-open"></i> Partagez-moi un projet Bitbucket nommé "JEE-PJ17-<b>VOTRE_GROUPE</b>" contenant les sources d’un projet maven et vos ressources web (vues, images, styles, scripts …)</p>
 
 <p>Les dépendances Maven ne seront pas fournies, elles doivent pouvoir être récupérées en utilisant “mvn compile”. <br>
 Votre projet utilisera spring, sera organisé selon un pattern MVC mettant en oeuvre des vues en JSP/JSTL. <br>
