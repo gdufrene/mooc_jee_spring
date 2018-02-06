@@ -1,0 +1,83 @@
+
+<h2>Git</h2>
+
+<p>
+Git est un logiciel libre de gestion de versions. Il permet de stocker un ensemble de fichiers en conservant la chronologie de toutes les modifications qui ont été effectuées dessus. Il permet notamment de retrouver les différentes versions d'un lot de fichiers connexes. <br/>
+Git a la particularité d'être décentralisé : les sources peuvent être stockées sur différents serveurs, chacun des serveurs pouvant évoluer à leur rythme.<br/>
+Git a été créé par Linus Torvalds, le papa de Linux.
+</p>
+
+<h3>Apprendre en ligne</h3>
+
+<p>
+  Si vous souhaitez vous initier aux fonctions basiques de Git, vous pouvez consulter ce <a href="https://try.github.io/levels/1/challenges/1">tutorial initiation</a>.<br/>
+ Je vous recommande aussi ces <a href="https://learngitbranching.js.org/">exercices</a> pour aller plus loin, notamment sur les concepts de branche, merge et rebase qui nécessitent un peu de pratique.<br/>
+</p>
+
+<h3>Initialiser un projet</h3>
+
+<p>
+<ul><li>  Pour partager votre projet avec d'autres personnes vous aurez besoin d'un compte sur un service en ligne comme <a href="https://bitbucket.org/">bitbucket</a> ou <a href="https://github.com/">github</a> ou encore <a href="https://about.gitlab.com/gitlab-com/">gitlab</a>.
+</li><li> initialiser git, dans votre contexte web (webapps/tp1) <br/>
+  <code>git init</code>
+</li><li> Ajouter un fichier ".gitignore" à la racine de votre projet git pour ne pas envoyer vos fichiers ".class". Ouvrir le fichier et y mettre :
+  <pre><code>
+*.class
+*~
+</code></pre>
+</li><li> Ajouter le reste de vos fichiers<br/>
+  <code>git add .</code>
+</li><li> Vérifiez le status des fichiers qui vont être ajouté à votre commit <br/>
+  <code>git status</code>
+</li><li> Faîtes un commit<br/>
+  <code>git commit -m "Mon premier commit"</code>
+</li><li> Ajouter bitbucket comme serveur de source<br/>
+  <code>git remote add origin https://xxUSERxx@bitbucket.org/xxUSERxx/xxPROJETxx.git</code>
+</li><li> Pousser vos modifications sur bitbucket<br/>
+  <code>git push -u origin --all</code>
+</li></ul>
+</p>
+
+<p>
+  Si vous travaillez sur un réseau nécessitant l'utilisation d'un proxy, vous devriez utiliser le protocole HTTPS.<br/>
+  Cela nécessite de saisir votre mot de passe de compte distant (bitbucket/github ...) lorsque vous ferez un <code>git pull</code> ou un <code>git push</code>.<br/>
+  Si votre connexion internet n'est pas filtrée en sortie, vous pourrez utiliser le protocol ssh pour communiquer avec bitbucket.<br/>
+</p>
+
+<p>
+  Consultez la <a href="http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">documentation officielle</a> en cas de soucis.
+</p>
+
+<h3>Git et ssh</h3>
+
+<p>
+  Git utilise normalement le protocol ssh pour échanger des fichiers entre le serveur et votre ordinateur.<br/>
+  Pour utiliser ce protocol avec git vous devez tout d'abords générer une clé ssh si vous n'en avez pas déjà une.<br/>
+  <code>ssh-keygen</code><br/>
+  Laissez les paramètres par défaut et ne mettez pas de passphrase à votre clé.<br/>
+</p>
+
+<p>
+  Sur le service en ligne, il faut associer la clé générée avec votre compte. Cela ce passe généralement dans les paramètres de votre profil / SSH keys<br/>
+  Il faut y ajouter votre clé publique<br/>
+  Copier/Coller le contenu du fichier <code>~/.ssh/id_rsa.pub</code> (ou id_dsa.pub selon le système)<br/>
+</p>
+
+<p>
+  Votre système et votre compte en ligne sont maintenant configurés pour utiliser ssh.<br/>
+  vous devriez être en mesure d'utiliser les URL de type "git@bitbucket.org:xxUSERxx/xxPROJETxx.git" sans utiliser de mot de passe.<br/>
+</p>
+
+<h3>Git et windows</h3>
+
+<p>
+  git n'est pas disponible nativement sous windows. Souvenez-vous qu'il a été créé par Linus Torvalds ;-)<br/>
+  Il existe plusieurs alternatives pour utiliser git sous windows, dont :<br/>
+  <a href="https://code.google.com/p/tortoisegit/">tortoiseGit</a> et <a href="http://msysgit.github.io/">msysgit</a>.<br/>
+  De nombreux IDE proposent également des fonctions pour l'utilisation de git. Les fonctions de comparaison de code y sont généralement intéressante, mais il peut aussi être très pratique de maitriser les lignes de commandes.
+</p>
+
+<p>
+  Après avoir installé ces outils vous devriez retrouver les fonctionnalités de clone, add, commit, push et autre ...<br/>
+</p>
+
