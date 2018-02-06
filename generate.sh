@@ -17,7 +17,7 @@ gen maven
 gen maven-lille1
 gen tomcat
 #gen devops_tools
-#gen git
+gen git
 gen jdbc
 gen jpa
 gen servlet
