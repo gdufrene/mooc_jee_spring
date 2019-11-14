@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<!--
+  Java EE - Spring Course.
+  Master e-service - Guillaume Dufrêne - 2013
+-->
+
+<html>
+  <head>
+    <title>Java EE / Spring</title>
+
+    <meta charset='utf-8'>
+    <script src='slides.js'></script>
+  </head>
+  
+  <style>
+    .icon-github {
+      height: 32px;
+      width: 32px;
+      display: inline-block;
+      position: relative;
+      top: 8px;
+      border-radius: 5px;
+      background: transparent url('https://github.com/apple-touch-icon-114.png') scroll no-repeat left center; 
+      background-size: 32px 32px;
+    }
+    ul.two-cols li {
+      float: left;
+      width: 48%;
+    }
+    .slides.template-lille1 article.biglogo {
+      background: #FFFFFF url('http://identite.univ-lille.fr/sites/identite.univ-lille.fr/files/files/logotype/UL-RVB-2014.png') scroll no-repeat 50% 50%;
+      background-size: 60%;
+    }
+    .slides.template-lille1 article {
+      background: #FFFFFF url('http://identite.univ-lille.fr/sites/identite.univ-lille.fr/files/files/logotype/UL-RVB-2014.png') scroll no-repeat right bottom;
+      background-size: 20%;
+      background-origin: content-box;
+    }
+    .slides.template-lille1 a {
+      text-decoration: none;
+    }
+    .slides.template-lille1 a:hover {
+      color: #A00;
+    }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen template-lille1'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+
+      <article class='biglogo'>
+      </article>
+
+      <article>
+        <h1>
+          Java EE - Spring
+        </h1>
+        <p>
+          Guillaume Dufrêne<br>
+          Lionel Seinturier<br>
+          Master e-services - 2019
+        </p>
+        <p style="font-size: 0.8em">
+          guillaume.dufrene@univ-lille1.fr <br/>
+          <a href="https://github.com/gdufrene/mooc_jee_spring/"> 
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            
+             gdufrene/mooc_ee_spring </a>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Qui sommes-nous ?
+        </h3>
+        <p>
+          <img src="guillaume_nb.jpg" width="80" style="float: left; margin: 10px"/> Guillaume Dufrêne<br>
+          <div style="font-size: 0.8em; margin-top: 10px">
+          enseignant vacataire, depuis 2006<br/>
+<svg xmlns="http://www.w3.org/2000/svg" id="AXA_Logo_RGB" data-name="AXA Logo RGB" viewBox="0 0 283.46698 283.46699" width="45" height="45"><defs><style>.cls-1{fill:#00008f;}.cls-2{fill:#ff1721;}.cls-3{fill:#fff;}</style></defs><title>AXA_Logo_Solid_RGB</title><rect id="base" class="cls-1" x="0.0025" y="0.0025" width="283.46448" height="283.46449"/><polygon id="switch" class="cls-2" points="175.659 139.99 283.467 0 267.544 0 159.38 139.99 175.659 139.99"/><path id="axa" class="cls-3" d="M216.597,202.461c4.941,13.823,15.122,49.795,19.1695,52.661H209.038a44.57134,44.57134,0,0,0-1.2545-9.4335c-1.1525-4.1115-10.8205-35.215-10.8205-35.215H154.507l-6.675,9.463s8.0175,25.0975,8.5155,26.328c.8645,2.217,4.6925,8.8575,4.6925,8.8575H135.425s-.664-3.833-.913-5.4295c-.2005-1.289-2.427-8.3495-2.427-8.3495s-5.8055,6.362-7.3875,9.3115c-1.597,2.944-2.305,4.4675-2.305,4.4675h-20.039s-.669-3.833-.918-5.4295c-.195-1.289-2.64652-8.916-2.64652-8.916s-5.61,6.8115-7.207,9.7555c-1.587,2.9495-2.2705,4.59-2.2705,4.59h-19.819s5.6005-5.332,7.5585-7.622c3.3005-3.882,15.6005-19.956,15.6005-19.956L87.72,210.47349H45.586s-24.0235,31.5675-24.97049,32.544c-.957.962-7.959,11.011-8.11551,12.1045H0v-7.949a5.9865,5.9865,0,0,1,.493-.4785c.386-.2835,18.213-22.4125,34.59-44.2335,14.717-19.0285,28.5255-37.5345,29.7365-39.297,2.9345-4.2625,7.163-13.4665,7.163-13.4665h21.782s.674,8.4665,1.309,10.522c.566,1.8165,13.8375,45.3615,14.15,45.8305l7.339-9.385-12.544-38.6135s-2.9395-7.2655-3.8965-8.354h25.4445a22.1658,22.1658,0,0,0,.83,6.9185c1.035,3.184,6.4895,22.8665,6.4895,22.8665s17.3535-21.753,18.369-23.3155a14.1,14.1,0,0,0,2.1435-6.4695h21.201s-3.8815,2.8365-10.6835,11.44c-2.285,2.8955-24.673,31.348-24.673,31.348s1.9535,6.66,2.9055,9.97552c.259.952.4395,1.5965.4395,1.665,0,.02948.493-.576,1.34252-1.665,5.77648-7.3195,32.051-41.7725,33.643-44.722,1.284-2.3825,3.1735-5.0925,4.282-8.0415H202.539s.4785,6.1765,1.1085,7.8855Zm-31.475-32.6125c-3.037,6.5335-20.913,28.296-20.913,28.296h28.3105s-5.488-16.8995-6.445-20.708a30.23266,30.23266,0,0,1-.557-7.4025C185.51748,169.6875,185.454,169.126,185.122,169.8485Zm-108.7745,0c-3.037,6.5335-20.913,28.296-20.913,28.296H83.745s-5.483-16.8995-6.44-20.708a30.23266,30.23266,0,0,1-.557-7.4025C76.748,169.6875,76.68,169.126,76.34749,169.8485ZM118.97,235.835l7.793-10.703c-.718-.77152-5.10748-14.082-5.10748-14.082l-7.53452,9.775Z" transform="translate(0 0)"/></svg>
+        Tech Leader SOA.</div>
+        </p>
+        <br style="clear: both"/>
+        <p>
+          <img src="lionel_nb.jpg" width="80" style="float: left; margin: 10px"/> Lionel Seinturier<br>
+          <div style="font-size: 0.8em; margin-top: 10px">
+          professeur d'université,<br/>
+          Directeur du FIL, dirige l'équipe "Spirals" @ INRIA.</div>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Format du cours
+        </h3>
+        <p>
+          Mooc : 5 séances de Cours/TP.
+        </p>
+        <p>
+          6 heures en autonomie.<br/>
+          1 séance de travail accompagnée sur un projet dirigé.<br/>
+          2h pour finaliser et présentation technique.<br/>
+          2h Démo / présentation de chaque projet. (17 janvier)<br/>
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          Support de cours
+        </h3>
+        <p>
+          <a href="https://moodle.univ-lille.fr/course/view.php?id=1523">
+            <img src="https://moodle.univ-lille.fr/theme/image.php/ulille/core/1572962082/moodlelogo"/> Java EE Spring prêt à l'emploi </a> : <br/>
+            &nbsp;&nbsp;Référence, fil conducteur, vidéos et pointeurs<br/>
+          <br/>
+          <a href="https://github.com/gdufrene/mooc_jee_spring/">
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+               projet github </a> : <br/>
+               &nbsp;&nbsp;ressources pour les exercices et "screencasts"<br/>
+          <br/>
+          <a href="https://gdufrene.github.io/mooc_jee_spring/"> 
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            pages github </a> : <br/>
+            &nbsp;&nbsp;complément / alternative aux screencasts.<br/>
+
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          Contenu du "cours"
+        </h3>
+        <p>
+           • Vidéos : contenu pédagogique présentant les concepts fondamentaux et notions additionnelles.<br/>
+           <br/>
+           • Screencast : Mise en oeuvre à travers une démonstration de développement.</br>
+           <br/>
+           • Un ensemble d'exercices de TP permettant de vous mettre le pieds à l'étrier.<br/>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Evaluation du module IFI JEE
+        </h3>
+        <p><ul>
+           <li><u>Contrôle continu</u> : <br/>
+             Exercices (10 %) + QCM (10%) + Examen final (10%)<br/>
+             Exercice auto-évalués (test automatisés) + fourniture du code source.<br/>
+             Score exercice pondéré par le temps de rendu. Seul le dernier score envoyé par exercice compte.<br/>
+             Voir consigne de soumissions des scores sur moodle.<br/>
+             <br/>
+           </li>
+           <li><u>Projet</u> : <br/>
+             Livrable (40 %) + Présentation (10 %) + Participation (10 %)<br/>
+             à rendre à la dernière séance.<br/>
+             Par groupe de 4 personnes. Groupe imposé en semaine 3 ou 4.<br/>
+           </li>
+           </ul>
+        </p>
+      </article>
+
+
+      <article>
+        <h3>
+          Le projet
+        </h3>
+        <p>
+          Dans la continuité des sujets d'exercice :<br/>
+          <br/>
+          Développement d'un site de e-commerce "drive" (vente à emporter).<br/>
+          <br/>
+          Avec Spring + JPA/Hibernate + JSP/JSTL. c'est tout.<br/>
+        </p>
+      </article>
+
+      <article class="smaller">
+        <h3>
+          Consignes pour le projet
+        </h3>
+        <p>
+          Créer un compte <a href="https://bitbucket.org/">Bitbucket</a> par personne,<br/>
+          Créer un projet et me donner les droits en lecture (gdufrene).<br/>
+          <br/>
+          <font color="red">L'activité sur git doit être représentative :<br/>
+            &nbsp;&nbsp;&nbsp; • de votre avancement <br/>
+            &nbsp;&nbsp;&nbsp; • de votre contribution individuelle</font>.<br/>
+          Utilisez maven. La compilation doit être simple.<br/>
+          Doit pouvoir créer un War et le déployer dans Jetty, Tomcat ou autre ...<br/>
+          <br/>
+          Ecrivez un README dévrivant : <br>
+          - votre projet en quelques lignes ; <br/>
+          - comment compiler, initialiser/lancer votre projet. <br/>
+          - les choix que vous avez fait. <br/>
+          - Lister les principales difficultés et comment elles ont été résolues.<br/>
+          éventuellement + consignes spécifiques à venir.<br/>
+        </p>
+        <p>
+          Prévoir une "démo" du projet (20 minutes max en dernière séance)<br/>
+        </p>
+      </article>
+
+      <article>
+        <h2>
+          Merci !
+        </h2>
+      </article>
+
+    </section>
+
+  </body>
+</html>
