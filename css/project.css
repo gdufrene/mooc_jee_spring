@@ -1,0 +1,37 @@
+body {
+  background-image: url('css/mooc_bg.jpg');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+.content { 
+  width: 960px; margin: 0 auto; 
+  /* background-color: white;  */
+  padding: 0 10px 100px 0; 
+  }
+em { margin-top: 20px; color: #000090 } 
+em + p {
+  margin-top: 10px;
+  color: #CCCCCC;
+}
+.titre, h1 {
+  float: left;
+}
+.titre img {
+  margin-top: 50px;
+}
+h1 {
+  width: 300px;
+  margin-left: 50px;
+}
+h1+p {
+  clear: both;
+}
+table.equipes td:nth-child(2) {
+  border-right: solid 1px #CCC;
+}
+h2 {
+  color: #18aff0;
+}
+h3 {
+  color: #fab13d;
+}

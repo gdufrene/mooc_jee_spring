@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>IFI - Projet JEE</title>
+  <link type="text/css" rel="stylesheet" href="css/project.css" />
+  <link type="text/css" rel="stylesheet" href="https://stackedit.io/res-min/themes/blue.css" />
+</head>
+<body>
+  
+  <div class="content">
+
+<p class="titre">
+  <img src="http://identite.univ-lille.fr/sites/identite.univ-lille.fr/files/files/logotype/UL-RVB-2014.png" width="200" style="" alt="Université Lille 1" title=""/>
+</p>
+<h1 id="ifi-projet-jee">IFI - Projet JEE</h1>
+
+<p><strong>Session initiale master e-services FA 2019-2020</strong></p>
+
+<p>
+  Nous vous proposons de continuer le développement du commerce en ligne "Web Drive" autours de différents lots fonctionnels : 
+  
+  <ul>
+   <li><a href="#creneaux">Gestion de créneaux</a>, </li>
+   <li><a href="#stocks">Référencement de produits et stocks</a>, </li>
+   <li><a href="#promos">Promos</a>, </li>
+   <li><a href="#preparation">Préparation des commandes</a>, </li>
+   <li><a href="#retrait">Retrait des commandes</a>.</li>
+  </ul>
+  Chaque lot sera développé par une équipe différente - <a href="#equipes">voir les équipes</a> -<br/>
+  Les fonctions et données nécessaires à une équipe qui ne seraient pas dans leur lot seront simulées ("mockés") au plus simple.
+</p>
+
+<p>
+  Les personnes susceptibles d'utiliser l'application sont :<br/>
+  - Administrateur du drive (admin),<br/>
+  - Les préparateurs de commande (employés),<br/>
+  - Les visiteurs du site (clients),<br/>
+</p>
+
+<p>
+  Les fonctions attendues sont ensuite décrites sous forme de "User-Story" regroupées en "Epic" (lot fonctionnel).
+</p>
+
+
+<h2 id="liste-des-fonctionnalités"><i class="icon-list"></i> Liste des fonctionnalités</h2>
+
+<a name="creneaux"></a>
+<h3><i class="icon-folder-empty"></i> Gestions des créneaux</h3>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant qu'administrateur je peux voir, créer et modifier des créneaux "standards" qui seront choisis par les clients pour retirer leurs commandes.</em>
+</p>
+<p>
+  Un créneau standard est défini entre deux heures d'une journée de la semaine, chaque créneau possède une capacité de commande. C'est la limite du nombre de commandes qui peuvent être livrées par les employés du drive. Un créneau standard n'est pas lié à une date précise, il se répète indéfiniment chaque semaine.<br/>
+  <b>Affichage.</b><br/>
+  Les créneaux seront regroupés par jour et triés par heure de début.<br/>
+  Sur la liste, il sera facile de voir l'heure de début et de fin de chaque créneau.<br/>
+  Il serait intéressant que la taille des blocs soit proportionnelle à la durée de chaque créneau.<br/>
+  En cliquant sur un créneau existant un formulaire permet de modifier les paramètres de ce créneau.<br/>
+  <b>Saisie.</b><br/>
+  Sur la liste un lien permet d'afficher un formulaire de saisie d'un nouveau créneau.<br/>
+  Je peux choisir le jour de la semaine, l'heure de début (heure et minute), l'heure de fin et la capacité de commande.<br/>
+  Contrôle de saisie : heure début &lt; heure de fin, heure début &gt; 8h00, heure fin &lt; 20h00, capacité &gt; 0<br/>
+  Si deux créneaux se superposent, je peux tout de même les saisir, mais un message me notifiera quels créneaux se chevauchent.<br/>
+  <b>Modification.</b><br/>
+  Le formulaire est identique à celui de saisie, je peux tout modifier, avec les mêmes contrôles.
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant qu'administrateur je peux saisir et paramétrer des jours fériés afin qu'un client ne puisse pas commander un retrait ce jour là.</em>
+</p>
+<p>
+  Les jours fériés sont associés à une date et possèdent un nom, exemple : "Noël".<br/>
+  Une liste me présente l'ensemble des jours fériés, je peux en supprimer un ou plusieurs rapidement.<br/>
+  Je peux créer un nouveau jour férié en précisant la date (jour/mois/année) et son nom.<br/>
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant qu'administrateur je peux définir des créneaux d'ouverture exceptionnelle afin de proposer le retrait des commandes, un jour donné, même si il est férié ou si il ne possède pas de créneaux standards.</em>
+</p>
+<p>
+  Sur le même principe que les créneaux standards, sauf que je saisis la date du créneaux (jour/mois/année).<br/>
+  Une liste affiche l'ensemble des créneaux exceptionnels à venir (date supérieure à aujourd'hui).<br/>
+  Les créneaux sont regroupés par jour et triés par date de début.<br/>
+  Je peux les modifier et en ajouter avec les même règles que les créneaux standards.
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant que client, lorsque je valide mon panier, je choisis un créneau disponible parmi les 6 prochains jours afin de planifier mon retrait.</em>
+</p>
+<p>
+  Avant de transformer le panier en commande, le créneau de retrait doit être choisi.<br/>
+  Afin de faciliter les tests, il sera possible de choisir une date que le système prendra en compte plutôt que la date du jour.<br/>
+  Cette date devra être passée en paramètre de la page de choix du créneau.<br/>
+  Les créneaux d'ouverture exceptionnels sont prioritaires sur les jours fériés et les créneaux standards.<br/>
+  Je ne peux choisir un créneau que si, pour celui-ci, il n'y a pas déjà un nombre de commandes supérieur ou égal à sa capacité.<br/>
+  Je ne peux choisir un créneau que si il démarre dans au moins 1 heure.<br/>
+  Je choisis le créneau et je valide.<br/>
+  Une page me confirme la validation de ma commande et me précise la date et l'heure du retrait.<br/>
+  Cette commande est associée à ce créneau dans la base de données.
+</p>
+
+<a name="stocks"></a>
+<h3><i class="icon-folder-empty"></i> Référencement de produits et stock</h3>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux gérer les produits de ma base article.</em>
+</p>
+<p>
+  Une page de recherche me propose des critères de recherche : catégorie (sous la forme d'une liste déroulante), un texte contenu dans le nom du produit, la référence exacte du produit.<br/>
+  Je peux saisir un ou plusieurs critères de recherche, une liste paginée me propose les produits correspondants à ces critères.<br/>
+  Je peux choisir de paginer les produits par 10, 50 ou 200.<br/>
+  La liste se présentera sous la forme d'un tableau présentant la référence, le nom, le prix du produit.<br/>
+  En cliquant sur un produit un formulaire me permet de modifier l'ensemble des informations du produit.<br/>
+  Je peux ajouter un produit via un lien "Nouveau" présent sur la liste et me présentant un formulaire vierge pour saisir toutes les informations du produit.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux gérer les stocks de mes produits afin de ne présenter sur le site que les produits en stock.</em>
+</p>
+<p>
+  Ajouter une information de stock sur les produits permettant de gérer les produits classique (n'ayant pas de date de péremption) et les produits périssable.<br/>
+  Attention, les stocks des produits périssables devront être distingués par date de péremption.<br/>
+  Modifiez les écrans de saisie des produits classiques pour permettre la saisie et la modification rapide des stocks.<br/>
+
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux enregistrer un arrivage de denrées périssables.</em>
+</p>
+<p>
+  Une page dédiée me permet de saisir la référence d'un produit périssable, la date limite de consommation, le lot, la quantité reçue.<br/>
+  Ajoutez une entrée de stock pour cet arrivage.<br/>
+  Il faudra peut-être modifier votre modèle pour pouvoir avoir plusieurs stocks d'un même produit périssable.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux voir les produits dont la DLC (date limite de consommation) est dépassée.</em>
+</p>
+<p>
+  Une page dédiée me permet de voir toutes les entrées de stock pour lesquelles la date de consommation est dépassée.<br/>
+  Je peux supprimer cette entrée de stock afin d'indiquer que j'ai jeté les produits concernés.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé je peux ajuster le stock d'un produit à partir de la liste d'une commande.</em>
+</p>
+<p>
+  Une page présentant la liste des articles d'une commande retrouvée par son numéro permet à l'employé de remettre en stock un produit qui serait finalement refusé par le client à la livraison, ou qui serait retourné non déballé dans les 7 jours.<br/>
+  Les refus de produits périssables ne génèrent pas de rajout au stock, ils sont simplement considérés détruits.<br/>
+  Un retour de produit ne peut être enregistré que si la date de retrait est inférieure à 7 jours.
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que client je ne peux commander que des produits encore en stock et dont la durée de péremption est supérieure à 5 jours.</em>
+</p>
+<p>
+  Modifiez la présentation des produits par catégories pour n'afficher que les produits en stock (produits standards).<br/>
+  Seuls les produits périssables dont la date de consommation d'une entrée de stock est supérieure à 5 jours seront affichés.<br/>
+  Lors de la validation de commande, veuillez enregistrer les variations de stocks pour impacter les quantités restantes.<br/>
+</p>
+
+
+
+<a name="promos"></a>
+<h3><i class="icon-folder-empty"></i> Gestion des promotions</h3>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que client je ne peux ajouter plusieurs fois le même article, ce qui revient à spécifier une quantité d'articles dans le panier.</em>
+</p>
+<p>
+  Actuellement le modèle de données ne permet par de préciser une quantité d'articles au panier, modifiez le modèle.<br/>
+  Puis vous modifierez si besoin l'interface pour pouvoir ajouter plusieurs articles au panier.<br/>
+  Dans le cadre de cette fonction, vous modifierez également l'affichage des listes de produits afin de voir rapidement les produits qui se trouvent déjà dans mon panier. Les articles déjà dans mon panier doivent être identifiables facilement.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que qu'administrateur je peux ajouter une promotion afin de dynamiser les ventes d'un produit.</em>
+</p>
+<p>
+  Une page d'admin me permet de saisir une promotion.<br/>
+  Je viens renseigner une référence, le système recherche le produit correspondant, et si il existe.<br/>
+  Je viens préciser une date de début de promo, une date de fin, je renseigne un pourcentage de réduction OU une valeur de réduction.<br/>
+  Modifiez les listes de produit afin de visualiser la promotion. Vous ferez apparaitre le prix d'origine (prix barré), et le prix en cours.<br/>
+  La promo ne s'affiche que si elle est dans sa période de validité (entre les dates de début et de fin).<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux gérer une promotion sur un ensemble de produits facilement.</em>
+</p>
+<p>
+  En extension de l'usage précédant, il doit être facile, pour un admin
+  d'appliquer une promotion à un ensemble de produits selon des critères :<br/>
+  la catégorie du produit, la marque du produit (que vous ajouterez au modèle), les produits proches de la date de péremption.<br/>
+  Cette application de promo ne sera pas dynamique, les produits ajoutés (ou modifiés) qui rempliraient ces conditions ne seront pas 
+  impactés par la promotion choisie par l'administrateur.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux définir une opération marketing simple sur l'ensemble du panier.</em>
+</p>
+<p>
+  Comme pour les promotions, ces opérations ne s'appliquent qu'entre deux dates.<br/>
+  Les opérations marketing simple peuvent être limitées en nombre (ex: uniquement pour les 100 premiers clients validant leur panier).<br/>
+  Elles peuvent nécessiter la saisie d'un code promo qui serait par exemple diffusé à la télé ou dans un prospectus (ex: PROMO25).<br/>
+  Dans tous les cas, ces opérations marketing simples ne seront applicables à un client qu'une seule fois.<br/>
+  La réduction du panier se fait en pourcentage ou en valeur, mais le montant du panier ne pourra pas avoir une valeur inférieure à 0 !<br/>
+  Vous ferez une page d'administration permettant de lister, ajouter, modifier et supprimer ces opérations simples.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'administrateur je peux définir une opération marketing sous condition d'achat de plusieurs produits.</em>
+</p>
+<p>
+  Ce type d'opération ne sera valable que sur un groupe de produits sélectionnés par l'administrateur.<br/>
+  Encore une fois entre deux dates définies.<br/>
+  Il existera 3 types d'offres avancées :<br/>
+  - l'opération "X + 1 gratuit" où X sera paramétrable, le produit offert sera le moins cher.<br/>
+  - le 2e à X%, le moins cher des deux.<br/>
+  - le lot de X à Y Euros.<br/>
+  Ces opérations sont ordonnées, on viendra appliquer les promos selon leur ordre.<br/>
+  Dans cet ordre, les produits d'un panier ayant bénéficié d'une opération ne sont pas candidats pour déclencher une autre opération sur le panier.<br/>
+  Modifier le panier pour faire apparaitre ces opérations marketing.<br/>
+  Le montant du panier avant et après toutes les réductions doit être affiché.
+</p>
+
+<a name="preparation"></a>
+<h3><i class="icon-folder-empty"></i> Préparation des commandes.</h3>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux préciser où se trouvent les produits dans l'entrepôt afin de les retrouver facilement pour constituer les commandes.</em>
+</p>
+<p>
+  Modifier le modèle pour permettre de persister les données d'allée et d'emplacement. Une allée est une lettre (A .. Z). Un emplacement est un nombre (00 .. 99). <br/>
+  Modifier les pages d'administration des produits pour permettre la saisie de localisation des produits.<br/>
+  Afin de faciliter la saisie, faîtes une liste des produits dont l'emplacement n'est pas encore défini.<br/>
+  Réfléchissez à une interface qui permet la saisie rapide des emplacements pour les différents produits.<br/>
+  Une localisation (allée + emplacement) ne peut être affectée qu'à un seul produit.<br/>
+  Ajoutez aussi cette contrainte et affichez un message d'erreur à l'utilisateur si il essaie d'utiliser deux fois le même emplacement.<br/>
+  Votre message d'erreur indiquera quel produit se trouve déjà à cet endroit.
+</p>
+
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux préciser le niveau de température pour la conservation des produits et gérer des zones de stockage liées à un niveau pour la préparation des commandes.</em>
+</p>
+<p>
+  Il existe trois niveaux de conservation : "courant", "frais", "surgelés".<br/>
+  Modifiez le modèle et permettez la saisie et la modification du niveau de conservation température des produits.<br/>
+  Ajoutez également des zones de préparations liées à un niveau de température.<br/>
+  Une zone de préparations possèdera un nom, un numéro et une capacité (en nombre de casiers).<br/>
+  Il sera possible de lister, ajouter, modifier ou supprimer une zone de préparation.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux visualiser la liste des produits à prélever dans les allées afin d'optimiser la préparation des prochaines commandes.</em>
+</p>
+<p>
+  Sur la base de la liste des produit à livrer dans les 4 prochaines heures (qui n'auraient pas déjà été prélevés), effectuez une liste de tous les produits à retirer des allées en indiquant : la référence produit, le libellé, l'allée, l'emplacement, la quantité totale à retirer, la zone de conservation.<br/>
+  Effectuez une interface qui permette de valider le picking d'une allée complète.<br/>
+  Il devra être facile d'identifier les allées pour lesquelles la préparation n'est pas terminée.<br/>
+  Une fois le picking effectué, on considère que les produits se trouvent dans la zone d'attente de préparation, dans un compartiment adapté à leur conservation selon le niveau de température.<br/>
+  Ces zones d'attente ne sont pas à gérer par le système, il n'y en a qu'une par niveau de température et les employés retrouveront facilement les produits concernés pour la préparation des commandes.
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux préparer les commandes à livrer dans les prochaines 60 minutes.</em>
+</p>
+<p>
+  Si ce n'est pas déjà fais, l'employé pourra sélectionner son nom parmi une liste déroulante (issue d'une table des employés).<br/>
+  Cette information pourra être conservée en session et l'employé pourra se "déconnecter" quand il le souhaite.<br/>
+  Afficher la liste des commandes à préparer, permettez d'en sélectionner une.<br/>
+  1. Un second écran permettra de commencer la préparation de la commande.<br/>
+  2. Saisir un numéro de casier, puis présenter une liste des produits à préparer pour une commande et un niveau de température.<br/>
+  Cette liste affichera :<br/>
+  la référence, le libellé, la quantité.<br/>
+  3. Je viens cocher les produits au fur et à mesure que je les range dans le casiers.<br/>
+  A chaque fois que je coche une case, je dois mettre à jour les informations en associant ce produit commandé avec le casier dans lequel je l'ai rangé.<br/> 
+  L'employé coche les produits jusqu'à ce que le casier soit plein, dans ce cas il viendra cliquer sur un bouton et reprendra à l'étape 2 avec les produits suivants.<br/>
+  Il effectue ces actions jusqu'à ce qu'il n'y ait plus de produit à ranger dans le casier pour ce niveau de conservation.<br/>
+  4. Passer au niveau de température suivant pour cette commande et reprendre à l'étape 2 jusqu'à avoir traité tous les produits.<br/>
+  Une fois tous les produits rangés dans les casiers, la commande change de statut et devient "prête à livrer".<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin du drive, je peux avoir des statistiques sur les préparations de commandes.</em>
+</p>
+<p>
+    L'admin commencera par choisir une période pour ses statistiques (date début, date de fin).<br/>
+    Pour cette période, vous commencerez par afficher le nombre de commandes préparées par employé.<br/>
+    Vous afficherez également, pour chaque jour, le nombre de commandes et le chiffre d'affaire réalisé.<br/>
+</p>
+
+
+<a name="retrait"></a>
+<h3><i class="icon-folder-empty"></i> Retrait des commandes.</h3>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin du drive, je peux gérer des quais de livraison pour organiser le retrait des commandes.</em>
+</p>
+<p>
+    L'admin pourra voir, ajouter, modifier ou supprimer des quais de livraison.<br/>
+    Un quai de livraison sera simplement identifié par son numéro (1 .. 30).<br/>
+    Afin de les représenter graphiquement sur un plan, nous leur associerons également une coordonnée (x, y) et une taille (longueur, largeur).<br/>
+    Pour simplifier la représentation, les emplacements seront forcément alignés avec les axes x et y (pas de rotation).<br/>
+    Une page permettra de visualiser ce plan des quais.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant que client, je peux me présenter à une borne pour retirer ma commande.</em>
+</p>
+<p>
+  Le client arrive devant une borne qui lui propose de saisir son numéro de client.<br/>
+  Le système recherche la commande, et, si elle est prête à être livrée, assigne un numéro de quai disponible au client.<br/>
+  Vous réaliserez les écrans proposant cette interface d'accueil et d'orientation des clients.<br/>
+  Vous mettrez évidemment à jour les données nécessaires au traitement et à la livraison de la commande et des quais.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux visualiser la liste des commandes dont la livraison peut être effectuée afin de remettre les articles à un client.</em>
+</p>
+<p>
+  Si ce n'est pas déjà fait, l'employé pourra sélectionner son nom parmi une liste déroulante (issue d'une table des employés).<br/>
+  Cette information pourra être conservée en session et l'employé pourra se "déconnecter" quand il le souhaite.<br/>
+  L'employé choisit l'une des commandes pour laquelle il peut livrer les produits à un client en attente
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'employé, je peux scanner un ticket de livraison afin de m'assurer que le bon client est au quai et commencer la procédure de livraison.</em>
+</p>
+<p>
+  Lorsque le client s'enregistre à la borne il faut lui imprimer un ticket avec le numéro de quai et un code barre unique qui identifie cette livraison.<br/>
+  Dans le cadre de cette fonction, vous ferez une vue qui affiche le numéro de quai et génère un code barre.<br/>
+  On considèrera qu'il sera ensuite facile d'imprimer cette page avec une imprimante intégrée à la borne.<br/>
+  Réaliser un 2ème écran, visible par l'employé permettant de saisir le numéro de code barre de livraison.<br/>
+  Après saisie du code, les informations suivantes apparaissent : numéro de commande, statut courant, nom du client, numéro du quai.<br/>
+  Un dernier écran permet à l'employé de valider la livraison au client, ce qui change le statut de la commande et libère le quai pour être utilisé pour une autre livraison.<br/>
+</p>
+
+<p><i class="icon-tag"></i>
+  <em>En tant qu'admin, je peux avoir des statistiques sur les commandes retirées.</em>
+</p>
+<p>
+  L'admin doit pouvoir visualiser le nombre de commandes livrées par heure, pour une journée choisie.<br/>
+  Un compteur reprendra aussi le nombre total de commandes livrées et le chiffre d'affaire de la journée (toutes les commande livrées).<br/>
+  Une autre partie de la page montrera le nombre de commandes livrées par employé et par heure (par tranche d'une heure).<br/>
+</p>
+
+
+<a name="equipes"></a>
+<h2 id="users"><i class="icon-user"></i> Liste des groupes</h2>
+
+<table>
+<tr>
+  <th>Groupe</th>
+  <th>Sujet</th>
+  <th>1</th>
+  <th>2</th>
+  <th>3</th>
+  <th>4</th>
+</tr>
+<tr>
+  <td>A</td>
+  <td>Créneaux</td>
+  <td>Galasse</td>
+  <td>Ait Elhaj</td>
+  <td>Anciaux</td>
+  <td>Moreau</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td>Stock</td>
+  <td>Bakkari</td>
+  <td>Gallardo</td>
+  <td>Lafquih</td>
+  <td>Carton</td>
+</tr>
+<tr>
+  <td>C</td>
+  <td>Promos</td>
+  <td>Yahiatene</td>
+  <td>Watrelos</td>
+  <td>Giaquinto</td>
+  <td>Massiaux</td>
+</tr>
+<tr>
+  <td>D</td>
+  <td>Préparation</td>
+  <td>Lepretre</td>
+  <td>Serrurier</td>
+  <td>Toure</td>
+  <td>Djellouli</td>
+</tr>
+<tr>
+  <td>E</td>
+  <td>Retrait</td>
+  <td>Dieu</td>
+  <td>Perrot</td>
+  <td>Strecker</td>
+</tr>
+</table>
+
+<h2 id="livrable"><i class="icon-login"></i> Livrable</h2>
+
+<p><i class="icon-user"></i> Le projet est à réaliser par groupe de 4 max.  <br>
+<i class="icon-calendar"></i> Il est à rendre pour le 17 JANVIER 2020 AVANT 20h20. <br>
+<i class="icon-folder-open"></i> Partagez-moi un projet Bitbucket nommé "JEE-PJ19-<b>VOTRE_GROUPE</b>" contenant les sources d’un projet Maven et vos ressources web (vues, images, styles, scripts, etc.)</p>
+
+<p>Les dépendances Maven ne seront pas fournies, elles doivent pouvoir être récupérées en utilisant “mvn compile”. <br>
+Votre projet utilisera Spring, sera organisé selon un pattern MVC mettant en oeuvre des vues en JSP/JSTL. <br>
+L'utilisation de bootstrap serait un plus, vous prendrez soin à ce que vos pages soient un minimum présentables et l'utilisation ergonomique. <br>
+Les contrôleurs seront configurés à l’aide des annotations Spring vues en cours/tp. <br>
+Les informations seront persistées à travers des objets définis avec les annotation JPA dans une base de données relationnelle. <br>
+Au choix : MySQL, PostgreSQL ou H2 Database. <br>
+Dans tous les cas des indications claires seront données pour initialiser la base de données si nécessaire. <br>
+Votre archive doit pouvoir être utilisée comme une application compatible JEE dans Tomcat 8.</p>
+
+<p>
+  N'oubliez pas les consignes données en début de module :<br/>
+  - chacun commite sa contribution au code, l'activité du git doit être significative de l'investissement de chacun.<br/>
+  - Pensez à mettre un fichier texte "README". (nom et prénom de chacun, sujet, procédure d'installation et d'initialisation, difficultés rencontrées, choix particuliers)<br/>
+</p>
+
+<p>Votre application devra pouvoir se lancer en faisant :</p>
+
+<ul>
+<li>un 'git clone' de votre projet, </li>
+<li>une compilation avec 'mvn package',</li>
+<li>initialiser la base de données si nécessaire (par exemple à l’aide d’un script SQL),</li>
+<li>une copie du war généré par Maven dans Tomcat,</li>
+<li>lancer Tomcat 8.</li>
+</ul>
+
+</div>
+</body>
+</html>
