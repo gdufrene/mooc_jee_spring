@@ -19,9 +19,23 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
   Cette méthode possède une implémentation par défaut dans la classe abstraite "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HTTPServlet</a>". Elle appelle la méthode doGet, doPost, doHead, doOptions, doPut, doTrace en fonction du type de requête HTTP reçu par le serveur.<br/>
 </p>
 
+
+
 <p>
   Les deux paramètres de ces opérations sont "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HTTPServletRequest</a>" et "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HTTPServletResponse</a>".<br/>
   Ils permettent respectivement d'analyser la requête émise par l'internaute, et de lui répondre.<br/>
+</p>
+
+<p>
+La vidéo suivante présente le principe de fonctionnement des servlets.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F7TYXTyic60?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.2_servlet.pdf">Transparents présentés dans la vidéo</a>
 </p>
 
 <p>
@@ -106,6 +120,22 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
   C.  Modifiez votre servlet pour afficher le formulaire sur le GET et pour afficher "bonjour xxx" lors d'un POST.<br/>
 </p>
 
+<h3>Screencast</h3>
+
+<p>
+Le screencast suivi illustre, par l'exemple, le développement d'une servlet.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/55vkYR1JnZ4?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week1/screencast/sc05.zip">Code présenté dans le screencast</a>
+</p>
+
+
+
 <h2>Introduction aux JSP</h2>
 
 <p>
@@ -150,6 +180,18 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
   Il est alors possible de mettre en oeuvre un pattern MVC dont la partie "View" est traitée en JSP et la partie "Controller" est traitée par la servlet. Le modèle pourra quant à lui être cloisonné dans des classes d'accès au données (DAO) injectées dans le contrôleur.
 </p>
 
+<p>
+La vidéo suivante présente le principe de fonctionnement des JSP.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y4brBXyryhc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.3_jsp.pdf">Transparents présentés dans la vidéo</a>.
+</p>
+
 <h3>Test</h3>
 
 <p>
@@ -160,4 +202,18 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
   Vous pouvez d'ailleurs consulter le contenu du source Java généré dans le répertoire de travail de Tomcat : <br/>
   <code>(tomcat) work/Catalina/localhost/tp1/org/apache/jsp</code><br/>
   Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la JSP, ou à analyser une exception levée par le code exécuté.
+</p>
+
+<h3>Screencast</h3>
+
+<p>
+Le screencast suivi illustre, par l'exemple, le développement d'une servlet.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/55vkYR1JnZ4?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week1/screencast/sc05.zip">Code présenté dans le screencast</a>
 </p>
