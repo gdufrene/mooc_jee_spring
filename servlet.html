@@ -72,7 +72,7 @@
  </nav>
 
 
-<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Servlet - JSP</h2>
+<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a><a name="servlet"></a>Servlet - JSP</h2>
 
 <p>
 Une servlet est un objet Java qui étend l'interface "Servlet" ou "HTTPServlet".<br/>
@@ -93,9 +93,23 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
   Cette méthode possède une implémentation par défaut dans la classe abstraite "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HTTPServlet</a>". Elle appelle la méthode doGet, doPost, doHead, doOptions, doPut, doTrace en fonction du type de requête HTTP reçu par le serveur.<br/>
 </p>
 
+
+
 <p>
   Les deux paramètres de ces opérations sont "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HTTPServletRequest</a>" et "<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HTTPServletResponse</a>".<br/>
   Ils permettent respectivement d'analyser la requête émise par l'internaute, et de lui répondre.<br/>
+</p>
+
+<p>
+La vidéo suivante présente le principe de fonctionnement des servlets.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F7TYXTyic60?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.2_servlet.pdf">Transparents présentés dans la vidéo</a>
 </p>
 
 <p>
@@ -180,7 +194,23 @@ Le serveur web va interpréter une partie de la requête HTTP envoyée par le na
   C.  Modifiez votre servlet pour afficher le formulaire sur le GET et pour afficher "bonjour xxx" lors d'un POST.<br/>
 </p>
 
-<h2>Introduction aux JSP</h2>
+<h3>Screencast</h3>
+
+<p>
+Le screencast suivant illustre, par l'exemple, le développement d'une servlet.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/55vkYR1JnZ4?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week1/screencast/sc05.zip">Code présenté dans le screencast</a>
+</p>
+
+
+
+<h2><a name="jsp"></a>Introduction aux JSP</h2>
 
 <p>
 JSP est un équivalent java des fichiers ASP ou PHP. C'est une manière de mettre du code Java, exécuté coté serveur, dans une page HTML. Le JSP n'est pas interprété, il est en fait traduit en Java puis compilé (généralement au premier appel de la page), et ensuite exécuté. C'est le résultat de cette exécution qui donne le code HTML renvoyé au navigateur.
@@ -224,6 +254,18 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
   Il est alors possible de mettre en oeuvre un pattern MVC dont la partie "View" est traitée en JSP et la partie "Controller" est traitée par la servlet. Le modèle pourra quant à lui être cloisonné dans des classes d'accès au données (DAO) injectées dans le contrôleur.
 </p>
 
+<p>
+La vidéo suivante présente le principe de fonctionnement des JSP.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y4brBXyryhc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.3_jsp.pdf">Transparents présentés dans la vidéo</a>.
+</p>
+
 <h3>Test</h3>
 
 <p>
@@ -236,6 +278,73 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
   Regarder le source peut aider à comprendre une erreur qui s'est glissée dans la JSP, ou à analyser une exception levée par le code exécuté.
 </p>
 
+<h3>Screencast</h3>
+
+<p>
+Le screencast suivant illustre, par l'exemple, le développement d'une servlet.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/55vkYR1JnZ4?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week1/screencast/sc05.zip">Code présenté dans le screencast</a>
+</p>
+
+
+<h2><a name="notions_complementaires"></a>Notions complémentaires</h2>
+
+<p>
+Les vidéos suivantes permettent d'explorer différentes notions complémentaires associées aux servlets et ou aux JSP, notamment le protocole HTTP, la notion de session, la notion de request dispatcher, ainsi que le cycle de vie d'une servlet.
+</p>
+
+<table align="center">
+<tr>
+<td>
+<iframe width="280" height="150" src="https://www.youtube.com/embed/f0SowIk7F2Y?rel=0" frameborder="0" allowfullscreen=""></iframe>
+<br/><a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.4_servlet_-_HTTP.pdf">Transparents présentés dans la vidéo</a>.
+</td>
+
+<td width="100"/>
+
+<td>
+<iframe width="280" height="150" src="https://www.youtube.com/embed/D_SOXZarf1k?rel=0" frameborder="0" allowfullscreen=""></iframe>
+<br/><a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.5_servlet-JSP_-_session.pdf">Transparents présentés dans la vidéo</a>.
+</td>
+</tr>
+
+<tr height="20"/>
+
+<tr>
+<td>
+<iframe width="280" height="150" src="https://www.youtube.com/embed/Bg0eChjScQQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
+<br/><a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.6_servlet_-_request_dispatcher.pdf">Transparents présentés dans la vidéo</a>.
+</td>
+
+
+<td width="100"/>
+
+<td>
+<iframe width="280" height="150" src="https://www.youtube.com/embed/3nYqieYpwLc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+<br/><a href="https://www.fun-mooc.fr/asset-v1:Ulille+54005+session02+type@asset+block/1.7_servlet_-_cycle_de_vie.pdf">Transparents présentés dans la vidéo</a>.
+</td>
+</tr>
+</table>
+
+
+<h2><a name="exercices"></a>Exercices</h2>
+
+<p>
+Nous vous proposons différents exercices qui permettront de vous familiariser par la pratique avec la programmation de servlet et de JSP.
+</p>
+
+<ul>
+  <li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week1/exo101#exercice-101">Calcul de distances</a></li>
+  <li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week1/exo102#exercice-102">Formulaire d'authentification</a></li>
+  <li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week1/exo103#exercice-103">Panier de course</a></li>
+</ul>
+
     <footer>
       <p>
         <img align="right" src="img/UL-2014.png" height="80"/>
@@ -246,7 +355,7 @@ Pour rendre l'écriture de nos JSP un peu plus modulaire il est possible d'inclu
           Lionel Seinturier</a> 
         - Université de Lille
         <br/>
-        Hosted on GitHub Pages &mdash; Theme by <a href="http://semm.univ-lille1.fr/">SEMM</a> / B.Dufrêne
+        Hosted on GitHub Pages &mdash; Theme by <a href="http://semm.univ-lille1.fr/">SEMM</a> / B. Dufrêne
       </p>
       <p>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
