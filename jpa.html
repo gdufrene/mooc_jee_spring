@@ -220,7 +220,32 @@ Vous pouvez aussi vous plonger dans la <a href="http://docs.oracle.com/javaee/7/
 <h3>Les transactions JPA</h3>
 
 <p>
-  JPA impose l'usage de transaction dès lors que vous souhaitez modifier les données. Cette vidéo présente d'usage des transactions JPA.
+  JPA impose l'usage de transaction dès lors que vous souhaitez modifier les données.
+</p>
+
+<p>
+Une transaction est un mécanisme qui permet d'exécuter de façon sûre une modification sur une base de données : soit la modification est effectuée complètement, soit elle n'est pas effectuée du tout. On obtient ainsi la garantie qu'une modification ne sera jamais exécutée partiellement, ce qui risquerait de laisser les données de la base dans un état incohérent.
+</p>
+
+<p>
+Une transaction apporte également des propriétés clés dès lors que plusieurs utilisateurs accèdent aux mêmes données simultanément. On obtient la garantie que les modifications faites par un utilisateur ne perturbent pas le fonctionnement des autres utilisateurs.
+</p>
+
+<p>
+L'exemple "Hello World!" qui illustre l'utilisation des transactions est le transfert d'une somme d'argent entre deux comptes bancaires : il faut débiter un compte et en créditer un autre. Soit le transfert est effectué complètement, soit il ne doit pas l'être du tout. Il ne s'agit en aucune sorte que de l'argent disparaisse en débitant un compte sans créditer l'autre. Les transactions permettent d'obtenir une telle garantie.
+</p>
+
+<p>Concrètement, les transactions sont mises en oeuvre à l'aide de trois opérations :
+</p>
+
+<ul>
+<li><code>begin</code> : démarre la transaction.</li>
+<li><code>commit</code> : termine la transaction.</li>
+<li><code>rollback</code> : annule la transaction et remet la base dans l'état antérieur au démarrage de la transaction.</li>
+</ul>
+
+<p>
+La vidéo suivante présente l'utilisation des transactions avec JPA.
 </p>
 
 <p align="center">
