@@ -12,6 +12,19 @@
   Il reste nécessaire d'avoir le driver de la base de données compatible JDBC, mais vous devriez être capable de changer de driver (et donc de base de données) sans avoir à modifier trop de choses dans votre code.
 </p>
 
+<p>
+La vidéo suivante est une présentation générale de JDBC.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W5yvqvxnRYk?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p>
+Ci dessous une explications pour chaque élément de JDBC présenté dans la vidéo.
+</p>
+
+
 <h3>DriverManager</h3>
 
 <p>
@@ -130,23 +143,33 @@ while( rs.next() ) {
 <h3>PreparedStatement</h3>
 
 <p>
-  Les requêtes se construisent à partir d'une chaîne de caractères qui est ensuite interprétée par la base de données.<br/>
-  Il est indispensable de filtrer les paramètres saisis par un utilisateur que l'on souhaite ajouter à notre requête SQL.<br/>
+  La vidéo suivante présente les requêtes préparées.
 </p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZgYLf-_SC-U?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p>
+  Illustrons l'usage d'une requête préparée par une mise en situation mettant en avant l'importance de filtrée les paramètres de l'utilisateur.<br/>
+  Rappelez-vous que les requêtes se construisent à partir d'une chaîne de caractères qui est ensuite interprétée par la base de données.<br/>
+</p>
+
 
 <pre>
   String paramUniv = ...; // un paramètre saisi par l'utilisateur
   ResultSet rs = connection
   	.createStatement()
   	.executeQuery(
-  		"select date_examen, note from diplomes where universite = '" + paramUniv + "' "
-  		+ "and diplome = 'licence-info' and student_id = " + studentId
+  		<font color="blue">"select date_examen, note from diplomes where universite = '"</font> + <font color="red">paramUniv</font> + <font color="blue">"' "</font>
+  		+ <font color="blue">"and diplome = 'licence-info' and student_id = "</font> + <font color="red">studentId</font>
   	);
 </pre>
 
 <p>
   Supposons qu'il s'agisse d'une application permettant à un étudiant de s'inscrire en master en fonction de ses notes en licence.
   Si le paramètre "paramMatiere" est saisi par l'utilisateur, rien ne l'empêche de saisir <code>LILLE1' and student_id = 123456 OR '1' = '0</code>. On obtient alors une requête valide qui retourne les notes d'un autre étudiant ...<br/>
+  Il est donc indispensable de filtrer les paramètres saisis par un utilisateur que l'on souhaite ajouter à notre requête SQL.<br/>
 </p>
 
 <p>

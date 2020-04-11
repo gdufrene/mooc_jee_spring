@@ -3,7 +3,7 @@
 function gen() {
   files=""
   outfile="$1.html"
-  test $# -gt 1 && shift
+  #test $# -gt 1 && shift
   for file in $@; do
     files="$files tpl/$file.html"
   done
@@ -18,7 +18,7 @@ gen maven-lille1
 gen tomcat
 #gen devops_tools
 gen git
-gen jdbc
+gen jdbc dao
 gen jpa
 gen servlet
 gen spring
