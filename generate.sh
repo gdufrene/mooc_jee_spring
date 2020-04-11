@@ -26,6 +26,5 @@ gen spring-mvc
 gen jstl
 
 gen javaee-intro
-gen javaee-servlet-jsp
 
 #gen sitemap
