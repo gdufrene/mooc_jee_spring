@@ -72,7 +72,7 @@
  </nav>
 
 
-<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JPA.</h2>
+<div class="container"><h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JPA</h2>
 
 <p>
 JPA (Java Persistance Api) est une spécification Java EE permettant de lier des objets à des données contenues dans une base de données. Plus exactement, dans toute source de données possédant une implémentation correspondante.
@@ -84,6 +84,19 @@ JPA est essentiellement utilisé pour la manipulation des bases de données rela
 
 <p>
 En fonction de la persistance choisie, l'implémentation JPA pour votre base se chargera de traduire ces appels en SQL (ou autre) valide.
+</p>
+
+
+<p>
+La vidéo suivante est une présentation générale de JPA.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/q5UtDiYQBgA?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p>
+La suite de cette page explique comment mettre en oeuvre JPA à l'aide de l'implémentation Hibernate.
 </p>
 
 <h3>Hibernate</h3>
@@ -173,6 +186,15 @@ Vous pouvez aussi vous plonger dans la <a href="http://docs.oracle.com/javaee/7/
 </p>
 
 <p>
+  Le screencast illustre l'utilisation de l'Entity Manager de JPA.<br/>
+  Dans ce projet les dépendances sont gérées par <a href="maven.html">Maven</a>.<br/>
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0QILkWt2Hzw?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p>
   Bien que ce ne soit pas recommandé, il reste possible d'effectuer des requête SQL à travers l'API JPA.<br/>
   Le mapping peut rester "automatique" si toutefois votre résultat de requête reste compatible avec l'objet à affecter.<br/>
 </p>
@@ -185,6 +207,61 @@ Vous pouvez aussi vous plonger dans la <a href="http://docs.oracle.com/javaee/7/
   User user = (User) query.getSingleResult();
 </pre>
 
+
+<h3>Les transactions JPA</h3>
+
+<p>
+  JPA impose l'usage de transaction dès lors que vous souhaitez modifier les données. Cette vidéo présente d'usage des transactions JPA.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jP7c4yJKGAA?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<h3>JPQL</h3>
+
+<p>
+JPA propose un language de requêtage proche de SQL afin de manipulé les données. Le point de vue est orienté "entité" et les opérations de filtrage ou de jointure sont décrites en fonction des attributs.<br/>
+Ce language permet de s'abstraire du modèle relationnel et des subtilités de différence entre le SQL implémenté par chaque gestionaire de base de données.
+</p>
+
+<p>
+  Le screencast suivant montre l'usage d'opérations courantes sur les entités à l'aide de JPQL.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AgH0nprln4c?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<h3>API Criteria</h3>
+
+<p>
+  JPA offre la possibilité de construire les requêtes de manière programmatique, c'est à dire en utilisant des Objets et des méthodes java. La vidéo suivante présente cette API "Criteria" proposée dans JPA.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7Y931lSvj8g?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p>
+  Le screencast suivant reprend les entités du screencast JPQL pour effectuer un ensemble d'opérations similaires à l'aide de l'API Criteria.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X-e1nJKbSHY?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+
+<h3>Héritage et persistance</h3>
+
+<p>
+  Les entités JPA sont représentés sous la forme de classe Java. Il devient alors possible de créer un arbre d'héritage entre nos entités. Mais comment ces données sont-elles persitées dans une base de données relationnelles ?<br/>
+  La vidéo suivante vous détaille les stratégies de persistance proposées par JPA.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L5Cp_DQDI-0?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
 
 
     <footer>
