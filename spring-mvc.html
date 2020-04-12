@@ -60,9 +60,9 @@
                <ul class="dropdown-menu">
                  <li><a href="spring.html">Context - IoC</a></li>
                  <li><a href="spring-mvc.html">Web mvc</a></li>
-                 <li><a href="#">Jstl taglib</a></li>
-                 <li><a href="#">ORM</a></li>
-                 <li><a href="#">Data</a></li>
+                 <li><a href="jstl.html#spring-form">Jstl taglib</a></li>
+                 <li><a href="spring-mvc.html#spring-orm">ORM</a></li>
+                 <li><a href="spring-data.html">Data</a></li>
                </ul>
           </li>
        </ul>
@@ -88,6 +88,14 @@
 </a><br>
 (source : <a href="https://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/html/mvc.html">documentation spring MVC</a>)
 </center>
+</p>
+
+<p>
+  La vidéo suivante présente le module "webmvc" de spring.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BYFFkvgy10Q?rel=0" frameborder="0" allowfullscreen=""></iframe>
 </p>
 
 <h3>Initialisation</h3>
@@ -185,11 +193,28 @@ public class WebAppInitializer implements WebApplicationInitializer {
   Mais en ajoutant simplement la librairie "jackson-databind" à vos dépendances Maven, vous pouvez faire transformer automatiquement les objets retournés par vos contrôleurs en JSON.
 </p>
 
+<p>
+  Le screencast suivant montre la configuration d'une application web pour spring webmvc et l'utilisation d'un contrôleur avec une vue JSP. 
+</p>
 
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1xAKw6tCYBc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+
+<a name="spring-orm" class="anchor" href="#spring-orm"><span class="octicon octicon-link"></span></a>
 <h3>DAO</h3>
 
 <p>
   Pour alimenter les objets du "Model" de spring web-mvc vous pouvez utiliser ce que vous voulez. Une bonne pratique reste évidemment de dissocier des DAO et de les injecter dans vos contrôleur à l'aide de <code>@Component</code> et <code>@Autowire</code>.
+</p>
+
+<p>
+  Le screencast suivant présente l'usage de DAO implémentés en JPA et configurés à l'aide du module spring-orm.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wqS-x_2LiBQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
 </p>
 
 

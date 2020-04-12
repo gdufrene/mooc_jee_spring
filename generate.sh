@@ -24,6 +24,7 @@ gen servlet
 gen spring
 gen spring-mvc
 gen jstl
+gen spring-data
 
 gen javaee-intro
 

@@ -60,9 +60,9 @@
                <ul class="dropdown-menu">
                  <li><a href="spring.html">Context - IoC</a></li>
                  <li><a href="spring-mvc.html">Web mvc</a></li>
-                 <li><a href="#">Jstl taglib</a></li>
-                 <li><a href="#">ORM</a></li>
-                 <li><a href="#">Data</a></li>
+                 <li><a href="jstl.html#spring-form">Jstl taglib</a></li>
+                 <li><a href="spring-mvc.html#spring-orm">ORM</a></li>
+                 <li><a href="spring-data.html">Data</a></li>
                </ul>
           </li>
        </ul>
@@ -85,6 +85,14 @@
 Maven est un outil permettant de gérer les dépendances, la compilation, le "packaging" et bien d'autres choses. Il s'utilise au moyen de fichier "pom" décrivant votre projet.<br/>
 Maven est développé en Java et le script "mvn" utilise la variable d'environnement "JAVA_HOME" pour déterminer quelle version du langage Java doit être utilisée. Afin d'éviter tout soucis, initialiser cette variable dans votre ".bashrc" (linux) ou ".bash_profile" (mac) ou dans les propriétés systèmes sous windows.<br/>
 <code>export JAVA_HOME="/path/to/your/java/Home"</code>
+</p>
+
+<p>
+  La vidéo suivante présente maven est les notions principales dans la description des projets.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qxH6tQ410H0?rel=0" frameborder="0" allowfullscreen=""></iframe>
 </p>
 
 <p>
@@ -228,9 +236,26 @@ Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de m
   Visualisez l'arbre des dépendances avec <code>mvn dependency:tree</code>.
 </p>
 
+
+<p>
+  Le screencast suivant montre commment créer un projet maven sans outillage particulier afin de vous expliquer les mécanismes sous-jacent à son fonctionnement.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eoACZkQSXGY?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+
+<p>
+  Le reste de cette page détaille des scénario usages moins courant.
+</p>
+
+
 <h3> Déployer votre artefact </h3>
 
-Pour mettre à disposition votre artefact, il suffit de l'héberger sur un serveur accessible en HTTP et organisé de la même manière que votre repository local.<br/>
+
+<p>
+  Pour mettre à disposition votre artefact, il suffit de l'héberger sur un serveur accessible en HTTP et organisé de la même manière que votre repository local.<br/>
 Maven vous permet de déployer selon différents modes de distribution avec des extensions :
 <ul>
  <li> copie dans un répertoire local (qui serait exposé avec apache par exemple), </li>
@@ -238,8 +263,11 @@ Maven vous permet de déployer selon différents modes de distribution avec des 
  <li> Copie avec le protocole SSH </li>
  <li> Copie avec le protocole HTTP : suppose que vous ayez un serveur webdav ou une application web compatible comme Nexus </li>
 </ul>
+</p>
 
-La configuration se fait dans la directive "distributionManagement", voici un exemple.
+<p>
+  La configuration se fait dans la directive "distributionManagement", voici un exemple.
+</p>
 
 <pre>
 &lt;distributionManagement&gt; 
@@ -250,7 +278,9 @@ La configuration se fait dans la directive "distributionManagement", voici un ex
 &lt;/distributionManagement&gt;
 </pre>
 
-Chaque mode de distribution est pris en charge par une extension, à configurer dans "build" :
+<p>
+  Chaque mode de distribution est pris en charge par une extension, à configurer dans "build" :
+</p>
 
 <pre>
 &lt;build&gt; 
@@ -264,7 +294,9 @@ Chaque mode de distribution est pris en charge par une extension, à configurer 
 &lt;/build&gt;
 </pre>
 
-Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce fichier étant publique). Vous devez ajouter un "server" dans votre fichier settings.xml :<br>
+<p>
+Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce fichier étant publique). Vous devez ajouter un "server" dans votre fichier settings.xml :
+</p>
 
 <pre>
 &lt;settings&gt; 

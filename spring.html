@@ -60,9 +60,9 @@
                <ul class="dropdown-menu">
                  <li><a href="spring.html">Context - IoC</a></li>
                  <li><a href="spring-mvc.html">Web mvc</a></li>
-                 <li><a href="#">Jstl taglib</a></li>
-                 <li><a href="#">ORM</a></li>
-                 <li><a href="#">Data</a></li>
+                 <li><a href="jstl.html#spring-form">Jstl taglib</a></li>
+                 <li><a href="spring-mvc.html#spring-orm">ORM</a></li>
+                 <li><a href="spring-data.html">Data</a></li>
                </ul>
           </li>
        </ul>
@@ -80,7 +80,7 @@
 
 
         <h2>
-          <img src="https://spring.io/img/homepage/icon-spring-framework.svg" width="50" />
+          <img src="https://spring.io/images/spring-logo.svg" />
           <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Spring</h2>
 
 
@@ -91,11 +91,18 @@
 
 
 <p>
-          Comprenez que Spring est un "couteau suisse" pour faciliter la vie du développeur Java, spécialement si il développe pour Java EE (mais pas que).</p>
+          Comprenez que Spring est un "couteau suisse" pour faciliter la vie du développeur Java, spécialement si il développe pour Java EE (mais pas que).<br/>
+          La vidéo suivante est une présentation générale de Spring illustrant les concepts mis en oeuvre dans Spring.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dFaw8NGx6kk?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
 
 <p>
-        Le coeur de Spring est un moteur d'injection de dépendances permettant l'inversion de contrôle (en anglais IoC pour Inversion of Control) du cycle de vie des objets. L'IoC permet, entre autre, de "repousser" le choix d'implémentation (ou d'instance) d'un objet inclus dans un autre.
+        Le coeur de Spring est un moteur d'injection de dépendances permettant l'<b>inversion de contrôle</b> (en anglais IoC pour Inversion of Control) du cycle de vie des objets. L'IoC permet, entre autre, de "repousser" le choix d'implémentation (ou d'instance) d'un objet inclus dans un autre.
 </p>
+
 
 <p>
           Prenons l'exemple d'un DAO JPA ou JDBC. Imaginons que le développeur de notre interface ne soit pas le même que celui qui réalise la couche de persistance (donc du DAO). Le développeur de l'interface ne connait pas la classe qui sera utilisée, et d'ailleurs il n'a pas envie de faire un <code>new xxxJPADao()</code>, ce qui "casserait" en parti l'abstraction que nous avons essayé de mettre en place. De l'autre coté, le développeur de notre DAO ne sait pas où et comment son implémentation JPA sera utilisée. Il ne peut pas faire <code>view.setDao( ... )</code>
@@ -153,7 +160,13 @@ Certaines injections pouvant être facultatives, vous pouvez mettre le paramètr
 
 
 
+<p>
+  Le screencast suivant montre comment créer un contexte spring basique constitué de quelques composants. Il présente une approche à l'aide d'annotations et celle à l'aide de fichiers de description xml.
+</p>
 
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-IDPUBumnak?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
 
     <footer>
       <p>
@@ -165,7 +178,7 @@ Certaines injections pouvant être facultatives, vous pouvez mettre le paramètr
           Lionel Seinturier</a> 
         - Université de Lille
         <br/>
-        Hosted on GitHub Pages &mdash; Theme by <a href="http://semm.univ-lille1.fr/">SEMM</a> / B.Dufrêne
+        Hosted on GitHub Pages &mdash; Theme by <a href="http://semm.univ-lille1.fr/">SEMM</a> / B. Dufrêne
       </p>
       <p>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
