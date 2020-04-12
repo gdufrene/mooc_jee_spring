@@ -279,7 +279,15 @@ Ce language permet de s'abstraire du modèle relationnel et des subtilités de d
 <h3>API Criteria</h3>
 
 <p>
-  JPA offre la possibilité de construire les requêtes de manière programmatique, c'est à dire en utilisant des Objets et des méthodes java. La vidéo suivante présente cette API "Criteria" proposée dans JPA.
+L'API Criteria de JPA offre la possibilité de construire les requêtes de manière programmatique, c'est-à-dire en utilisant des objets et des méthodes Java. C'est une alternative à JPQL pour les requêtes de type <code>SELECT</code>. Alors qu'en JPQL (comme en JDBC) les requêtes sont définies avec des chaînes de caractères, les requêtes avec l'API Criteria sont définies via l'instantiation d'objets Java qui représentent les éléments de la requête. Cela donne un code plus fortement typé qui permet d'éviter les erreurs de syntaxe inhérentes à la manipulation de chaînes de caractères.
+</p>
+
+<p>
+Comme toute API, Criteria propose au développeur un ensemble de méthodes. En plus de cela, Criteria génère des métadonnées pour les entités de l'application. Chaque donnée d'une entité est ainsi associée à un métaparamètre qui est généré automatiquement par Criteria. Le développeur peut alors utiliser ces métaparamètres pour construire des requêtes fortement typées.
+</p>
+
+<p>
+La vidéo suivante présente l'API Criteria.
 </p>
 
 <p align="center">
