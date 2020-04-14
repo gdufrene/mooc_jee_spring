@@ -3,7 +3,7 @@
                          MAVEN
 ******************************************************************************
 -->
-<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Maven.</h2>
+<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Maven</h2>
 
 <h3>Introduction</h3>
 
@@ -11,6 +11,18 @@
 Maven est un outil permettant de gérer les dépendances, la compilation, le "packaging" et bien d'autres choses. Il s'utilise au moyen de fichier "pom" décrivant votre projet.<br/>
 Maven est développé en Java et le script "mvn" utilise la variable d'environnement "JAVA_HOME" pour déterminer quelle version du langage Java doit être utilisée. Afin d'éviter tout soucis, initialiser cette variable dans votre ".bashrc" (linux) ou ".bash_profile" (mac) ou dans les propriétés systèmes sous windows.<br/>
 <code>export JAVA_HOME="/path/to/your/java/Home"</code>
+</p>
+
+<p>
+  La vidéo suivante présente maven est les notions principales dans la description des projets.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qxH6tQ410H0?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="pdf/amont_maven.pdf">Transparents présentés dans la vidéo</a>
 </p>
 
 <p>
@@ -60,8 +72,8 @@ Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de m
 
 <p>
   Le pom contiendra également le nom du projet et différentes informations nécessaires à la compilation ou au packaging de notre projet.<br/>
-  Le plus intéressant : cela contiendra des dépendances vers des librairies, qui elles-mêmes peuvent tirer d'autres par dépendances transitives.<br/>
-  Les dépendances sont normalement présentes sur un serveur "central" maven. C'est un site regroupant toutes les librairies de projets qui souhaitent être diffusés/utilisés.<br/>
+  Le plus intéressant : cela contiendra des dépendances vers des librairies, qui elles-mêmes peuvent en tirer d'autres par dépendances transitives.<br/>
+  Les dépendances sont normalement présentes sur un serveur "central" maven. C'est un site regroupant toutes les librairies de projets qui souhaitent être diffusées/utilisées.<br/>
   Il est aussi possible d'ajouter d'autres "repository" par de la configuration dans le pom, ou dans les settings de maven.<br/>
 </p>
 
@@ -90,7 +102,7 @@ Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de m
   &raquo; <b>runtime</b> : uniquement nécessaire à l'exécution.<br/>
   &raquo; <b>provided</b> : sera disponible à l'exécution mais n'est pas fourni par ce projet. Exemple : le "servlet-api" est fourni par Tomcat et n'est pas amené par notre projet web. "servlet-api" est donc "provided". Cette librairie reste nécessaire à la compilation.<br/>
   &raquo; <b>test</b> : librairie nécessaire uniquement dans l'exécution de tests unitaires. Exemple : junit.<br/>
-  &raquo; <b>system</b> : librairie disponible à travers le système de fichiers local. Ce type de dépendance n'est pas tiré depuis les repository distants. A éviter, sauf si vous comitter vos librairies avec le projet (c'est mal ...)
+  &raquo; <b>system</b> : librairie disponible à travers le système de fichiers local. Ce type de dépendance n'est pas tiré depuis les repository distants. A éviter, sauf si vous committez vos librairies avec le projet (c'est mal ...)
 </p>
 
 <p>
@@ -154,9 +166,30 @@ Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de m
   Visualisez l'arbre des dépendances avec <code>mvn dependency:tree</code>.
 </p>
 
+
+<p>
+  Le screencast suivant montre commment créer un projet maven sans outillage particulier afin de vous expliquer les mécanismes sous-jacent à son fonctionnement.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eoACZkQSXGY?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week3/screencast/sc08.zip">Code présenté dans le screencast</a>
+</p>
+
+
+<p>
+  Le reste de cette page détaille des scénario d'usages moins courants.
+</p>
+
+
 <h3> Déployer votre artefact </h3>
 
-Pour mettre à disposition votre artefact, il suffit de l'héberger sur un serveur accessible en HTTP et organisé de la même manière que votre repository local.<br/>
+
+<p>
+  Pour mettre à disposition votre artefact, il suffit de l'héberger sur un serveur accessible en HTTP et organisé de la même manière que votre repository local.<br/>
 Maven vous permet de déployer selon différents modes de distribution avec des extensions :
 <ul>
  <li> copie dans un répertoire local (qui serait exposé avec apache par exemple), </li>
@@ -164,8 +197,11 @@ Maven vous permet de déployer selon différents modes de distribution avec des 
  <li> Copie avec le protocole SSH </li>
  <li> Copie avec le protocole HTTP : suppose que vous ayez un serveur webdav ou une application web compatible comme Nexus </li>
 </ul>
+</p>
 
-La configuration se fait dans la directive "distributionManagement", voici un exemple.
+<p>
+  La configuration se fait dans la directive "distributionManagement", voici un exemple.
+</p>
 
 <pre>
 &lt;distributionManagement&gt; 
@@ -176,7 +212,9 @@ La configuration se fait dans la directive "distributionManagement", voici un ex
 &lt;/distributionManagement&gt;
 </pre>
 
-Chaque mode de distribution est pris en charge par une extension, à configurer dans "build" :
+<p>
+  Chaque mode de distribution est pris en charge par une extension, à configurer dans "build" :
+</p>
 
 <pre>
 &lt;build&gt; 
@@ -190,7 +228,9 @@ Chaque mode de distribution est pris en charge par une extension, à configurer 
 &lt;/build&gt;
 </pre>
 
-Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce fichier étant publique). Vous devez ajouter un "server" dans votre fichier settings.xml :<br>
+<p>
+Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce fichier étant publique). Vous devez ajouter un "server" dans votre fichier settings.xml :
+</p>
 
 <pre>
 &lt;settings&gt; 
@@ -254,7 +294,7 @@ Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce
   <br/>
   Ce plugin est fort pratique mais a tendance à consommer beaucoup de mémoire, notamment lors de l'indexation des artefacts disponibles sur les repositories. Cela peut amener Eclipse à planter faute de mémoire suffisante.<br/>
   Pour cette raison, il peut être intéressant d'utiliser le plugin eclipse de Maven. Celui-ci génère les fichiers compatibles pour l'import de projet classique Java dans Eclipse (voir ci dessous).<br/>
-  Ou alors de cocher l'option "Do not automatically update dependencies from remote repositories" dans "Préférences" &lt; "Maven".
+  Ou alors de cocher l'option "Do not automatically update dependencies from remote repositories" dans "Préférences" &gt; "Maven".
 </p>
 
 <h3>Le plugin eclipse de Maven</h3>
@@ -274,6 +314,6 @@ Les login et mot de passe de connexion ne sont pas à mettre dans le pom.xml (ce
   Rendez-vous dans Outils (ou Eclipse) / Préférence / Java / Build Path / Classpath Variables.<br/>
   Ajouter une variable "M2_REPO" qui pointe vers "home"/.m2/repository<br/>
   <div style="clear: both"> </div>
-  L'utilisation d'une variable permet à plusieurs personnes de se partager le fichier ".classpath" sans avoir de soucis avec l'endroit où se trouve les librairies sur leur environnement de travail. La variable est indépendante du projet, elle est liée au workspace Eclipse.
+  L'utilisation d'une variable permet à plusieurs personnes de se partager le fichier ".classpath" sans avoir de soucis avec l'endroit où se trouvent les librairies sur leur environnement de travail. La variable est indépendante du projet, elle est liée au workspace Eclipse.
 </p>
 

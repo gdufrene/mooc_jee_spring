@@ -1,9 +1,18 @@
-<h2> <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>JSTL.
+<h2> <a name="jstl" class="anchor" href="#jstl"><span class="octicon octicon-link"></span></a>JSTL
 </h2>
 
 <p>
   JSP Standard Tag Library (JSTL) est une librairie qui étend les fonctionnalités de JSP en mettant à disposition de nouveaux tags à utiliser en HTML. L'objectif est de permettre d'écrire du code plus facilement et de manière plus cohérente avec le reste du HTML. <br>
-  Ainsi, un développeur front-end ne sera pas trop perdu dans l'utilisation de ces balises, même si il ne connait rien à Java.
+  Ainsi, un développeur front-end ne sera pas trop perdu dans l'utilisation de ces balises, même si il ne connait rien à Java.<br/>
+  La vidéo suivante présente JSTL et les principales taglibs.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1xAKw6tCYBc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="pdf/5.1_jstl.pdf">Transparents présentés dans la vidéo</a>
 </p>
 
 <p>
@@ -101,6 +110,8 @@
   Pour que l'expression "<code>${author.firstname}</code>" fonctionne, il est nécessaire d'avoir un getter sur la propriété "firstname". Par convention les propriétés d'un objet sont résolues selon la norme "javabeans". Donc, il faut créer des getters sur les propriétés que vous voulez exposer dans vos vues.
 <p></p>
 
+
+<a name="spring-form" class="anchor" href="#spring-form"><span class="octicon octicon-link"></span></a>
 <h3> La taglib form de spring </h3>
 
 <p>
@@ -142,6 +153,24 @@ Vous pouvez consulter la documentation dédiée aux vues Spring et plus particul
 		return "author/edit";
 	}
 </code></pre>
-<p></p>
+
+<p>
+  Le screencast suivant vous montre comment utiliser JSTL et la taglib "form" de Spring sur un autre exemple.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KK9pT2okFN8?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/raw/master/week5/screencast/sc15.zip">Code présenté dans le screencast</a>
+</p>
 
 
+<h3>Exercices</h3>
+
+Nous vous proposons un exercice qui permettra de vous familiariser par la pratique avec JSTL.
+
+<ul>
+<li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week5/exo501#exercice-501">Vues avec JSTL et taglib spring-form</a></li>
+</ul>

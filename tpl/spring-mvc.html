@@ -2,7 +2,7 @@
 <h2>Spring MVC</h2>
 
 <p>
-  la librairie "MVC" de Spring permet d'utiliser les mécanismes d'injection de dépendance pour faciliter le 
+  La librairie MVC de Spring permet d'utiliser les mécanismes d'injection de dépendance pour faciliter le 
   branchement des différentes parties (model, vue, controller) de notre application web tout en assurant une certaine indépendance
   entre nos objets.
 </p>
@@ -12,8 +12,20 @@
 <a href="https://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/htmlsingle/images/mvc.png">
 <img src="https://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/htmlsingle/images/mvc.png" height="300">
 </a><br>
-(source : <a href="https://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/html/mvc.html">documentation spring MVC</a>)
+(source : <a href="https://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/html/mvc.html">documentation Spring MVC</a>)
 </center>
+</p>
+
+<p>
+  La vidéo suivante présente le module Spring MVC.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BYFFkvgy10Q?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="pdf/4.2_spring_mvc.html">Transparents présentés dans la vidéo</a>
 </p>
 
 <h3>Initialisation</h3>
@@ -111,11 +123,35 @@ public class WebAppInitializer implements WebApplicationInitializer {
   Mais en ajoutant simplement la librairie "jackson-databind" à vos dépendances Maven, vous pouvez faire transformer automatiquement les objets retournés par vos contrôleurs en JSON.
 </p>
 
+<p>
+  Le screencast suivant montre la configuration d'une application web pour spring webmvc et l'utilisation d'un contrôleur avec une vue JSP. 
+</p>
 
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1xAKw6tCYBc?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week4/screencast/sc13">Code présenté dans le screencast</a>
+</p>
+
+<a name="spring-orm" class="anchor" href="#spring-orm"><span class="octicon octicon-link"></span></a>
 <h3>DAO</h3>
 
 <p>
-  Pour alimenter les objets du "Model" de spring web-mvc vous pouvez utiliser ce que vous voulez. Une bonne pratique reste évidemment de dissocier des DAO et de les injecter dans vos contrôleur à l'aide de <code>@Component</code> et <code>@Autowire</code>.
+  Pour alimenter les objets du "Model" de Spring MVC vous pouvez utiliser ce que vous voulez. Une bonne pratique reste évidemment de dissocier des DAO et de les injecter dans vos contrôleur à l'aide de <code>@Component</code> et <code>@Autowire</code>.
+</p>
+
+<p>
+  Le screencast suivant présente l'usage de DAO implémentés en JPA et configurés à l'aide du module Spring ORM.
+</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wqS-x_2LiBQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+<p align="center">
+<a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week4/screencast/sc14">Code présenté dans le screencast</a>
 </p>
 
 
@@ -130,3 +166,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
   Notez que vous pouvez aussi exporter l'ensemble des librairies dont dépend votre projet dans un répertoire. Cela peut être pratique si vous souhaitez packager vous même l'application par exemple.
 </p><pre><code>mvn dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=WEB-INF/lib</code></pre>
 <p></p>
+
+
+<h3>Exercices</h3>
+
+Nous vous proposons différents exercices qui permettront de vous familiariser par la pratique avec Spring MVC.
+
+<ul>
+<li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week4/exo401#exercice-401">Contextes Spring et injection de dépendances</a></li>
+<li><a href="https://github.com/gdufrene/mooc_jee_spring/tree/master/week4/exo402#exercice-402">Programmation de contrôleurs et de vues</a></li>
+</ul>
