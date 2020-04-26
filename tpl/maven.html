@@ -185,6 +185,149 @@ Afin de le pas encombrer votre compte avec ces fichiers, je vous recommande de m
 </p>
 
 
+<h3> Propriétés </h3>
+
+<p>
+  Maven offre un système de gestion de propriétés, utilisables pour différentes tâches.<br/>
+  Il est par exemple possible de définir des "propriétés" dans votre POM afin de définir la version d'un ensemble de dépendances.<br/>
+  La mise à jour de cette version pour mettre à jour ces librairies devient ainsi plus facile.<br/>
+</p>
+
+<p>
+  Prenons l'exemple des artefacts du framework Spring. Les projets utilisant Spring ont souvent besoin de plusieurs artefacts issus du framework. Heureusement, ceux-ci suivent tous une version cohérente afin de faciliter le choix de la version à mettre en dépendance.<br/>
+  Il est donc possible de définir une propriété "spring.version" et de l'utiliser ensuite dans la déclaration de nos dépendances.
+</p>
+
+<p>
+  Pour définir une propriété, le plus simple est de la mettre dans le pom du projet à l'aide de la balise <code>properties</code>.<br/>
+  Dans cette balise, nous déclarons un ensemble de balises portant le nom de nos propriétés et contenant la valeur attendue.<br/>
+  par exemple ...<br/>
+</p>
+
+<pre>
+&lt;properties&gt;
+  &lt;spring.version&gt;5.2.4.RELEASE&lt;/spring.version&gt;
+&lt;/properties&gt;
+</pre>
+
+<p>
+  Les dépendances de votre projet peuvent alors s'écrire comme ceci :
+</p>
+
+<pre>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+  
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+  Notez que les propriétés maven peuvent être surchagées dans la ligne de commande qui lance une tâche.<br/>
+  Il est donc possible de lancer un test avec une autre version de spring pour s'assurer de la compatibilité de notre code avec celle-ci.<br/>
+</p>
+
+<pre>mvn -Dspring.version=5.2.5.RELEASE test</pre>
+
+<p>
+  Ce système de propriété nous permet aussi de modifier le comportement des tâches maven.<br/>
+  Les propriétés <code>maven.compiler.source</code> et <code>maven.compiler.target</code> permettent par exemple de préciser la version de Java de vos sources et celle dans laquelle vous souhaitez compiler vos classes. Pour des raison historique, la valeur par défaut utilisée est java 1.5, ce que vous voudrez nécessairement changer.<br/>
+<p>
+
+<p>
+  Un autre usage courant concerne la propriété <code>skipTests</code> permettant de compiler ou packager en ignorant la phase de test.<br/>
+</p>
+
+<pre>mvn -DskipTests=true package</pre>
+
+<p>
+  Il est aussi possible de définir la valeur d'une propriété dans un projet "parent", dans un "profile" ou dans le fichier settings de maven.<br/>
+  La valeur passée en ligne de commande sera toujours prioritaire. Si votre propriété est définie à plusieurs endroits, la priorité est donnée dans l'ordre suivant :
+  <ul>
+    <li>la valeur dans la ligne de commande</li>
+    <li>la propriété définie dans le fichier de configuration maven (settings.xml)</li>
+    <li>le valeur du profile du fils</li>
+    <li>la properté du pom fils</li>
+    <li>la valeur du profile du père</li>
+    <li>la properté du pom père</li>
+  </ul>
+</p>
+
+
+<h3> Projet multi-modules </h3>
+
+<p>
+  Lorsqu'un projet devient relativement important, il est pertinent de scinder son contenu en différents artefacts.<br/>
+  Cela permet une meilleure compréhension des "bouts" de votre projet et d'améliorer l'efficience de sa maintenance. Le besoin peut aussi naitre de la volontée de mettre à disposition d'autres projets de plus petits artefacts, afin de faciliter la réutilisabilité tout en limitant les dépendances transitives. <br/>
+  Quelquesoit la raison qui vous amène à faire différents artefacts pour votre projet, il reste pratique de lancer une tâche sur l'ensemble du projet afin de le construire ou de le tester.<br/>
+  C'est dans ce cas de figure que la notion de "module" et de projet "multi-modules" devient intéressante.<br/>
+</p>
+
+<p>
+  Un projet multi-modules se matérialise sous la forme d'un répertoire contenant un pom et de différents sous-répertoires pour chacun de nos sous-modules.<br/>
+  Le pom à la racine contient les éléments habituels d'un projet maven mais sera de type "pom" dans son packaging.<br/>
+  Il définira une balise <code>modules</code> contenant le nom des sous-modules (répertoires) dans des balises <code>module</code>.<br/>
+<p>
+
+<p>
+  Certains de vos modules peuvent être dépendants les uns des autres et l'ordre de compilation devient alors important.<br/>
+  L'ordre de déclaration des sous-modules dans le pom n'a pas d'importance, maven prend en charge l'ordonancement en analysant les dépendances des modules.<br/>
+  Cela se fait simplement par l'analyse du graphe orienté des dépendances. Il n'est pas possible de définir un cycle dans les dépendances décrites, cela empécherait cette analyse.<br/>
+  Si le besoin se faisait sentir de décrire un tel cycle, il vous sera nécessaire de repenser la distribution de vos classes ou l'architecture de votre code. Il est communément admis que cette "contrainte" vous oriente vers la construction de briques applicatives plus simples et réutilisables.
+</p>
+
+<p>
+  Voyons la déclaration d'un projet multi-module.
+<p>
+
+<pre>
+&lt;project&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;com.demo&lt;/groupId&gt;
+  &lt;artifactId&gt;project-parent&lt;/artifactId&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+
+  &lt;modules&gt;
+      &lt;module&gt;project-module1&lt;/module&gt;
+      &lt;module&gt;project-module2&lt;/module&gt;
+  &lt;/modules&gt;
+&lt;/project&gt;
+</pre>
+
+<p>
+  Chaque sous-module sera un projet maven "classique" mais devra indiquer son <code>parent</code>. Le parent étant l'artefact décrivant l'ensemble des modules du projet.<br/>
+  Bien que ce ne soit pas courant ou recommandable, un sous-module pourrait donc avoir un "parent" qui n'est pas le projet du répertoire principal.<br/>
+  Un projet "fils" récupère par défaut le <code>groupId</code> et la <code>version</code> du parent, il héritera aussi de toutes les propriétés définies dans celui-ci. Il est possible de surcharger ces valeurs si nécessaire en les re-déclarant.<br/>
+  Voyons un exemple de projet "fils" selon notre exemple.
+</p>
+
+<pre>
+&lt;project&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;parent&gt;
+      &lt;groupId&gt;com.demo&lt;/groupId&gt;
+      &lt;artifactId&gt;project-parent&lt;/artifactId&gt;
+      &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;/parent&gt;
+
+    &lt;artifactId&gt;project-module1&lt;/artifactId&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+
+    // ...
+&lt;/project&gt;
+</pre>
+
+
 <h3> Déployer votre artefact </h3>
 
 
