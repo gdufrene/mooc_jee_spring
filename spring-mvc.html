@@ -104,7 +104,7 @@
 <h3>Initialisation</h3>
 
 <p>
-  Spring MVC fourni un objet "RequestDispatcher" qui est une servlet qui va aiguiller toutes les requêtes
+  Spring MVC fournit un objet "RequestDispatcher" qui est une servlet qui va aiguiller toutes les requêtes
   vers l'un des contrôleurs annotés et présents dans le contexte Spring.<br>
   Pour brancher cette servlet dans Tomcat (ou autre), il faudra définir le pattern des URLs qui seront aiguillées vers la "RequestDispatcher" de Spring. On pourra par exemple intercepter toutes les requêtes, dans notre contexte, qui commencent par "/app/", ou qui se terminent pas ".do".<br>
   Vous devez être vigilants sur les URL exposées par les contrôleurs et celles interceptées par Spring. En effet, si vous définissez le "RequestDispatcher" sur "*.html" et qu'un contrôleur est exposé sur "/hello" (sans extension), le traitement n'arrivera jamais jusqu'à lui.
@@ -142,7 +142,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 <p>
   Spring cherchera à enregistrer dans le RequestDispatcher tous les composants annotés <code class="ann">@Controller</code> ou <code class="ann">@RestController</code>.<br>
-  Toutes les méthodes de ces contrôleurs annotés <code class="ann">@RequestMapping</code> seront exposées, en fonction des paramètres de cette annotation (ex: uniquement sur GET ou POST).<br>
+  Toutes les méthodes de ces contrôleurs annotées <code class="ann">@RequestMapping</code> seront exposées, en fonction des paramètres de cette annotation (ex: uniquement sur GET ou POST).<br>
   Spring essaiera d'injecter automatiquement tous les types en paramètre de votre méthode.<br>
   Habituellement on injectera une instance de "Model" sur lequel on placera des attributs à passer dans la vue.<br>
   Si votre méthode retourne une chaîne de caractères, Spring essaiera d'afficher la vue correspondante en y injectant les attributs du modèle.<br>
