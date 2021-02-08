@@ -72,57 +72,91 @@
 
 
 <div class="container">
-<section>
-<h2><a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Java EE Spring prêt à l'emploi</h2>
+
+<h2>Docker</h2>
 
 <p>
-  <a href="https://www.oracle.com/java/technologies/java-ee-glance.html"><img src="img/javaee.png" height="80"/> </a>
-  <a href="https://spring.io"><img style="vertical-align: bottom; margin-left: 50px" src="img/spring-by-pivotal.png" height="60"/></a>
-</p>
+Docker permet de créer des environnements isolés, appelés containers, pour y exécuter des processus ou applications, de manière plus légère que la virtualisation.
 
-<h3>Cours</h3>
+Docker s'appuie sur des fonctionnalités du noyau <b>Linux</b> pour fonctionner, 
+les Linux <b><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html">namespaces</a></b> (isolation des environnements)
+et les Linux <b><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html">cgroups</a></b> (gestion des ressources CPU/Mémoire).
 
-<p>
-  Bienvenue sur le site du cours <a href="https://www.fun-mooc.fr/courses/course-v1:Ulille+54005+session02/about">Java EE Spring prêt à l'emploi</a>.
-</p>
-<ul>
-  <li>Java EE</li>
-  <ul>
-    <li><a href="javaee-intro.html">Introduction à Java EE</a></li>
-    <li><a href="servlet.html">Servlet et JSP pour des pages web dynamiques</a></li>
-    <li><a href="jdbc.html">JDBC</a> et <a href="jpa.html">JPA</a> pour l'accès aux bases de données</li>
-  </ul>
-  <li>Spring</li>
-  <ul>
-    <li><a href="spring.html">Introduction à Spring</a></li>
-    <li><a href="spring-mvc.html">Spring MVC, contrôleurs et vues</a></li>
-    <li><a href="jstl.html">JSTL</a></li>
-    <li><a href="spring-data.html">Spring Data</a></li>
-  </ul>
-</ul>
-
-<h3>Compléments</h3>
-
-<p>
-Nous vous proposons un ensemble de ressources pédagogiques complémentaires à ce cours qui permettent, d'une part de réviser certains prérequis (track amont), et d'autres part de découvrir des solutions qui complètent les notions vues dans ce cours (track aval).
-</p>
+Docker est composé de :
 
 <ul>
-  <li>Track amont</li>
-  <ul>
-    <li>Installation des logiciels : <a href="java.html">Java JDK</a>, <a href="tomcat.html">Tomcat</a>, Eclipse</li>
-    <li><a href="maven.html">Maven</a></li>
-    <li><a href="git.html">Git</a></li>
-  </ul>
-  <li>Track aval</li>
-  <ul>
-    <li>Spring Boot</li>
-    <li>Intégration et déploiement continus</li>
-    <li>Docker</li>
-  </ul>
+    <li>Le `dockerd` (démon / service d'arrière plan), aussi appelé docker-engine, qui a pour rôle la création/suppression des containers.</li>
+    <li>Le CLI (outil en ligne de commande)  `docker`, qui permet de manipuler le `dockerd`</li>
+    <li>Le Hub, sur lequel sont partagées les images de containers, disponible à l'adresse <a href="https://hub.docker.com">hub.docker.com</a></li>
 </ul>
 
-</section>
+Docker est également une société qui vend des services aux entreprises, en particulier d'hébergement d'image sur le Hub, ainsi que du support.
+</p>
+
+<p>
+La vidéo suivante présente les grandes notions de docker.
+</p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nEcjF0MAPtw" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p align="center">
+<a href="pdf/aval_docker.pdf">Transparents présentés dans la vidéo</a>
+</p>
+
+
+<p>
+    La vidéo suivante présente comment utiliser docker pour se constituer un environnement de développement, avec une base de données PostgreSQL.
+    </p>
+    <p align="center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hATHIb-p2hw" frameborder="0" allowfullscreen></iframe>
+    </p>
+
+
+<h3>Glossaire</h3>
+
+<dl>
+    <dt>Container</dt>
+    <dd>
+        Un container représente un processus (au sens Linux), qui s'exécute dans un environnement isolé (CPU/Mémoire/filesystem).
+        Un container est instancié à partir d'une image de container.
+    </dd>
+
+    <dt>Image</dt>
+    <dd>
+        Une image est une unité de packaging docker, qui comprend un processus à exécuter, ainsi que l'ensemble des dépendances dont il a besoin.
+
+        Par exemple, l'image `postgres`, contient le système de bases de données PostgreSQL, ainsi que toutes les dépendances nécessaires à son exécution.
+
+        Les images de containers peuvent être produites par les développeurs open-source (par exemple l'image `postgres`), ou par une entreprise pour packager ses applications.
+
+        Les images de containers peuvent être partagées sur le Hub Docker.
+    </dd>
+
+    <dt>Hub Docker</dt>
+    <dd>Le Hub Docker est un repository centralisé d'images de containers (un peu à la manière de Maven).</dd>
+
+    <dt>Dockerfile</dt>
+    <dd>Le `Dockerfile` est un fichier qui contient l'ensemble des instructions permettant la construction d'une image de container.</dd>
+
+
+</dl>
+
+<h3>Apprendre en ligne</h3>
+
+<p>
+Pour apprendre à manipuler son outil, Docker fournit un "playground" gratuit (il faut néanmoins se créer un compte sur le hub docker) : <a href="https://labs.play-with-docker.com/">labs.play-with-docker.com</a>
+</p>
+
+<h3>Liens utiles</h3>
+
+<ul>
+    <li>Le hub : <a href="https://hub.docker.com">hub.docker.com</a></li>
+    <li>Le tutorial de démarrage : <a href="https://docs.docker.com/get-started/">Get Started</a></li>
+    <li>La documentation des commandes `docker` <a href="https://docs.docker.com/engine/reference/run/">Docker CLI reference</a></li>
+    <li>La documentation des commandes `Dockerfile` <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a></li>
+</ul>
+
     <footer>
       <p>
         <img align="right" src="img/UL-2014.png" height="80"/>
