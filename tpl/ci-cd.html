@@ -1,0 +1,88 @@
+
+<h2>CI/CD</h2>
+
+<p>
+CI (pour Continuous Integration - Intégration Continue en français), et CD (pour Continuous Deployment - Déploiement Continu en français) sont des termes qui
+regroupent des pratiques d'ingénieurie logicielle moderne, dont le but est de faciliter l'intégration de nouveau code dans un logiciel existant.
+C'est une pratique très répandue dans les développements logiciels en entreprise depuis les 10 dernières années.
+
+Le principe de l'intégration continue est de proposer aux développeurs d'un projet, un feedback rapide sur l'état du logiciel après application de modifications de code.
+
+Cela consiste principalement en :
+<ul>
+    <li>la compilation du logiciel : pour vérifier que le nouveau code compile bien avec l'existant</li>
+    <li>l'exécution des tests : pour vérifier que le logiciel produit se comporte toujours comme attendu (non-régression)</li>
+    <li>une analyse qualimétrique : pour vérifier que les normes de développement sont bien suivies</li>
+    <li>une analyse de sécurité : pour s'assurer que le logiciel est toujours aux normes de sécurités attendues</li>
+</ul>
+
+Le déploiement continue consiste lui en la mise à disposition rapide du logiciel aux équipes de test ou aux utilisateurs,
+encore une fois dans le but d'obtenir un feedback rapide sur les fonctionnalités développées, et de détecter au plus tôt les bugs éventuels.
+
+Le déploiement continue consiste donc le plus souvent en:
+<ul>
+    <li>la production d'un binaire installable (un fichier .war par exemple) : 
+        pour vérifier que la production d'un binaire est toujours possible,
+        et pour avoir toujours à disposition une version "prête à être installée"</li>
+    <li>l'installation de binaire sur un ou plusieurs serveurs ou environnements de test</li>
+    <li>l'installation éventuelle de ce binaire sur un ou plusieurs serveurs ou environnements de production</li>
+</ul>
+
+
+<p>
+La vidéo suivante présente ces notions.
+</p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tGqXTaoWufs" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p align="center">
+<a href="pdf/aval_ci-cd.pdf">Transparents présentés dans la vidéo</a>
+</p>
+
+Il existe de nombreaux produits permettant de mettre en place une intégration continue.
+Certains de ces produits sont au plus proche du code, comme <i>Gitlab-CI</i> <i>et Github Actions</i>,
+d'autres sont externes comme <i>Jenkins</i> ou <i>travis-ci</i>.
+
+<h3>Gitlab-CI</h3>
+
+Gitlab-CI est le produit d'intégration continue intégré à Gitlab. Il est gratuit et disponible directement pour tous les projets
+hébergés sur <a href="https://gitlab.com">gitlab.com</a>
+
+<p>
+La vidéo suivante présente la mise en place d'un pipeline d'intégration continue en utilisant Gitlab-CI.
+</p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/koCxvagKgDU" frameborder="0" allowfullscreen></iframe>
+</p>
+<p align="center">
+    <a href="https://gitlab.com/flexiweb/demo-gitlab-ci" target="blank">Lien vers le projet mis en place</a>
+</p>
+
+<h4>Liens utiles: </h4>
+<ul>
+    <li>La documentation officielle sur <a href="https://docs.gitlab.com/ee/ci/README.html">docs.gitlab.com</a> (en anglais)</li>
+    <li>La référence des directives disponibles pour le fichier .gitlab-ci.yml sur <a href="https://docs.gitlab.com/ee/ci/yaml/README.html">docs.gitlab.com</a> (en anglais)</li>
+</ul>
+
+
+<h3>Github Actions</h3>
+
+Github Actions est le produit d'intégration continue intégré à Github. Il est gratuit et disponible directement pour tous les projets
+hébergés sur <a href="https://github.com">github.com</a>
+
+<p>
+La vidéo suivante présente la mise en place d'un pipeline d'intégration continue en utilisant Github Actions.
+</p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-esekAPyWTY" frameborder="0" allowfullscreen></iframe>
+</p>
+<p align="center">
+    <a href="https://github.com/juwit/demo-github-actions" target="blank">Lien vers le projet mis en place</a>
+</p>
+
+<h4>Liens utiles: </h4>
+<ul>
+    <li>La documentation officielle sur <a href="https://docs.github.com/en/actions">docs.github.com</a> (en anglais)</li>
+    <li>Un guide pour la compilation et les tests d'une application Java sur <a href="https://docs.github.com/en/actions/guides/building-and-testing-java-with-maven">docs.github.com</a> (en anglais)</li>
+</ul>

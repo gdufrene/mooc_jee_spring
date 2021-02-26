@@ -16,6 +16,7 @@ gen java
 gen maven
 gen maven-lille1
 gen docker
+gen ci-cd
 gen tomcat
 #gen devops_tools
 gen git
