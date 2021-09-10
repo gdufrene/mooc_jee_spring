@@ -1,0 +1,8 @@
+/apache-maven*
+/apache-tomcat*
+/jdk-11*
+/java
+/maven
+/tomcat
+*.zip
+*.tar.gz

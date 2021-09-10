@@ -1,0 +1,8 @@
+/bin/
+.classpath
+.project
+css/bootstrap.min.css
+css/ie10-viewport-bug-workaround.css
+css/signin.css
+fonts/
+js/
