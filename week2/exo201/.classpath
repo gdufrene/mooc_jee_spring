@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="WEB-INF/classes"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/sqlite-jdbc-3.20.0.jar"/>
+	<classpathentry kind="lib" path="/Users/guillaume/test/tomcat/tomcat8/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/classes/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/classes/junit-4.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

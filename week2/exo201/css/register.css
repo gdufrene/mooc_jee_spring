@@ -1,0 +1,33 @@
+@import "signin.css";
+
+.form-signin input {
+  border-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+.form-signin input:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.form-signin input:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.form-signin button {
+	margin-top: 10px
+}
+
+form.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  border: solid 1px #999;
+  border-radius: 20px 0 20px 0;
+  background-color: white;
+}
