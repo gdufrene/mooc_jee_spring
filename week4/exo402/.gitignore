@@ -1,0 +1,11 @@
+/target/
+/src/main/webapp/js/ie10-viewport-bug-workaround.js
+/src/main/webapp/css/bootstrap.min.css
+/src/main/webapp/css/ie10-viewport-bug-workaround.css
+/.settings/
+/.classpath
+/.project
+/src/main/webapp/css/signin.css
+/src/main/webapp/fonts/glyphicons*
+/src/main/webapp/js/bootstrap.min.js
+/src/main/webapp/js/jquery.min.js
