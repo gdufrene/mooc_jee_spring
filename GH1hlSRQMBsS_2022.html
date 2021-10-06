@@ -59,6 +59,7 @@ h3 {
   Nous vous proposons de continuer le développement du commerce en ligne "Web Drive" autours de différents lots fonctionnels : 
   
   <ul>
+   <li><a href="#creneaux">Gestion de compte client, </a>, </li>
    <li><a href="#creneaux">Gestion de créneaux</a>, </li>
    <li><a href="#stock">Référencement de produits et stock</a>, </li>
    <li><a href="#promos">Promos</a>, </li>
@@ -82,6 +83,76 @@ h3 {
 
 
 <h2 id="liste-des-fonctionnalités"><i class="icon-list"></i> Liste des fonctionnalités</h2>
+
+<!--   *******************************************************************************************
+       *                                     Gestion des comptes client
+       *******************************************************************************************  -->
+
+<p><i class="icon-tag"></i> 
+  <em>En tant que client je peux créer un compte client afin de commander.</em>
+</p>
+<p>
+  Le client doit saisir son nom, prénom, adresse complète, email, mot de passe.<br/>
+  Lors de la création de compte, l'adresse e-mail doit elle valide.<br/>
+  Pour contrôler cette adresse, un mail sera envoyé au client avec un lien de confirmation valable 24h.<br/>
+  Lorsque le client a cliqué sur ce lien son compte est "activé", si cet action a lieu moins de 24h après l'envoi.<br/>
+  Il pourra demander un nouveau lien d'activation.<br/>
+  <b>Modification.</b><br/>
+  Un client a la possibilité de modifier ses coordonnées (nom, prénom, adresse, email).<br/>
+  Si il change son adresse e-mail, il devra confirmer par un lien d'activation ce nouvel email. L'ancien email indiqué restera actif tant que la nouvelle adresse n'a pas été confirmée.<br/>
+  <b>Mot de passe.</b><br/>
+  Vous controlerez que le mot de passe respecte un certains nombre de critères habituels :<br/>
+  - Taille supérieur ou égale à 8 caractères,<br/>
+  - Au moins une majuscule,<br/>
+  - Au moins un chiffre,<br/>
+  Prenez soin de hasher et saler les mots de passe en base de données.
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant que client je peux commander des articles.</em>
+</p>
+<p>
+  Après avoir mis mes articles au paniers, je dois pouvoir valider ma commande.<br/>
+  Le client ne peut passer des commandes que si son compte est activé, dans le cas contraire, le client peut se logger mais un avertissement lui indique qu'il n'a pas encore activé son compte.<br/>
+  La commande est associé à ce client.<br/>
+  <b>Historique.</b><br/>
+  Le client peut voir l'historique de ses commandes.<br/>
+  Une page de synthèse affiche le numéro de commande, la date et le montant total.<br/>
+  Pour chaque commande, je peux voir le détail de chaque produit avec les quantités commandées.<br/>
+  Evidemment, un client ne peurra voir que ses commandes, il ne doit pas être possible de voir les commandes d'un autre client.<br/>
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant que client je peux adresser une réclamation.</em>
+</p>
+<p>
+  Après m'être identifié, un formulaire de contact me permet d'ouvrir une réclamation.<br/>
+  Je peux indiquer un numéro de commande et un texte précisant l'objet de ma réclamation.<br/>
+  Cette réclamation passe en status "en attente de réponse".<br/>
+  Je peux consulter l'historiques des messages échangés autours d'une réclamation que j'ai envoyé.<br/>
+  Je peux toujours ajouter du détail sur une réclamation ouverte "en attente de réponse".<br/>
+  Je ne peux plus ajouter de message ou de détail lorsque la réclamation passe en état "cloturée".<br/>
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant qu'admin je peux répondre à une réclamation et cloturer une demande.</em>
+</p>
+<p>
+  Après m'être identifié, une liste des réclamations "en attente de réponse" me sont présentées.<br/>
+  Je peux consulter et répondre à une réclamation par un nouveau commentaire.<br/>
+  Cette réclamation passe en status "réponse apportée".<br/>
+  Les échanges (commentaires) sont datés et cette date sera affiché avec les commentaires apportés.<br/>
+  Un admin peut considérer qu'une réclamation peut être "cloturée" et mettre une réclamation dans ce status.<br/>
+</p>
+
+<p><i class="icon-tag"></i> 
+  <em>En tant qu'admin je peux "bannir" un compte client.</em>
+</p>
+<p>
+  Un admin peut rechercher les informations d'un compte client.<br/>
+  Il pourra consulter les informations du compte client (nom, prénom, email).<br/>
+  Il peut "bannir" un compte client, ce dernier ne pourra plus s'identifier ou tenter de re-créer un compte avec cette adresse e-mail. 
+</p>
 
 
 <!--   *******************************************************************************************
