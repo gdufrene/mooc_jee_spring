@@ -33,8 +33,9 @@ h1 {
 h1+p {
   clear: both;
 }
-table.equipes td:nth-child(2) {
-  border-right: solid 1px #CCC;
+pre.equipes {
+  border-left: solid 2px #CCCCFF;
+  padding-left: 10px;
 }
 h2 {
   color: #18aff0;
@@ -485,38 +486,140 @@ h3 {
 <a name="equipes"></a>
 <h2 id="users"><i class="icon-user"></i> Liste des groupes</h2>
 
-<table class="equipes">
-<tr>
-  <th>Groupe</th>
-  <th>Sujet</th>
-  <th>1</th>
-  <th>2</th>
-  <th>3</th>
-  <th>4</th>
-</tr>
-<tr>
-  <td>A</td>
-  <td>Créneaux</td>
-</tr>
-<tr>
-  <td>B</td>
-  <td>Promos</td>
-</tr>
-<tr>
-  <td>C</td>
-  <td>Préparation</td>
-</tr>
-<tr>
-  <td>D</td>
-  <td>Retrait</td>
-</tr>
-</table>
+<div style="width: 100%; background-color: #CCCCFF">master GL groupe 1</div>
+
+<pre class="equipes">
+<b>Clients</b>
+HANSON    ANTHONY    A
+BART      SEBASTIEN  A
+DEBACKER  TANGUY     A
+---
+<b>Créneaux</b>
+DUQUENNE  KORENTIN   B
+MOKEDDES  YOUVA      B
+BONVOISIN ALEXANDRE  B
+---
+<b>Stocks</b>
+COIGNION  TRISTAN       C
+HAMMOUDI  MOHAMED-SAID  C
+AMIRAT    NADIA         C
+MPEMBA    GUILLAUME     C
+---
+<b>Promos</b>
+MEDJOUDJ  LITICIA    D
+VINTAER   JORDAN     D
+SAMIER    VINCENT    D
+DALLENNE  GUILLAUME  D
+---
+<b>Préparation commandes</b>
+VIREY   PIERRE LOUIS  E
+ABIDAR  ALI           E
+MOUQUET MANON         E
+BALDE   IBRAHIMA      E
+</pre>
+
+<div style="width: 100%; background-color: #CCCCFF">master GL groupe 2</div>
+
+<pre class="equipes">
+<b>Clients</b>
+BOUALI  HOCINE  F
+HOCINE  FERHAT  F
+MEDAH   LISA    F
+---
+<b>Créneaux</b>
+NGUYEN      KEVIN     G
+SEVERIN     MATTHIAS  G
+ELMOUKHLIS  SALMA     G
+---
+<b>Promos</b>
+COLLARD ESTEBAN          H
+MEGHARI SAMY             H
+ASSIMA  KOBOYODA ARTHUR  H
+AMARA   CYRIA            H
+---
+<b>Stocks</b>
+FINARD      ALEXIS     I
+BOUMAHDI    SAMY       I
+COSSE       THEOPHILE  I
+DENDONCKER  FLORIAN    I
+---
+<b>Retrait des commandes</b>
+HALLIL     RAZINE   J
+EL AMMARI  NORDINE  J
+HAMANI     RAYANE   J
+HOUZET     NATHAN   J
+</pre>
+
+<div style="width: 100%; background-color: #CCCCFF">master e-services groupe FI</div>
+
+<pre class="equipes">
+<b>Créneaux</b>
+Lafolie Anthony  K
+Valet   Tristan  K
+Daoud   Reem     K
+---
+<b>Stocks</b>
+Dogimont  Lucas    L
+Fernandes Antoine  L
+Snapp     Yohan    L
+---
+<b>Préparation commandes</b>
+Ikhlef        Ryan     M
+Tacquet       Charles  M
+Syllebranque  Pierre   M
+---
+<b>Retrait</b>
+Dewaele         Audrey     N
+Annebique       Renaud     N
+Perseval        Alexandre  N
+Lerat-lambert   Paul       N
+</pre>
+
+
+<div style="width: 100%; background-color: #CCCCFF">master e-services groupe FA</div>
+
+<pre class="equipes">
+<b>Clients</b>
+Tayebi    Ajwad          O
+Le Feyer  Aymeric        O
+Diallo    Abdoul Matine  O
+---
+<b>Créneaux</b>
+Diallo       Mamadou    P
+Bontemps     Loic       P
+Gerstenberg  Alexandre  P
+Kebir        Jugurtha   P
+---
+<b>Stocks</b>
+Bricout  Gael               Q
+Campan   Nutu-Bogdan        Q
+Phu      Valentin           Q
+Diallo   Aissatou-Lamarana  Q
+---
+<b>Promos</b>
+Genart     Valentin  R
+Delbroucq  Alix      R
+Pires      Theo      R
+Gomez      Mickael   R
+---
+<b>Préparation commandes</b>
+Holvoet  Adrien     S
+D'hulst  Thomas     S
+Carlier  Annelise   S
+Krol     Mikolai    S
+---
+<b>Retrait</b>
+Ledain      Alexy    T
+Fungwa Moke Junior   T
+Fernandes   Nicolas  T
+Mendez      Anthony  T
+</pre>
 
 <h2 id="livrable"><i class="icon-login"></i> Livrable</h2>
 
 <p><i class="icon-user"></i> Le projet est à réaliser par groupe de 3 ou 4.  <br>
-<i class="icon-calendar"></i> Il est à rendre pour le xxxx. <br>
-<i class="icon-folder-open"></i> Partagez-moi un projet Bitbucket nommé "JEE-PJ21-<b>VOTRE_GROUPE</b>" contenant les sources d’un projet Maven et vos ressources web (vues, images, styles, scripts, etc.)</p>
+<i class="icon-calendar"></i> Il est à rendre pour le 27 Octobre 2021. <br>
+<i class="icon-folder-open"></i> Nous vous enverrons un lien github classroom pour rejoindre votre groupe (adresse etu) et partager le code source via github.</p>
 
 <p>Les dépendances Maven ne seront pas fournies, elles doivent pouvoir être récupérées en utilisant “mvn compile”. <br>
 Votre projet utilisera Spring, sera organisé selon un pattern MVC mettant en oeuvre des vues en JSP/JSTL. <br>
