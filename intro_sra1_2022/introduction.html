@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<!--
+  From Google HTML5 slide template
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<!--
+  Java EE - Spring Course.
+  Master informatique - 2021
+-->
+
+<html>
+  <head>
+    <title>Java EE / Spring</title>
+
+    <meta charset='utf-8'>
+    <script src='slides.js'></script>
+  </head>
+  
+  <style>
+    #img-solarus {
+      position: absolute;
+      width: 42%;
+      margin-top: -115px;
+      margin-left: 550px;
+    }
+    .icon-github {
+      height: 32px;
+      width: 32px;
+      display: inline-block;
+      position: relative;
+      top: 8px;
+      border-radius: 5px;
+      background: transparent url('https://github.com/apple-touch-icon-114.png') scroll no-repeat left center; 
+      background-size: 32px 32px;
+    }
+    ul.two-cols li {
+      float: left;
+      width: 48%;
+    }
+    .slides.template-lille1 article.biglogo {
+      background: #FFFFFF url('https://www.univ-lille.fr/typo3conf/ext/ul2fpfb/Resources/Public/assets/img/UL-ROSE-dark-2014.svg') scroll no-repeat 50% 50%;
+      background-size: 60%;
+    }
+    .slides.template-lille1 article {
+      background: #FFFFFF url('https://www.univ-lille.fr/typo3conf/ext/ul2fpfb/Resources/Public/assets/img/UL-ROSE-dark-2014.svg') scroll no-repeat right bottom;
+      background-size: 20%;
+      background-origin: content-box;
+    }
+    .slides.template-lille1 a {
+      text-decoration: none;
+    }
+    .slides.template-lille1 a:hover {
+      color: #A00;
+    }
+    #qui-sommes-nous div {
+      margin-top: 0;
+      line-height: initial;
+    }
+    #qui-sommes-nous section {
+      display: block;
+      width: 45%;
+      height: 200px;
+      margin: 20px;
+      float: left;
+    }
+    #evaluation-cours ul {
+      font-size: 0.8em;
+      line-height: initial;
+    }
+    #evaluation-cours ul u {
+      font-size: 1.2em;
+    }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen template-lille1'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+
+      <article class='biglogo'>
+      </article>
+
+      <article>
+        <h1>
+          Systèmes répartis avancés - 1
+        </h1>
+
+        <p>
+          Maximilien Chevalier<br>
+          Guillaume Dufrêne<br>
+          Lionel Seinturier<br>
+          Julien Wittouck<br>
+        </p>
+        <p style="font-size: 0.8em">
+          <a href="https://github.com/gdufrene/mooc_jee_spring/"> 
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+             gdufrene/mooc_ee_spring 
+          </a>
+          <a style="margin-left: 50px; padding-left: 100px" href="https://www.fun-mooc.fr/fr/cours/java-ee-spring-pret-a-lemploi/">
+            <img height="36" src="https://dz03nossv7tsm.cloudfront.net/static/richie/images/logo.68a91a1b084b.png" style="margin-left: -110px; margin-top: 10px; position: absolute;"/> 
+            Java EE Spring - prêt à l'emploi
+          </a>
+        </p>
+      </article>
+
+      <article id="qui-sommes-nous">
+        <h3>
+          Qui sommes-nous ?
+        </h3>
+
+        <section>
+          <img src="maximilien.jpg" style="float: left; margin: 10px; filter: grayscale(100%) brightness(1.75);" width="80" /> Maximilien Chevalier<br>
+          <div style="font-size: 0.6em; margin-top: 10px">
+          Enseignant vacataire,<br/>
+          Technical leader SOA @ Axa France.</div>
+        </section>
+
+        <section>
+          <img src="guillaume_nb.jpg" width="80" style="float: left; margin: 10px"/> Guillaume Dufrêne<br>
+          <div style="font-size: 0.6em; margin-top: 10px">
+          Enseignant vacataire,<br/>
+          Technical leader SOA @ Axa France.</div>
+        </section>
+
+        <section>
+          <img src="lionel_nb.jpg" width="80" style="float: left; margin: 10px"/> Lionel Seinturier<br>
+          <div style="font-size: 0.6em; margin-top: 10px">
+          Professeur d'université,<br/>
+          Dirige l'équipe "Spirals" @ INRIA.</div>
+        </section>
+
+        <section>
+          <img src="julien.jpg" style="float: left; margin: 10px; filter: brightness(1.20);" width="80"/> 
+          Julien Wittouck<br>
+          <div style="font-size: 0.6em; margin-top: 10px">
+          Enseignant vacataire,<br/>
+          Architecte solution indépendant.</div>
+        </section>
+      </article>
+
+      <article>
+        <h3>
+          Format du cours
+        </h3>
+        <p>
+          Mooc : 5 séances de Cours/TP.
+        </p>
+        <p>
+          1 séance de travail accompagnée sur un projet dirigé.
+        </p>
+        <p>
+          1 séance pour finaliser / présenter les projets.
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          Support de cours
+        </h3>
+        <p>
+          <a href="https://www.fun-mooc.fr/fr/cours/java-ee-spring-pret-a-lemploi/">
+            <img src="https://dz03nossv7tsm.cloudfront.net/static/richie/images/logo.68a91a1b084b.png"/> Java EE Spring - prêt à l'emploi</a> : <br/>
+            &nbsp;&nbsp;Référence, fil conducteur, vidéos et pointeurs<br/>
+          <br/>
+
+          <a href="https://github.com/gdufrene/mooc_jee_spring/">
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+               projet github </a> : <br/>
+               &nbsp;&nbsp;ressources pour les exercices et "screencasts"<br/>
+          <br/>
+
+          <a href="https://gdufrene.github.io/mooc_jee_spring/"> 
+              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            pages github </a> : <br/>
+            &nbsp;&nbsp;complément / alternative aux screencasts.<br/>
+
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          Contenu du "cours"
+        </h3>
+        <p>
+         <h4>Vidéos</h4>
+         contenu pédagogique présentant les concepts fondamentaux et notions additionnelles.
+         <h4>Screencast</h4>
+         Mise en oeuvre à travers une démonstration de développement.
+         <h4>Exercices</h4>
+         Permettant de vous mettre le pieds à l'étrier.
+       </p>
+      </article>
+
+      <article>
+        <h3>
+          Contenu optionnel
+        </h3>
+        <h4>Réviser les pré-requis</h4> 
+        4 vidéos : Annotations, Collections, Generics, Reflexivité.
+        <h4>Aller plus loin</h4>
+        4 Vidéos + 4 screencast : DevOps, Docker, CI/CD, Spring Boot.
+      </article>
+
+      <article id="evaluation-cours">
+        <h3>
+          Evaluation du module
+        </h3>
+        <p><ul>
+           <li><u>Contrôle continu</u> : <br/>
+             (20%) - 5 séries exercices<br/>
+             (10%) - 5 QCM<br/>
+             (10%) - 1 QCM final de synthèse<br/>
+           </li>
+           <li><u>Projet</u> : <br/>
+             (35%) - Livrable<br/>
+             (15%) - Présentation<br/>
+             (10%) - Participation<br/>
+           </li>
+           </ul>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Les exercices
+        </h3>
+        <p>
+          Implémentation de code selon un énoncé assez précis<br/>
+          Exécution de tests unitaires, chaque test rapporte des points<br/>
+          A rendre dans les 5 jours suivants<br/>
+          Si rendu ensuite : perte dégressive de points<br/>
+          Rendre le code produit via github classroom (voir consignes)<br/>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Le projet
+        </h3>
+        <p>
+          Dans la continuité des sujets d'exercice :<br/>
+          <br/>
+          Développement d'un site de e-commerce "drive" (vente à emporter).<br/>
+          Spring + JPA/Hibernate + JSP/JSTL.<br/>
+          <br/>
+          à rendre à la dernière séance (github classroom).<br/>
+          Par groupe de 4 personnes. Groupe imposé.<br/>
+        </p>
+      </article>
+
+      <article class="smaller">
+        <h3>
+          Consignes pour le projet
+        </h3>
+        <p>
+          Créer un compte <a href="https://github.com/">Github</a> par personne,<br/>
+          Voir consignes supplémentaires sur FUN (pour classroom).<br/>
+          <br/>
+          <font color="#A00000">L'activité sur git doit être représentative :<br/>
+            &nbsp;&nbsp;&nbsp; • de votre avancement <br/>
+            &nbsp;&nbsp;&nbsp; • de votre contribution individuelle</font>.<br/>
+          Utilisez maven. La compilation doit être simple.<br/>
+          Doit pouvoir créer un War et le déployer dans Jetty, Tomcat ou autre ...<br/>
+          <br/>
+          Fournir un README avec projet (voir consignes)<br/>
+        </p>
+        <p>
+          Prévoir une "démo" du projet (20 minutes max en dernière séance)<br/>
+        </p>
+      </article>
+
+      <article>
+        <h2>
+          Merci !
+        </h2>
+      </article>
+
+    </section>
+
+  </body>
+</html>
