@@ -4,13 +4,13 @@ ln -s jdk-11.0.11+9/ java
 ./java/Contents/Home/bin/java -version
 export JAVA_HOME="$(pwd)/java/Contents/Home"
 
-wget https://miroir.univ-lorraine.fr/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.zip
-unzip apache-maven-3.8.1-bin.zip
-ln -s apache-maven-3.8.1/ maven
+wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
+unzip apache-maven-3.8.6-bin.zip
+ln -s apache-maven-3.8.6/ maven
 ./maven/bin/mvn -v
 
-wget https://miroir.univ-lorraine.fr/apache/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
-tar xvf apache-tomcat-9.0.48.tar.gz
-ln -s apache-tomcat-9.0.48/ tomcat
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+tar xvf apache-tomcat-9.0.65.tar.gz
+ln -s apache-tomcat-9.0.65/ tomcat
 ./tomcat/bin/version.sh
 
