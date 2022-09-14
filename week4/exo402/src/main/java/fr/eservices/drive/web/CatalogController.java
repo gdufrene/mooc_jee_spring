@@ -2,7 +2,10 @@ package fr.eservices.drive.web;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.eservices.drive.dao.CatalogDao;
 import fr.eservices.drive.dao.DataException;
@@ -12,12 +15,15 @@ import fr.eservices.drive.model.Category;
 
 // set as a Controller
 // map to an url starting with "/catalog"
+@Controller
+@RequestMapping("/catalog")
 public class CatalogController {
 	
 	// Inject this with spring
 	CatalogDao dao;
 	
 	// Map this method to "categories.html"
+	@GetMapping("/categories.html")
 	public String list(Model model) throws DataException {
 		List<Category> categories = dao.getCategories();
 		// add categories to model 

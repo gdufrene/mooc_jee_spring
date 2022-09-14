@@ -4,6 +4,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -12,10 +14,15 @@ import org.springframework.web.servlet.ViewResolver;
 // set this class as a "Configuration" component to contribute to spring context
 // enable spring web mvc
 // scan packages for component and controllers
+@ComponentScan
+@Configuration
 public class AppConfig implements WebApplicationInitializer {
 	
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
+		
+		System.out.println("AppConfig Initialized");
+		
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(AppConfig.class);
 		ServletRegistration.Dynamic registration = container.addServlet("dispatcher", new DispatcherServlet(ctx));
